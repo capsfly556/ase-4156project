@@ -1,0 +1,757 @@
+openapi: 3.0.0
+info:
+  description: API for managing group food orders.
+  title: GroupGrub
+  version: 1.0.0
+servers:
+- description: Production server
+  url: https://api.groupgrub.com
+paths:
+  /groups:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Group'
+                type: array
+          description: Successfully retrieved a list of all groups in the service.
+        "404":
+          description: No groups found in the service.
+      summary: Retrieve a list of all groups in the service.
+      x-accepts:
+      - application/json
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+        description: "Group object to add, must specify group name, participant IDs,\
+          \ groupOrder IDs, and administrator ID."
+        required: true
+      responses:
+        "201":
+          description: Successfully added a new group.
+        "400":
+          description: Failed to add a new group.
+      summary: Add a new group to the service.
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /groups/{groupId}:
+    delete:
+      parameters:
+      - description: The unique identifier of the group.
+        explode: false
+        in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Group deleted successfully.
+        "404":
+          description: Group not found.
+      summary: Delete a group.
+      x-accepts:
+      - application/json
+    get:
+      parameters:
+      - description: The unique identifier of the group.
+        explode: false
+        in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+          description: Group details retrieved successfully.
+        "404":
+          description: Group not found.
+      summary: Retrieve details of a specific group.
+      x-accepts:
+      - application/json
+    put:
+      parameters:
+      - description: The unique identifier of the group.
+        explode: false
+        in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+        required: true
+      responses:
+        "200":
+          description: Group updated successfully.
+        "404":
+          description: Group not found.
+      summary: Update a group's details.
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /groups/{groupId}/orders:
+    get:
+      parameters:
+      - description: The unique identifier of the group.
+        explode: false
+        in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/GroupOrderResponse'
+                type: array
+          description: List of group orders retrieved successfully.
+      summary: Retrieve all group orders for a specific group.
+      x-accepts:
+      - application/json
+    post:
+      parameters:
+      - description: The unique identifier of the group.
+        explode: false
+        in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupOrder'
+        required: true
+      responses:
+        "201":
+          description: Group order created successfully.
+      summary: Create a new group order.
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /groups/{groupId}/orders/{orderId}:
+    delete:
+      parameters:
+      - description: The unique identifier of the group.
+        explode: false
+        in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The unique identifier of the order.
+        explode: false
+        in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Group order deleted successfully.
+        "404":
+          description: Group order not found.
+      summary: Delete a group order.
+      x-accepts:
+      - application/json
+    get:
+      parameters:
+      - description: The unique identifier of the group.
+        explode: false
+        in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The unique identifier of the order.
+        explode: false
+        in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupOrderResponse'
+          description: Group order details retrieved successfully.
+        "404":
+          description: Group order not found.
+      summary: Retrieve details of a specific group order.
+      x-accepts:
+      - application/json
+    put:
+      parameters:
+      - description: The unique identifier of the group.
+        explode: false
+        in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The unique identifier of the order.
+        explode: false
+        in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupOrder'
+        required: true
+      responses:
+        "200":
+          description: Group order updated successfully.
+        "400":
+          description: Failed to update the group order.
+      summary: Update a group order.
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /foodproviders:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/FoodProvider'
+                type: array
+          description: Successfully retrieved food providers.
+        "404":
+          description: No food providers found.
+      summary: Retrieve a list of all food providers.
+      x-accepts:
+      - application/json
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FoodProvider'
+        description: A new food provider object.
+        required: true
+      responses:
+        "201":
+          description: Food provider added successfully.
+        "400":
+          description: Failed to add food provider.
+      summary: Add a new food provider to the service.
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /foodproviders/{foodProviderId}:
+    delete:
+      parameters:
+      - description: The unique identifier of the food provider.
+        explode: false
+        in: path
+        name: foodProviderId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Food provider deleted successfully.
+        "404":
+          description: Food provider not found.
+      summary: Delete a food provider.
+      x-accepts:
+      - application/json
+    get:
+      parameters:
+      - description: The unique identifier of the food provider.
+        explode: false
+        in: path
+        name: foodProviderId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FoodProvider'
+          description: Food provider details retrieved successfully.
+        "404":
+          description: Food provider not found.
+      summary: Retrieve details of a specific food provider.
+      x-accepts:
+      - application/json
+    put:
+      parameters:
+      - description: The unique identifier of the food provider.
+        explode: false
+        in: path
+        name: foodProviderId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FoodProvider'
+        description: Updated food provider object.
+        required: true
+      responses:
+        "200":
+          description: Food provider updated successfully.
+        "400":
+          description: Failed to update food provider.
+        "404":
+          description: Food provider not found.
+      summary: Update a food provider's details.
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /participants:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Participant'
+                type: array
+          description: Successfully retrieved participants.
+        "404":
+          description: No participants found.
+      summary: Retrieve all participants registered in the service.
+      x-accepts:
+      - application/json
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Participant'
+        required: true
+      responses:
+        "201":
+          description: Participants added successfully.
+        "400":
+          description: Failed to add participants.
+      summary: Add new participants.
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /participants/{participantID}:
+    delete:
+      parameters:
+      - description: The unique identifier of the participant.
+        explode: false
+        in: path
+        name: participantID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Participant deleted successfully.
+        "404":
+          description: Participant not found.
+      summary: Delete a participant.
+      x-accepts:
+      - application/json
+    get:
+      parameters:
+      - description: The unique identifier of the participant.
+        explode: false
+        in: path
+        name: participantID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Participant'
+          description: Participant details retrieved successfully.
+        "404":
+          description: Participant not found.
+      summary: Retrieve details of a participant by participantID.
+      x-accepts:
+      - application/json
+    put:
+      parameters:
+      - description: The unique identifier of the participant.
+        explode: false
+        in: path
+        name: participantID
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Participant'
+        required: true
+      responses:
+        "200":
+          description: Participant updated successfully.
+        "400":
+          description: Failed to update participant.
+        "404":
+          description: Participant not found.
+      summary: Update a participant's details.
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /participants/{participantID}/orders/{participantOrderID}:
+    delete:
+      parameters:
+      - description: The unique identifier of the participant.
+        explode: false
+        in: path
+        name: participantID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The unique identifier of the participant's order.
+        explode: false
+        in: path
+        name: participantOrderID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Order deleted successfully.
+        "404":
+          description: Order not found.
+      summary: Delete a participant's order.
+      x-accepts:
+      - application/json
+    get:
+      parameters:
+      - description: The unique identifier of the participant.
+        explode: false
+        in: path
+        name: participantID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The unique identifier of the participant's order.
+        explode: false
+        in: path
+        name: participantOrderID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParticipantOrder'
+          description: Participant's order retrieved successfully.
+        "404":
+          description: Order not found.
+      summary: Retrieve a specific participant's order.
+      x-accepts:
+      - application/json
+    put:
+      parameters:
+      - description: The unique identifier of the participant.
+        explode: false
+        in: path
+        name: participantID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The unique identifier of the participant's order.
+        explode: false
+        in: path
+        name: participantOrderID
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParticipantOrder'
+        required: true
+      responses:
+        "200":
+          description: Order updated successfully.
+        "400":
+          description: Failed to update order.
+        "404":
+          description: Order not found.
+      summary: Update a participant's order.
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /participants/{participantID}/orders:
+    get:
+      parameters:
+      - description: The unique identifier of the participant.
+        explode: false
+        in: path
+        name: participantID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ParticipantOrder'
+                type: array
+          description: List of participant orders retrieved successfully.
+      summary: Retrieve all participant orders for a specific participant.
+      x-accepts:
+      - application/json
+    post:
+      parameters:
+      - description: The unique identifier of the participant.
+        explode: false
+        in: path
+        name: participantID
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParticipantOrder'
+        required: true
+      responses:
+        "201":
+          description: Participant order created successfully.
+      summary: Create a new participant order.
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+components:
+  schemas:
+    Group:
+      example:
+        administratorID: administratorID
+        groupOrderIDs:
+        - groupOrderIDs
+        - groupOrderIDs
+        groupID: groupID
+        name: name
+        participantIDs:
+        - participantIDs
+        - participantIDs
+      properties:
+        groupID:
+          type: string
+        name:
+          type: string
+        participantIDs:
+          items:
+            type: string
+          type: array
+        groupOrderIDs:
+          items:
+            type: string
+          type: array
+        administratorID:
+          type: string
+      type: object
+    GroupOrder:
+      example:
+        participantOrderIDs:
+        - participantOrderIDs
+        - participantOrderIDs
+        groupOrderID: groupOrderID
+        menuItemIDs:
+          key: 0
+        desiredPickupTimeframe: desiredPickupTimeframe
+        foodProviderID: foodProviderID
+        status: status
+      properties:
+        groupOrderID:
+          type: string
+        status:
+          type: string
+        menuItemIDs:
+          additionalProperties:
+            type: integer
+          type: object
+        participantOrderIDs:
+          items:
+            type: string
+          type: array
+        desiredPickupTimeframe:
+          type: string
+        foodProviderID:
+          type: string
+      type: object
+    GroupOrderResponse:
+      allOf:
+      - $ref: '#/components/schemas/GroupOrder'
+      - properties:
+          participantOrders:
+            items:
+              $ref: '#/components/schemas/ParticipantOrder'
+            type: array
+        type: object
+      example:
+        participantOrderIDs:
+        - participantOrderIDs
+        - participantOrderIDs
+        groupOrderID: groupOrderID
+        menuItemIDs:
+          key: 0
+        participantOrders:
+        - menuItemIDs:
+            key: 6
+          comments: comments
+          participantOrderID: participantOrderID
+        - menuItemIDs:
+            key: 6
+          comments: comments
+          participantOrderID: participantOrderID
+        desiredPickupTimeframe: desiredPickupTimeframe
+        foodProviderID: foodProviderID
+        status: status
+    Participant:
+      example:
+        participantID: participantID
+        participantOrderIDs:
+        - participantOrderIDs
+        - participantOrderIDs
+        name: name
+      properties:
+        participantID:
+          type: string
+        name:
+          type: string
+        participantOrderIDs:
+          items:
+            type: string
+          type: array
+      type: object
+    ParticipantOrder:
+      example:
+        menuItemIDs:
+          key: 6
+        comments: comments
+        participantOrderID: participantOrderID
+      properties:
+        participantOrderID:
+          type: string
+        menuItemIDs:
+          additionalProperties:
+            type: integer
+          type: object
+        comments:
+          type: string
+      type: object
+    FoodProvider:
+      example:
+        phoneNumber: phoneNumber
+        name: name
+        location: location
+        hoursOfOperation: hoursOfOperation
+        foodProviderID: foodProviderID
+        menu:
+        - image: image
+          cost: 0.8008281904610115
+          name: name
+          description: description
+          menuItemID: menuItemID
+        - image: image
+          cost: 0.8008281904610115
+          name: name
+          description: description
+          menuItemID: menuItemID
+      properties:
+        foodProviderID:
+          type: string
+        name:
+          type: string
+        location:
+          type: string
+        phoneNumber:
+          type: string
+        hoursOfOperation:
+          type: string
+        menu:
+          items:
+            $ref: '#/components/schemas/MenuItem'
+          type: array
+      type: object
+    MenuItem:
+      example:
+        image: image
+        cost: 0.8008281904610115
+        name: name
+        description: description
+        menuItemID: menuItemID
+      properties:
+        menuItemID:
+          type: string
+        name:
+          type: string
+        image:
+          type: string
+        description:
+          type: string
+        cost:
+          type: number
+      type: object
