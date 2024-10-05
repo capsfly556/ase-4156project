@@ -2,7 +2,6 @@ package org.openapitools.api;
 
 import org.openapitools.model.FoodProvider;
 
-
 import org.openapitools.service.FoodproviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,28 +26,32 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+@Generated(
+    value = "org.openapitools.codegen.languages.SpringCodegen",
+    date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]",
+    comments = "Generator version: 7.8.0")
 @Controller
 @RequestMapping("${openapi.groupGrub.base-path:}")
 public class FoodprovidersApiController implements FoodprovidersApi {
 
-    private final NativeWebRequest request;
-    private final FoodproviderService foodproviderService;
+  private final NativeWebRequest request;
+  private final FoodproviderService foodproviderService;
 
-    @Autowired
-    public FoodprovidersApiController(NativeWebRequest request, FoodproviderService foodproviderService) {
-        this.request = request;
-        this.foodproviderService = foodproviderService;
-    }
+  @Autowired
+  public FoodprovidersApiController(
+      NativeWebRequest request, FoodproviderService foodproviderService) {
+    this.request = request;
+    this.foodproviderService = foodproviderService;
+  }
 
-    @Override
-    public Optional<NativeWebRequest> getRequest() {
-        return Optional.ofNullable(request);
-    }
+  @Override
+  public Optional<NativeWebRequest> getRequest() {
+    return Optional.ofNullable(request);
+  }
 
-    @Override
-    public ResponseEntity<Void> foodprovidersPost(@Valid @RequestBody FoodProvider foodProvider) {
-        foodproviderService.addFoodProvider(foodProvider);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
+  @Override
+  public ResponseEntity<Void> foodprovidersPost(@Valid @RequestBody FoodProvider foodProvider) {
+    foodproviderService.addFoodProvider(foodProvider);
+    return new ResponseEntity<>(HttpStatus.CREATED);
+  }
 }

@@ -8,10 +8,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class GroupService {
 
-    @Autowired
-    private GroupRepository repository;
+  @Autowired private GroupRepository repository;
 
-    public Group addGroup(Group group) {
-        return repository.save(group);
-    }
+  public Group addGroup(Group group) {
+    return repository.save(group);
+  }
 }

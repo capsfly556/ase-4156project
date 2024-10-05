@@ -23,24 +23,20 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-
 import java.util.*;
 import javax.annotation.Generated;
 
-/**
- * GroupOrder
- */
-
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+/** GroupOrder */
+@Generated(
+    value = "org.openapitools.codegen.languages.SpringCodegen",
+    date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]",
+    comments = "Generator version: 7.8.0")
 @Entity
 public class GroupOrder {
 
   @Id
   @GeneratedValue(generator = "UUID")
-  @GenericGenerator(
-          name = "UUID",
-          strategy = "org.hibernate.id.UUIDGenerator"
-  )
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   private UUID groupOrderID;
 
   @Column(nullable = false)
@@ -52,9 +48,7 @@ public class GroupOrder {
   @Column(name = "menu_item_id")
   private Map<String, Integer> menuItemIDs = new HashMap<>();
 
-  @Valid
-  @ElementCollection
-  private List<UUID> participantOrderIDs = new ArrayList<>();
+  @Valid @ElementCollection private List<UUID> participantOrderIDs = new ArrayList<>();
 
   @Column(nullable = false)
   private String desiredPickupTimeframe;
@@ -69,9 +63,10 @@ public class GroupOrder {
 
   /**
    * Get groupOrderID
+   *
    * @return groupOrderID
    */
-  @Valid 
+  @Valid
   @Schema(name = "groupOrderID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("groupOrderID")
   public UUID getGroupOrderID() {
@@ -89,9 +84,9 @@ public class GroupOrder {
 
   /**
    * Get status
+   *
    * @return status
    */
-  
   @Schema(name = "status", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("status")
   public String getStatus() {
@@ -117,9 +112,9 @@ public class GroupOrder {
 
   /**
    * Get menuItemIDs
+   *
    * @return menuItemIDs
    */
-  
   @Schema(name = "menuItemIDs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("menuItemIDs")
   public Map<String, Integer> getMenuItemIDs() {
@@ -145,9 +140,10 @@ public class GroupOrder {
 
   /**
    * Get participantOrderIDs
+   *
    * @return participantOrderIDs
    */
-  @Valid 
+  @Valid
   @Schema(name = "participantOrderIDs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("participantOrderIDs")
   public List<UUID> getParticipantOrderIDs() {
@@ -165,9 +161,9 @@ public class GroupOrder {
 
   /**
    * Get desiredPickupTimeframe
+   *
    * @return desiredPickupTimeframe
    */
-  
   @Schema(name = "desiredPickupTimeframe", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("desiredPickupTimeframe")
   public String getDesiredPickupTimeframe() {
@@ -185,9 +181,10 @@ public class GroupOrder {
 
   /**
    * Get foodProviderID
+   *
    * @return foodProviderID
    */
-  @Valid 
+  @Valid
   @Schema(name = "foodProviderID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("foodProviderID")
   public UUID getFoodProviderID() {
@@ -207,17 +204,23 @@ public class GroupOrder {
       return false;
     }
     GroupOrder groupOrder = (GroupOrder) o;
-    return Objects.equals(this.groupOrderID, groupOrder.groupOrderID) &&
-        Objects.equals(this.status, groupOrder.status) &&
-        Objects.equals(this.menuItemIDs, groupOrder.menuItemIDs) &&
-        Objects.equals(this.participantOrderIDs, groupOrder.participantOrderIDs) &&
-        Objects.equals(this.desiredPickupTimeframe, groupOrder.desiredPickupTimeframe) &&
-        Objects.equals(this.foodProviderID, groupOrder.foodProviderID);
+    return Objects.equals(this.groupOrderID, groupOrder.groupOrderID)
+        && Objects.equals(this.status, groupOrder.status)
+        && Objects.equals(this.menuItemIDs, groupOrder.menuItemIDs)
+        && Objects.equals(this.participantOrderIDs, groupOrder.participantOrderIDs)
+        && Objects.equals(this.desiredPickupTimeframe, groupOrder.desiredPickupTimeframe)
+        && Objects.equals(this.foodProviderID, groupOrder.foodProviderID);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(groupOrderID, status, menuItemIDs, participantOrderIDs, desiredPickupTimeframe, foodProviderID);
+    return Objects.hash(
+        groupOrderID,
+        status,
+        menuItemIDs,
+        participantOrderIDs,
+        desiredPickupTimeframe,
+        foodProviderID);
   }
 
   @Override
@@ -227,16 +230,19 @@ public class GroupOrder {
     sb.append("    groupOrderID: ").append(toIndentedString(groupOrderID)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    menuItemIDs: ").append(toIndentedString(menuItemIDs)).append("\n");
-    sb.append("    participantOrderIDs: ").append(toIndentedString(participantOrderIDs)).append("\n");
-    sb.append("    desiredPickupTimeframe: ").append(toIndentedString(desiredPickupTimeframe)).append("\n");
+    sb.append("    participantOrderIDs: ")
+        .append(toIndentedString(participantOrderIDs))
+        .append("\n");
+    sb.append("    desiredPickupTimeframe: ")
+        .append(toIndentedString(desiredPickupTimeframe))
+        .append("\n");
     sb.append("    foodProviderID: ").append(toIndentedString(foodProviderID)).append("\n");
     sb.append("}");
     return sb.toString();
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
     if (o == null) {
@@ -245,4 +251,3 @@ public class GroupOrder {
     return o.toString().replace("\n", "\n    ");
   }
 }
-

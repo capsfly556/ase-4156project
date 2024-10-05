@@ -20,36 +20,28 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-
 import java.util.*;
 import javax.annotation.Generated;
 
-/**
- * Group
- */
-
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+/** Group */
+@Generated(
+    value = "org.openapitools.codegen.languages.SpringCodegen",
+    date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]",
+    comments = "Generator version: 7.8.0")
 @Entity
 public class Group {
 
   @Id
   @GeneratedValue(generator = "UUID")
-  @GenericGenerator(
-          name = "UUID",
-          strategy = "org.hibernate.id.UUIDGenerator"
-  )
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   private UUID groupID;
 
   @Column(nullable = false)
   private String name;
 
-  @Valid
-  @ElementCollection
-  private List<UUID> participantIDs = new ArrayList<>();
+  @Valid @ElementCollection private List<UUID> participantIDs = new ArrayList<>();
 
-  @Valid
-  @ElementCollection
-  private List<UUID> groupOrderIDs = new ArrayList<>();
+  @Valid @ElementCollection private List<UUID> groupOrderIDs = new ArrayList<>();
 
   @Column(nullable = false)
   private UUID administratorID;
@@ -61,9 +53,10 @@ public class Group {
 
   /**
    * Get groupID
+   *
    * @return groupID
    */
-  @Valid 
+  @Valid
   @Schema(name = "groupID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("groupID")
   public UUID getGroupID() {
@@ -81,9 +74,9 @@ public class Group {
 
   /**
    * Get name
+   *
    * @return name
    */
-  
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
   public String getName() {
@@ -109,9 +102,10 @@ public class Group {
 
   /**
    * Get participantIDs
+   *
    * @return participantIDs
    */
-  @Valid 
+  @Valid
   @Schema(name = "participantIDs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("participantIDs")
   public List<UUID> getParticipantIDs() {
@@ -137,9 +131,10 @@ public class Group {
 
   /**
    * Get groupOrderIDs
+   *
    * @return groupOrderIDs
    */
-  @Valid 
+  @Valid
   @Schema(name = "groupOrderIDs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("groupOrderIDs")
   public List<UUID> getGroupOrderIDs() {
@@ -157,9 +152,10 @@ public class Group {
 
   /**
    * Get administratorID
+   *
    * @return administratorID
    */
-  @Valid 
+  @Valid
   @Schema(name = "administratorID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("administratorID")
   public UUID getAdministratorID() {
@@ -179,11 +175,11 @@ public class Group {
       return false;
     }
     Group group = (Group) o;
-    return Objects.equals(this.groupID, group.groupID) &&
-        Objects.equals(this.name, group.name) &&
-        Objects.equals(this.participantIDs, group.participantIDs) &&
-        Objects.equals(this.groupOrderIDs, group.groupOrderIDs) &&
-        Objects.equals(this.administratorID, group.administratorID);
+    return Objects.equals(this.groupID, group.groupID)
+        && Objects.equals(this.name, group.name)
+        && Objects.equals(this.participantIDs, group.participantIDs)
+        && Objects.equals(this.groupOrderIDs, group.groupOrderIDs)
+        && Objects.equals(this.administratorID, group.administratorID);
   }
 
   @Override
@@ -205,8 +201,7 @@ public class Group {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
     if (o == null) {
@@ -215,4 +210,3 @@ public class Group {
     return o.toString().replace("\n", "\n    ");
   }
 }
-

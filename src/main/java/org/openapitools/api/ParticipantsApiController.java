@@ -3,7 +3,6 @@ package org.openapitools.api;
 import org.openapitools.model.Participant;
 import org.openapitools.model.ParticipantOrder;
 
-
 import org.openapitools.service.ParticipantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,28 +27,32 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+@Generated(
+    value = "org.openapitools.codegen.languages.SpringCodegen",
+    date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]",
+    comments = "Generator version: 7.8.0")
 @Controller
 @RequestMapping("${openapi.groupGrub.base-path:}")
 public class ParticipantsApiController implements ParticipantsApi {
 
-    private final NativeWebRequest request;
-    private final ParticipantService participantService;
+  private final NativeWebRequest request;
+  private final ParticipantService participantService;
 
-    @Autowired
-    public ParticipantsApiController(NativeWebRequest request, ParticipantService participantService) {
-        this.request = request;
-        this.participantService = participantService;
-    }
+  @Autowired
+  public ParticipantsApiController(
+      NativeWebRequest request, ParticipantService participantService) {
+    this.request = request;
+    this.participantService = participantService;
+  }
 
-    @Override
-    public Optional<NativeWebRequest> getRequest() {
-        return Optional.ofNullable(request);
-    }
+  @Override
+  public Optional<NativeWebRequest> getRequest() {
+    return Optional.ofNullable(request);
+  }
 
-    @Override
-    public ResponseEntity<Void> participantsPost(@Valid @RequestBody Participant participant) {
-        participantService.addParticipant(participant);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
+  @Override
+  public ResponseEntity<Void> participantsPost(@Valid @RequestBody Participant participant) {
+    participantService.addParticipant(participant);
+    return new ResponseEntity<>(HttpStatus.CREATED);
+  }
 }

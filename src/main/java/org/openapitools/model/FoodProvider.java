@@ -21,24 +21,20 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-
 import java.util.*;
 import javax.annotation.Generated;
 
-/**
- * FoodProvider
- */
-
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+/** FoodProvider */
+@Generated(
+    value = "org.openapitools.codegen.languages.SpringCodegen",
+    date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]",
+    comments = "Generator version: 7.8.0")
 @Entity
 public class FoodProvider {
 
   @Id
   @GeneratedValue(generator = "UUID")
-  @GenericGenerator(
-          name = "UUID",
-          strategy = "org.hibernate.id.UUIDGenerator"
-  )
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   private UUID foodProviderID;
 
   @Column(nullable = false)
@@ -53,9 +49,7 @@ public class FoodProvider {
   @Column(nullable = false)
   private String hoursOfOperation;
 
-  @Valid
-  @ElementCollection
-  private List<@Valid MenuItem> menu = new ArrayList<>();
+  @Valid @ElementCollection private List<@Valid MenuItem> menu = new ArrayList<>();
 
   public FoodProvider foodProviderID(UUID foodProviderID) {
     this.foodProviderID = foodProviderID;
@@ -64,9 +58,10 @@ public class FoodProvider {
 
   /**
    * Get foodProviderID
+   *
    * @return foodProviderID
    */
-  @Valid 
+  @Valid
   @Schema(name = "foodProviderID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("foodProviderID")
   public UUID getFoodProviderID() {
@@ -84,9 +79,9 @@ public class FoodProvider {
 
   /**
    * Get name
+   *
    * @return name
    */
-  
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
   public String getName() {
@@ -104,9 +99,9 @@ public class FoodProvider {
 
   /**
    * Get location
+   *
    * @return location
    */
-  
   @Schema(name = "location", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("location")
   public String getLocation() {
@@ -124,9 +119,9 @@ public class FoodProvider {
 
   /**
    * Get phoneNumber
+   *
    * @return phoneNumber
    */
-  
   @Schema(name = "phoneNumber", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("phoneNumber")
   public String getPhoneNumber() {
@@ -144,9 +139,9 @@ public class FoodProvider {
 
   /**
    * Get hoursOfOperation
+   *
    * @return hoursOfOperation
    */
-  
   @Schema(name = "hoursOfOperation", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("hoursOfOperation")
   public String getHoursOfOperation() {
@@ -172,9 +167,10 @@ public class FoodProvider {
 
   /**
    * Get menu
+   *
    * @return menu
    */
-  @Valid 
+  @Valid
   @Schema(name = "menu", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("menu")
   public List<@Valid MenuItem> getMenu() {
@@ -194,12 +190,12 @@ public class FoodProvider {
       return false;
     }
     FoodProvider foodProvider = (FoodProvider) o;
-    return Objects.equals(this.foodProviderID, foodProvider.foodProviderID) &&
-        Objects.equals(this.name, foodProvider.name) &&
-        Objects.equals(this.location, foodProvider.location) &&
-        Objects.equals(this.phoneNumber, foodProvider.phoneNumber) &&
-        Objects.equals(this.hoursOfOperation, foodProvider.hoursOfOperation) &&
-        Objects.equals(this.menu, foodProvider.menu);
+    return Objects.equals(this.foodProviderID, foodProvider.foodProviderID)
+        && Objects.equals(this.name, foodProvider.name)
+        && Objects.equals(this.location, foodProvider.location)
+        && Objects.equals(this.phoneNumber, foodProvider.phoneNumber)
+        && Objects.equals(this.hoursOfOperation, foodProvider.hoursOfOperation)
+        && Objects.equals(this.menu, foodProvider.menu);
   }
 
   @Override
@@ -222,8 +218,7 @@ public class FoodProvider {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
     if (o == null) {
@@ -232,4 +227,3 @@ public class FoodProvider {
     return o.toString().replace("\n", "\n    ");
   }
 }
-

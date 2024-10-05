@@ -17,33 +17,29 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-
 import java.util.*;
 import javax.annotation.Generated;
 
-/**
- * GroupOrderResponse
- */
-
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+/** GroupOrderResponse */
+@Generated(
+    value = "org.openapitools.codegen.languages.SpringCodegen",
+    date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]",
+    comments = "Generator version: 7.8.0")
 public class GroupOrderResponse {
 
   private UUID groupOrderID;
 
   private String status;
 
-  @Valid
-  private Map<String, Integer> menuItemIDs = new HashMap<>();
+  @Valid private Map<String, Integer> menuItemIDs = new HashMap<>();
 
-  @Valid
-  private List<UUID> participantOrderIDs = new ArrayList<>();
+  @Valid private List<UUID> participantOrderIDs = new ArrayList<>();
 
   private String desiredPickupTimeframe;
 
   private UUID foodProviderID;
 
-  @Valid
-  private List<@Valid ParticipantOrder> participantOrders = new ArrayList<>();
+  @Valid private List<@Valid ParticipantOrder> participantOrders = new ArrayList<>();
 
   public GroupOrderResponse groupOrderID(UUID groupOrderID) {
     this.groupOrderID = groupOrderID;
@@ -52,9 +48,10 @@ public class GroupOrderResponse {
 
   /**
    * Get groupOrderID
+   *
    * @return groupOrderID
    */
-  @Valid 
+  @Valid
   @Schema(name = "groupOrderID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("groupOrderID")
   public UUID getGroupOrderID() {
@@ -72,9 +69,9 @@ public class GroupOrderResponse {
 
   /**
    * Get status
+   *
    * @return status
    */
-  
   @Schema(name = "status", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("status")
   public String getStatus() {
@@ -100,9 +97,9 @@ public class GroupOrderResponse {
 
   /**
    * Get menuItemIDs
+   *
    * @return menuItemIDs
    */
-  
   @Schema(name = "menuItemIDs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("menuItemIDs")
   public Map<String, Integer> getMenuItemIDs() {
@@ -128,9 +125,10 @@ public class GroupOrderResponse {
 
   /**
    * Get participantOrderIDs
+   *
    * @return participantOrderIDs
    */
-  @Valid 
+  @Valid
   @Schema(name = "participantOrderIDs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("participantOrderIDs")
   public List<UUID> getParticipantOrderIDs() {
@@ -148,9 +146,9 @@ public class GroupOrderResponse {
 
   /**
    * Get desiredPickupTimeframe
+   *
    * @return desiredPickupTimeframe
    */
-  
   @Schema(name = "desiredPickupTimeframe", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("desiredPickupTimeframe")
   public String getDesiredPickupTimeframe() {
@@ -168,9 +166,10 @@ public class GroupOrderResponse {
 
   /**
    * Get foodProviderID
+   *
    * @return foodProviderID
    */
-  @Valid 
+  @Valid
   @Schema(name = "foodProviderID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("foodProviderID")
   public UUID getFoodProviderID() {
@@ -196,9 +195,10 @@ public class GroupOrderResponse {
 
   /**
    * Get participantOrders
+   *
    * @return participantOrders
    */
-  @Valid 
+  @Valid
   @Schema(name = "participantOrders", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("participantOrders")
   public List<@Valid ParticipantOrder> getParticipantOrders() {
@@ -218,18 +218,25 @@ public class GroupOrderResponse {
       return false;
     }
     GroupOrderResponse groupOrderResponse = (GroupOrderResponse) o;
-    return Objects.equals(this.groupOrderID, groupOrderResponse.groupOrderID) &&
-        Objects.equals(this.status, groupOrderResponse.status) &&
-        Objects.equals(this.menuItemIDs, groupOrderResponse.menuItemIDs) &&
-        Objects.equals(this.participantOrderIDs, groupOrderResponse.participantOrderIDs) &&
-        Objects.equals(this.desiredPickupTimeframe, groupOrderResponse.desiredPickupTimeframe) &&
-        Objects.equals(this.foodProviderID, groupOrderResponse.foodProviderID) &&
-        Objects.equals(this.participantOrders, groupOrderResponse.participantOrders);
+    return Objects.equals(this.groupOrderID, groupOrderResponse.groupOrderID)
+        && Objects.equals(this.status, groupOrderResponse.status)
+        && Objects.equals(this.menuItemIDs, groupOrderResponse.menuItemIDs)
+        && Objects.equals(this.participantOrderIDs, groupOrderResponse.participantOrderIDs)
+        && Objects.equals(this.desiredPickupTimeframe, groupOrderResponse.desiredPickupTimeframe)
+        && Objects.equals(this.foodProviderID, groupOrderResponse.foodProviderID)
+        && Objects.equals(this.participantOrders, groupOrderResponse.participantOrders);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(groupOrderID, status, menuItemIDs, participantOrderIDs, desiredPickupTimeframe, foodProviderID, participantOrders);
+    return Objects.hash(
+        groupOrderID,
+        status,
+        menuItemIDs,
+        participantOrderIDs,
+        desiredPickupTimeframe,
+        foodProviderID,
+        participantOrders);
   }
 
   @Override
@@ -239,8 +246,12 @@ public class GroupOrderResponse {
     sb.append("    groupOrderID: ").append(toIndentedString(groupOrderID)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    menuItemIDs: ").append(toIndentedString(menuItemIDs)).append("\n");
-    sb.append("    participantOrderIDs: ").append(toIndentedString(participantOrderIDs)).append("\n");
-    sb.append("    desiredPickupTimeframe: ").append(toIndentedString(desiredPickupTimeframe)).append("\n");
+    sb.append("    participantOrderIDs: ")
+        .append(toIndentedString(participantOrderIDs))
+        .append("\n");
+    sb.append("    desiredPickupTimeframe: ")
+        .append(toIndentedString(desiredPickupTimeframe))
+        .append("\n");
     sb.append("    foodProviderID: ").append(toIndentedString(foodProviderID)).append("\n");
     sb.append("    participantOrders: ").append(toIndentedString(participantOrders)).append("\n");
     sb.append("}");
@@ -248,8 +259,7 @@ public class GroupOrderResponse {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
     if (o == null) {
@@ -258,4 +268,3 @@ public class GroupOrderResponse {
     return o.toString().replace("\n", "\n    ");
   }
 }
-

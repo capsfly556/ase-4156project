@@ -6,15 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.GetMapping;
 
-/**
- * Home redirection to OpenAPI api documentation
- */
+/** Home redirection to OpenAPI api documentation */
 @Controller
 public class HomeController {
 
-    @RequestMapping("/")
-    public String index() {
-        return "redirect:swagger-ui.html";
-    }
-
+  @RequestMapping("/")
+  public String index() {
+    return "redirect:swagger-ui.html";
+  }
 }

@@ -8,10 +8,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class ParticipantService {
 
-    @Autowired
-    private ParticipantRepository repository;
+  @Autowired private ParticipantRepository repository;
 
-    public Participant addParticipant(Participant participant) {
-        return repository.save(participant);
-    }
+  public Participant addParticipant(Participant participant) {
+    return repository.save(participant);
+  }
 }
