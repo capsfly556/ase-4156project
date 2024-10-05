@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -20,17 +21,17 @@ import javax.annotation.Generated;
  * ParticipantOrder
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
 public class ParticipantOrder {
 
-  private String participantOrderID;
+  private UUID participantOrderID;
 
   @Valid
   private Map<String, Integer> menuItemIDs = new HashMap<>();
 
   private String comments;
 
-  public ParticipantOrder participantOrderID(String participantOrderID) {
+  public ParticipantOrder participantOrderID(UUID participantOrderID) {
     this.participantOrderID = participantOrderID;
     return this;
   }
@@ -39,14 +40,14 @@ public class ParticipantOrder {
    * Get participantOrderID
    * @return participantOrderID
    */
-  
+  @Valid 
   @Schema(name = "participantOrderID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("participantOrderID")
-  public String getParticipantOrderID() {
+  public UUID getParticipantOrderID() {
     return participantOrderID;
   }
 
-  public void setParticipantOrderID(String participantOrderID) {
+  public void setParticipantOrderID(UUID participantOrderID) {
     this.participantOrderID = participantOrderID;
   }
 

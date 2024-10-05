@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.math.BigDecimal;
+import java.util.UUID;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -19,10 +20,10 @@ import javax.annotation.Generated;
  * MenuItem
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
 public class MenuItem {
 
-  private String menuItemID;
+  private UUID menuItemID;
 
   private String name;
 
@@ -32,7 +33,7 @@ public class MenuItem {
 
   private BigDecimal cost;
 
-  public MenuItem menuItemID(String menuItemID) {
+  public MenuItem menuItemID(UUID menuItemID) {
     this.menuItemID = menuItemID;
     return this;
   }
@@ -41,14 +42,14 @@ public class MenuItem {
    * Get menuItemID
    * @return menuItemID
    */
-  
+  @Valid 
   @Schema(name = "menuItemID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("menuItemID")
-  public String getMenuItemID() {
+  public UUID getMenuItemID() {
     return menuItemID;
   }
 
-  public void setMenuItemID(String menuItemID) {
+  public void setMenuItemID(UUID menuItemID) {
     this.menuItemID = menuItemID;
   }
 

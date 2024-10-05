@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -21,17 +22,17 @@ import javax.annotation.Generated;
  * Participant
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
 public class Participant {
 
-  private String participantID;
+  private UUID participantID;
 
   private String name;
 
   @Valid
-  private List<String> participantOrderIDs = new ArrayList<>();
+  private List<UUID> participantOrderIDs = new ArrayList<>();
 
-  public Participant participantID(String participantID) {
+  public Participant participantID(UUID participantID) {
     this.participantID = participantID;
     return this;
   }
@@ -40,14 +41,14 @@ public class Participant {
    * Get participantID
    * @return participantID
    */
-  
+  @Valid 
   @Schema(name = "participantID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("participantID")
-  public String getParticipantID() {
+  public UUID getParticipantID() {
     return participantID;
   }
 
-  public void setParticipantID(String participantID) {
+  public void setParticipantID(UUID participantID) {
     this.participantID = participantID;
   }
 
@@ -71,12 +72,12 @@ public class Participant {
     this.name = name;
   }
 
-  public Participant participantOrderIDs(List<String> participantOrderIDs) {
+  public Participant participantOrderIDs(List<UUID> participantOrderIDs) {
     this.participantOrderIDs = participantOrderIDs;
     return this;
   }
 
-  public Participant addParticipantOrderIDsItem(String participantOrderIDsItem) {
+  public Participant addParticipantOrderIDsItem(UUID participantOrderIDsItem) {
     if (this.participantOrderIDs == null) {
       this.participantOrderIDs = new ArrayList<>();
     }
@@ -88,14 +89,14 @@ public class Participant {
    * Get participantOrderIDs
    * @return participantOrderIDs
    */
-  
+  @Valid 
   @Schema(name = "participantOrderIDs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("participantOrderIDs")
-  public List<String> getParticipantOrderIDs() {
+  public List<UUID> getParticipantOrderIDs() {
     return participantOrderIDs;
   }
 
-  public void setParticipantOrderIDs(List<String> participantOrderIDs) {
+  public void setParticipantOrderIDs(List<UUID> participantOrderIDs) {
     this.participantOrderIDs = participantOrderIDs;
   }
 

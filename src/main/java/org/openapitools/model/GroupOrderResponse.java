@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import org.openapitools.model.ParticipantOrder;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -24,10 +25,10 @@ import javax.annotation.Generated;
  * GroupOrderResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
 public class GroupOrderResponse {
 
-  private String groupOrderID;
+  private UUID groupOrderID;
 
   private String status;
 
@@ -35,16 +36,16 @@ public class GroupOrderResponse {
   private Map<String, Integer> menuItemIDs = new HashMap<>();
 
   @Valid
-  private List<String> participantOrderIDs = new ArrayList<>();
+  private List<UUID> participantOrderIDs = new ArrayList<>();
 
   private String desiredPickupTimeframe;
 
-  private String foodProviderID;
+  private UUID foodProviderID;
 
   @Valid
   private List<@Valid ParticipantOrder> participantOrders = new ArrayList<>();
 
-  public GroupOrderResponse groupOrderID(String groupOrderID) {
+  public GroupOrderResponse groupOrderID(UUID groupOrderID) {
     this.groupOrderID = groupOrderID;
     return this;
   }
@@ -53,14 +54,14 @@ public class GroupOrderResponse {
    * Get groupOrderID
    * @return groupOrderID
    */
-  
+  @Valid 
   @Schema(name = "groupOrderID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("groupOrderID")
-  public String getGroupOrderID() {
+  public UUID getGroupOrderID() {
     return groupOrderID;
   }
 
-  public void setGroupOrderID(String groupOrderID) {
+  public void setGroupOrderID(UUID groupOrderID) {
     this.groupOrderID = groupOrderID;
   }
 
@@ -112,12 +113,12 @@ public class GroupOrderResponse {
     this.menuItemIDs = menuItemIDs;
   }
 
-  public GroupOrderResponse participantOrderIDs(List<String> participantOrderIDs) {
+  public GroupOrderResponse participantOrderIDs(List<UUID> participantOrderIDs) {
     this.participantOrderIDs = participantOrderIDs;
     return this;
   }
 
-  public GroupOrderResponse addParticipantOrderIDsItem(String participantOrderIDsItem) {
+  public GroupOrderResponse addParticipantOrderIDsItem(UUID participantOrderIDsItem) {
     if (this.participantOrderIDs == null) {
       this.participantOrderIDs = new ArrayList<>();
     }
@@ -129,14 +130,14 @@ public class GroupOrderResponse {
    * Get participantOrderIDs
    * @return participantOrderIDs
    */
-  
+  @Valid 
   @Schema(name = "participantOrderIDs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("participantOrderIDs")
-  public List<String> getParticipantOrderIDs() {
+  public List<UUID> getParticipantOrderIDs() {
     return participantOrderIDs;
   }
 
-  public void setParticipantOrderIDs(List<String> participantOrderIDs) {
+  public void setParticipantOrderIDs(List<UUID> participantOrderIDs) {
     this.participantOrderIDs = participantOrderIDs;
   }
 
@@ -160,7 +161,7 @@ public class GroupOrderResponse {
     this.desiredPickupTimeframe = desiredPickupTimeframe;
   }
 
-  public GroupOrderResponse foodProviderID(String foodProviderID) {
+  public GroupOrderResponse foodProviderID(UUID foodProviderID) {
     this.foodProviderID = foodProviderID;
     return this;
   }
@@ -169,14 +170,14 @@ public class GroupOrderResponse {
    * Get foodProviderID
    * @return foodProviderID
    */
-  
+  @Valid 
   @Schema(name = "foodProviderID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("foodProviderID")
-  public String getFoodProviderID() {
+  public UUID getFoodProviderID() {
     return foodProviderID;
   }
 
-  public void setFoodProviderID(String foodProviderID) {
+  public void setFoodProviderID(UUID foodProviderID) {
     this.foodProviderID = foodProviderID;
   }
 

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import org.openapitools.model.MenuItem;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
@@ -22,10 +23,10 @@ import javax.annotation.Generated;
  * FoodProvider
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
 public class FoodProvider {
 
-  private String foodProviderID;
+  private UUID foodProviderID;
 
   private String name;
 
@@ -38,7 +39,7 @@ public class FoodProvider {
   @Valid
   private List<@Valid MenuItem> menu = new ArrayList<>();
 
-  public FoodProvider foodProviderID(String foodProviderID) {
+  public FoodProvider foodProviderID(UUID foodProviderID) {
     this.foodProviderID = foodProviderID;
     return this;
   }
@@ -47,14 +48,14 @@ public class FoodProvider {
    * Get foodProviderID
    * @return foodProviderID
    */
-  
+  @Valid 
   @Schema(name = "foodProviderID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("foodProviderID")
-  public String getFoodProviderID() {
+  public UUID getFoodProviderID() {
     return foodProviderID;
   }
 
-  public void setFoodProviderID(String foodProviderID) {
+  public void setFoodProviderID(UUID foodProviderID) {
     this.foodProviderID = foodProviderID;
   }
 
