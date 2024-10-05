@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
 @Validated
 @Tag(name = "participants", description = "the participants API")
 public interface ParticipantsApi {
@@ -70,7 +70,7 @@ public interface ParticipantsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"participantID\" : \"participantID\", \"participantOrderIDs\" : [ \"participantOrderIDs\", \"participantOrderIDs\" ], \"name\" : \"name\" }, { \"participantID\" : \"participantID\", \"participantOrderIDs\" : [ \"participantOrderIDs\", \"participantOrderIDs\" ], \"name\" : \"name\" } ]";
+                    String exampleString = "[ { \"participantID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"participantOrderIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ], \"name\" : \"name\" }, { \"participantID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"participantOrderIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ], \"name\" : \"name\" } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -138,7 +138,7 @@ public interface ParticipantsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"participantID\" : \"participantID\", \"participantOrderIDs\" : [ \"participantOrderIDs\", \"participantOrderIDs\" ], \"name\" : \"name\" }";
+                    String exampleString = "{ \"participantID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"participantOrderIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ], \"name\" : \"name\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -176,7 +176,7 @@ public interface ParticipantsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"participantOrderID\" }, { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"participantOrderID\" } ]";
+                    String exampleString = "[ { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" }, { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -248,7 +248,7 @@ public interface ParticipantsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"participantOrderID\" }";
+                    String exampleString = "{ \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

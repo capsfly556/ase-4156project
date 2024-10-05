@@ -34,7 +34,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
 @Validated
 @Tag(name = "groups", description = "the groups API")
 public interface GroupsApi {
@@ -71,7 +71,7 @@ public interface GroupsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"administratorID\" : \"administratorID\", \"groupOrderIDs\" : [ \"groupOrderIDs\", \"groupOrderIDs\" ], \"groupID\" : \"groupID\", \"name\" : \"name\", \"participantIDs\" : [ \"participantIDs\", \"participantIDs\" ] }, { \"administratorID\" : \"administratorID\", \"groupOrderIDs\" : [ \"groupOrderIDs\", \"groupOrderIDs\" ], \"groupID\" : \"groupID\", \"name\" : \"name\", \"participantIDs\" : [ \"participantIDs\", \"participantIDs\" ] } ]";
+                    String exampleString = "[ { \"administratorID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"groupOrderIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ], \"groupID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"name\" : \"name\", \"participantIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ] }, { \"administratorID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"groupOrderIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ], \"groupID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"name\" : \"name\", \"participantIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ] } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -139,7 +139,7 @@ public interface GroupsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"administratorID\" : \"administratorID\", \"groupOrderIDs\" : [ \"groupOrderIDs\", \"groupOrderIDs\" ], \"groupID\" : \"groupID\", \"name\" : \"name\", \"participantIDs\" : [ \"participantIDs\", \"participantIDs\" ] }";
+                    String exampleString = "{ \"administratorID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"groupOrderIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ], \"groupID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"name\" : \"name\", \"participantIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -177,7 +177,7 @@ public interface GroupsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"participantOrderIDs\" : [ \"participantOrderIDs\", \"participantOrderIDs\" ], \"groupOrderID\" : \"groupOrderID\", \"menuItemIDs\" : { \"key\" : 0 }, \"participantOrders\" : [ { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"participantOrderID\" }, { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"participantOrderID\" } ], \"desiredPickupTimeframe\" : \"desiredPickupTimeframe\", \"foodProviderID\" : \"foodProviderID\", \"status\" : \"status\" }, { \"participantOrderIDs\" : [ \"participantOrderIDs\", \"participantOrderIDs\" ], \"groupOrderID\" : \"groupOrderID\", \"menuItemIDs\" : { \"key\" : 0 }, \"participantOrders\" : [ { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"participantOrderID\" }, { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"participantOrderID\" } ], \"desiredPickupTimeframe\" : \"desiredPickupTimeframe\", \"foodProviderID\" : \"foodProviderID\", \"status\" : \"status\" } ]";
+                    String exampleString = "[ { \"participantOrderIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ], \"groupOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"menuItemIDs\" : { \"key\" : 0 }, \"participantOrders\" : [ { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" }, { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" } ], \"desiredPickupTimeframe\" : \"desiredPickupTimeframe\", \"foodProviderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"status\" : \"status\" }, { \"participantOrderIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ], \"groupOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"menuItemIDs\" : { \"key\" : 0 }, \"participantOrders\" : [ { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" }, { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" } ], \"desiredPickupTimeframe\" : \"desiredPickupTimeframe\", \"foodProviderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"status\" : \"status\" } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -249,7 +249,7 @@ public interface GroupsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"participantOrderIDs\" : [ \"participantOrderIDs\", \"participantOrderIDs\" ], \"groupOrderID\" : \"groupOrderID\", \"menuItemIDs\" : { \"key\" : 0 }, \"participantOrders\" : [ { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"participantOrderID\" }, { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"participantOrderID\" } ], \"desiredPickupTimeframe\" : \"desiredPickupTimeframe\", \"foodProviderID\" : \"foodProviderID\", \"status\" : \"status\" }";
+                    String exampleString = "{ \"participantOrderIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ], \"groupOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"menuItemIDs\" : { \"key\" : 0 }, \"participantOrders\" : [ { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" }, { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" } ], \"desiredPickupTimeframe\" : \"desiredPickupTimeframe\", \"foodProviderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"status\" : \"status\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
