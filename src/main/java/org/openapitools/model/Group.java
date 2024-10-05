@@ -7,8 +7,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
+import org.hibernate.annotations.GenericGenerator;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ElementCollection;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -21,22 +28,33 @@ import javax.annotation.Generated;
  * Group
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+@Entity
 public class Group {
 
-  private String groupID;
+  @Id
+  @GeneratedValue(generator = "UUID")
+  @GenericGenerator(
+          name = "UUID",
+          strategy = "org.hibernate.id.UUIDGenerator"
+  )
+  private UUID groupID;
 
+  @Column(nullable = false)
   private String name;
 
   @Valid
-  private List<String> participantIDs = new ArrayList<>();
+  @ElementCollection
+  private List<UUID> participantIDs = new ArrayList<>();
 
   @Valid
-  private List<String> groupOrderIDs = new ArrayList<>();
+  @ElementCollection
+  private List<UUID> groupOrderIDs = new ArrayList<>();
 
-  private String administratorID;
+  @Column(nullable = false)
+  private UUID administratorID;
 
-  public Group groupID(String groupID) {
+  public Group groupID(UUID groupID) {
     this.groupID = groupID;
     return this;
   }
@@ -45,14 +63,14 @@ public class Group {
    * Get groupID
    * @return groupID
    */
-  
+  @Valid 
   @Schema(name = "groupID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("groupID")
-  public String getGroupID() {
+  public UUID getGroupID() {
     return groupID;
   }
 
-  public void setGroupID(String groupID) {
+  public void setGroupID(UUID groupID) {
     this.groupID = groupID;
   }
 
@@ -76,12 +94,12 @@ public class Group {
     this.name = name;
   }
 
-  public Group participantIDs(List<String> participantIDs) {
+  public Group participantIDs(List<UUID> participantIDs) {
     this.participantIDs = participantIDs;
     return this;
   }
 
-  public Group addParticipantIDsItem(String participantIDsItem) {
+  public Group addParticipantIDsItem(UUID participantIDsItem) {
     if (this.participantIDs == null) {
       this.participantIDs = new ArrayList<>();
     }
@@ -93,23 +111,23 @@ public class Group {
    * Get participantIDs
    * @return participantIDs
    */
-  
+  @Valid 
   @Schema(name = "participantIDs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("participantIDs")
-  public List<String> getParticipantIDs() {
+  public List<UUID> getParticipantIDs() {
     return participantIDs;
   }
 
-  public void setParticipantIDs(List<String> participantIDs) {
+  public void setParticipantIDs(List<UUID> participantIDs) {
     this.participantIDs = participantIDs;
   }
 
-  public Group groupOrderIDs(List<String> groupOrderIDs) {
+  public Group groupOrderIDs(List<UUID> groupOrderIDs) {
     this.groupOrderIDs = groupOrderIDs;
     return this;
   }
 
-  public Group addGroupOrderIDsItem(String groupOrderIDsItem) {
+  public Group addGroupOrderIDsItem(UUID groupOrderIDsItem) {
     if (this.groupOrderIDs == null) {
       this.groupOrderIDs = new ArrayList<>();
     }
@@ -121,18 +139,18 @@ public class Group {
    * Get groupOrderIDs
    * @return groupOrderIDs
    */
-  
+  @Valid 
   @Schema(name = "groupOrderIDs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("groupOrderIDs")
-  public List<String> getGroupOrderIDs() {
+  public List<UUID> getGroupOrderIDs() {
     return groupOrderIDs;
   }
 
-  public void setGroupOrderIDs(List<String> groupOrderIDs) {
+  public void setGroupOrderIDs(List<UUID> groupOrderIDs) {
     this.groupOrderIDs = groupOrderIDs;
   }
 
-  public Group administratorID(String administratorID) {
+  public Group administratorID(UUID administratorID) {
     this.administratorID = administratorID;
     return this;
   }
@@ -141,14 +159,14 @@ public class Group {
    * Get administratorID
    * @return administratorID
    */
-  
+  @Valid 
   @Schema(name = "administratorID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("administratorID")
-  public String getAdministratorID() {
+  public UUID getAdministratorID() {
     return administratorID;
   }
 
-  public void setAdministratorID(String administratorID) {
+  public void setAdministratorID(UUID administratorID) {
     this.administratorID = administratorID;
   }
 

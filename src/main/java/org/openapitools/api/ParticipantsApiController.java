@@ -4,6 +4,7 @@ import org.openapitools.model.Participant;
 import org.openapitools.model.ParticipantOrder;
 
 
+import org.openapitools.service.ParticipantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,10 +34,12 @@ import javax.annotation.Generated;
 public class ParticipantsApiController implements ParticipantsApi {
 
     private final NativeWebRequest request;
+    private final ParticipantService participantService;
 
     @Autowired
-    public ParticipantsApiController(NativeWebRequest request) {
+    public ParticipantsApiController(NativeWebRequest request, ParticipantService participantService) {
         this.request = request;
+        this.participantService = participantService;
     }
 
     @Override
@@ -44,4 +47,9 @@ public class ParticipantsApiController implements ParticipantsApi {
         return Optional.ofNullable(request);
     }
 
+    @Override
+    public ResponseEntity<Void> participantsPost(@Valid @RequestBody Participant participant) {
+        participantService.addParticipant(participant);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 }

@@ -480,23 +480,28 @@ components:
       type: object
       properties:
         groupID:
+          format: uuid
           type: string
         name:
           type: string
         participantIDs:
           type: array
           items:
+            format: uuid
             type: string
         groupOrderIDs:
           type: array
           items:
+            format: uuid
             type: string
         administratorID:
+          format: uuid
           type: string
     GroupOrder:
       type: object
       properties:
         groupOrderID:
+          format: uuid
           type: string
         status:
           type: string
@@ -507,10 +512,12 @@ components:
         participantOrderIDs:
           type: array
           items:
+            format: uuid
             type: string
         desiredPickupTimeframe:
           type: string
         foodProviderID:
+          format: uuid
           type: string
     GroupOrderResponse:
       allOf:
@@ -525,17 +532,20 @@ components:
       type: object
       properties:
         participantID:
+          format: uuid
           type: string
         name:
           type: string
         participantOrderIDs:
           type: array
           items:
+            format: uuid
             type: string
     ParticipantOrder:
       type: object
       properties:
         participantOrderID:
+          format: uuid
           type: string
         menuItemIDs:
           type: object
@@ -547,6 +557,7 @@ components:
       type: object
       properties:
         foodProviderID:
+          format: uuid
           type: string
         name:
           type: string
@@ -564,6 +575,7 @@ components:
       type: object
       properties:
         menuItemID:
+          format: uuid
           type: string
         name:
           type: string

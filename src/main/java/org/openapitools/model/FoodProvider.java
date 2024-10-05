@@ -7,9 +7,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
+import org.hibernate.annotations.GenericGenerator;
 import org.openapitools.model.MenuItem;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ElementCollection;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -22,23 +29,35 @@ import javax.annotation.Generated;
  * FoodProvider
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+@Entity
 public class FoodProvider {
 
-  private String foodProviderID;
+  @Id
+  @GeneratedValue(generator = "UUID")
+  @GenericGenerator(
+          name = "UUID",
+          strategy = "org.hibernate.id.UUIDGenerator"
+  )
+  private UUID foodProviderID;
 
+  @Column(nullable = false)
   private String name;
 
+  @Column(nullable = false)
   private String location;
 
+  @Column(nullable = false)
   private String phoneNumber;
 
+  @Column(nullable = false)
   private String hoursOfOperation;
 
   @Valid
+  @ElementCollection
   private List<@Valid MenuItem> menu = new ArrayList<>();
 
-  public FoodProvider foodProviderID(String foodProviderID) {
+  public FoodProvider foodProviderID(UUID foodProviderID) {
     this.foodProviderID = foodProviderID;
     return this;
   }
@@ -47,14 +66,14 @@ public class FoodProvider {
    * Get foodProviderID
    * @return foodProviderID
    */
-  
+  @Valid 
   @Schema(name = "foodProviderID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("foodProviderID")
-  public String getFoodProviderID() {
+  public UUID getFoodProviderID() {
     return foodProviderID;
   }
 
-  public void setFoodProviderID(String foodProviderID) {
+  public void setFoodProviderID(UUID foodProviderID) {
     this.foodProviderID = foodProviderID;
   }
 

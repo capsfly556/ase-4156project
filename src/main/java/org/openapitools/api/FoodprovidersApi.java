@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
 @Validated
 @Tag(name = "foodproviders", description = "the foodproviders API")
 public interface FoodprovidersApi {
@@ -98,7 +98,7 @@ public interface FoodprovidersApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"phoneNumber\" : \"phoneNumber\", \"name\" : \"name\", \"location\" : \"location\", \"hoursOfOperation\" : \"hoursOfOperation\", \"foodProviderID\" : \"foodProviderID\", \"menu\" : [ { \"image\" : \"image\", \"cost\" : 0.8008281904610115, \"name\" : \"name\", \"description\" : \"description\", \"menuItemID\" : \"menuItemID\" }, { \"image\" : \"image\", \"cost\" : 0.8008281904610115, \"name\" : \"name\", \"description\" : \"description\", \"menuItemID\" : \"menuItemID\" } ] }";
+                    String exampleString = "{ \"phoneNumber\" : \"phoneNumber\", \"name\" : \"name\", \"location\" : \"location\", \"hoursOfOperation\" : \"hoursOfOperation\", \"foodProviderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"menu\" : [ { \"image\" : \"image\", \"cost\" : 0.8008281904610115, \"name\" : \"name\", \"description\" : \"description\", \"menuItemID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" }, { \"image\" : \"image\", \"cost\" : 0.8008281904610115, \"name\" : \"name\", \"description\" : \"description\", \"menuItemID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" } ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -170,7 +170,7 @@ public interface FoodprovidersApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"phoneNumber\" : \"phoneNumber\", \"name\" : \"name\", \"location\" : \"location\", \"hoursOfOperation\" : \"hoursOfOperation\", \"foodProviderID\" : \"foodProviderID\", \"menu\" : [ { \"image\" : \"image\", \"cost\" : 0.8008281904610115, \"name\" : \"name\", \"description\" : \"description\", \"menuItemID\" : \"menuItemID\" }, { \"image\" : \"image\", \"cost\" : 0.8008281904610115, \"name\" : \"name\", \"description\" : \"description\", \"menuItemID\" : \"menuItemID\" } ] }, { \"phoneNumber\" : \"phoneNumber\", \"name\" : \"name\", \"location\" : \"location\", \"hoursOfOperation\" : \"hoursOfOperation\", \"foodProviderID\" : \"foodProviderID\", \"menu\" : [ { \"image\" : \"image\", \"cost\" : 0.8008281904610115, \"name\" : \"name\", \"description\" : \"description\", \"menuItemID\" : \"menuItemID\" }, { \"image\" : \"image\", \"cost\" : 0.8008281904610115, \"name\" : \"name\", \"description\" : \"description\", \"menuItemID\" : \"menuItemID\" } ] } ]";
+                    String exampleString = "[ { \"phoneNumber\" : \"phoneNumber\", \"name\" : \"name\", \"location\" : \"location\", \"hoursOfOperation\" : \"hoursOfOperation\", \"foodProviderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"menu\" : [ { \"image\" : \"image\", \"cost\" : 0.8008281904610115, \"name\" : \"name\", \"description\" : \"description\", \"menuItemID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" }, { \"image\" : \"image\", \"cost\" : 0.8008281904610115, \"name\" : \"name\", \"description\" : \"description\", \"menuItemID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" } ] }, { \"phoneNumber\" : \"phoneNumber\", \"name\" : \"name\", \"location\" : \"location\", \"hoursOfOperation\" : \"hoursOfOperation\", \"foodProviderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"menu\" : [ { \"image\" : \"image\", \"cost\" : 0.8008281904610115, \"name\" : \"name\", \"description\" : \"description\", \"menuItemID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" }, { \"image\" : \"image\", \"cost\" : 0.8008281904610115, \"name\" : \"name\", \"description\" : \"description\", \"menuItemID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" } ] } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
