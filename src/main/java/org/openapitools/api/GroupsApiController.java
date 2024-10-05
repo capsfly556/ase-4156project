@@ -5,6 +5,7 @@ import org.openapitools.model.GroupOrder;
 import org.openapitools.model.GroupOrderResponse;
 
 
+import org.openapitools.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -34,10 +35,12 @@ import javax.annotation.Generated;
 public class GroupsApiController implements GroupsApi {
 
     private final NativeWebRequest request;
+    private final GroupService groupService;
 
     @Autowired
-    public GroupsApiController(NativeWebRequest request) {
+    public GroupsApiController(NativeWebRequest request, GroupService groupService) {
         this.request = request;
+        this.groupService = groupService;
     }
 
     @Override
@@ -45,4 +48,9 @@ public class GroupsApiController implements GroupsApi {
         return Optional.ofNullable(request);
     }
 
+    @Override
+    public ResponseEntity<Void> groupsPost(@Valid @RequestBody Group group) {
+        groupService.addGroup(group);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 }

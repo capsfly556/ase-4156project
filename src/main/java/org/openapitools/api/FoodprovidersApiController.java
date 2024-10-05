@@ -3,6 +3,7 @@ package org.openapitools.api;
 import org.openapitools.model.FoodProvider;
 
 
+import org.openapitools.service.FoodproviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -32,10 +33,12 @@ import javax.annotation.Generated;
 public class FoodprovidersApiController implements FoodprovidersApi {
 
     private final NativeWebRequest request;
+    private final FoodproviderService foodproviderService;
 
     @Autowired
-    public FoodprovidersApiController(NativeWebRequest request) {
+    public FoodprovidersApiController(NativeWebRequest request, FoodproviderService foodproviderService) {
         this.request = request;
+        this.foodproviderService = foodproviderService;
     }
 
     @Override
@@ -43,4 +46,9 @@ public class FoodprovidersApiController implements FoodprovidersApi {
         return Optional.ofNullable(request);
     }
 
+    @Override
+    public ResponseEntity<Void> foodprovidersPost(@Valid @RequestBody FoodProvider foodProvider) {
+        foodproviderService.addFoodProvider(foodProvider);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 }
