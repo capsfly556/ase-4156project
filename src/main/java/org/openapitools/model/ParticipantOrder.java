@@ -7,8 +7,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import org.hibernate.annotations.GenericGenerator;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ElementCollection;
+import javax.persistence.MapKeyColumn;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -22,13 +29,24 @@ import javax.annotation.Generated;
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+@Entity
 public class ParticipantOrder {
 
+  @Id
+  @GeneratedValue(generator = "UUID")
+  @GenericGenerator(
+          name = "UUID",
+          strategy = "org.hibernate.id.UUIDGenerator"
+  )
   private UUID participantOrderID;
 
   @Valid
+  @ElementCollection
+  @MapKeyColumn(name = "menu_item_name")
+  @Column(name = "menu_item_id")
   private Map<String, Integer> menuItemIDs = new HashMap<>();
 
+  @Column(nullable = false)
   private String comments;
 
   public ParticipantOrder participantOrderID(UUID participantOrderID) {
