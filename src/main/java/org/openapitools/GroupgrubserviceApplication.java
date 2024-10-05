@@ -8,22 +8,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FullyQualifiedAnnotationBeanNameGenerator;
 
-@SpringBootApplication(
-    nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class
-)
+@SpringBootApplication(nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class)
 @ComponentScan(
-    basePackages = {"org.openapitools", "org.openapitools.api" , "org.openapitools.configuration"},
-    nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class
-)
+    basePackages = {"org.openapitools", "org.openapitools.api", "org.openapitools.configuration"},
+    nameGenerator = FullyQualifiedAnnotationBeanNameGenerator.class)
 public class GroupgrubserviceApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(GroupgrubserviceApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(GroupgrubserviceApplication.class, args);
+  }
 
-    @Bean(name = "org.openapitools.OpenApiGeneratorApplication.jsonNullableModule")
-    public Module jsonNullableModule() {
-        return new JsonNullableModule();
-    }
-
+  @Bean(name = "org.openapitools.OpenApiGeneratorApplication.jsonNullableModule")
+  public Module jsonNullableModule() {
+    return new JsonNullableModule();
+  }
 }

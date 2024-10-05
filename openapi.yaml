@@ -5,8 +5,8 @@ info:
   version: 1.0.0
   description: API for managing group food orders.
 servers:
-- url: https://api.groupgrub.com
-  description: Production server
+  - url: https://api.groupgrub.com
+    description: Production server
 paths:
   /groups:
     get:
@@ -40,12 +40,12 @@ paths:
   /groups/{groupId}:
     get:
       parameters:
-      - name: groupId
-        description: The unique identifier of the group.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: groupId
+          description: The unique identifier of the group.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "200":
           content:
@@ -64,12 +64,12 @@ paths:
               $ref: '#/components/schemas/Group'
         required: true
       parameters:
-      - name: groupId
-        description: The unique identifier of the group.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: groupId
+          description: The unique identifier of the group.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "200":
           description: Group updated successfully.
@@ -78,12 +78,12 @@ paths:
       summary: Update a group's details.
     delete:
       parameters:
-      - name: groupId
-        description: The unique identifier of the group.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: groupId
+          description: The unique identifier of the group.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "204":
           description: Group deleted successfully.
@@ -93,12 +93,12 @@ paths:
   /groups/{groupId}/orders:
     get:
       parameters:
-      - name: groupId
-        description: The unique identifier of the group.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: groupId
+          description: The unique identifier of the group.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "200":
           content:
@@ -117,12 +117,12 @@ paths:
               $ref: '#/components/schemas/GroupOrder'
         required: true
       parameters:
-      - name: groupId
-        description: The unique identifier of the group.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: groupId
+          description: The unique identifier of the group.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "201":
           description: Group order created successfully.
@@ -130,18 +130,18 @@ paths:
   /groups/{groupId}/orders/{orderId}:
     get:
       parameters:
-      - name: groupId
-        description: The unique identifier of the group.
-        schema:
-          type: string
-        in: path
-        required: true
-      - name: orderId
-        description: The unique identifier of the order.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: groupId
+          description: The unique identifier of the group.
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: orderId
+          description: The unique identifier of the order.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "200":
           content:
@@ -160,18 +160,18 @@ paths:
               $ref: '#/components/schemas/GroupOrder'
         required: true
       parameters:
-      - name: groupId
-        description: The unique identifier of the group.
-        schema:
-          type: string
-        in: path
-        required: true
-      - name: orderId
-        description: The unique identifier of the order.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: groupId
+          description: The unique identifier of the group.
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: orderId
+          description: The unique identifier of the order.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "200":
           description: Group order updated successfully.
@@ -180,18 +180,18 @@ paths:
       summary: Update a group order.
     delete:
       parameters:
-      - name: groupId
-        description: The unique identifier of the group.
-        schema:
-          type: string
-        in: path
-        required: true
-      - name: orderId
-        description: The unique identifier of the order.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: groupId
+          description: The unique identifier of the group.
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: orderId
+          description: The unique identifier of the order.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "204":
           description: Group order deleted successfully.
@@ -229,12 +229,12 @@ paths:
   /foodproviders/{foodProviderId}:
     get:
       parameters:
-      - name: foodProviderId
-        description: The unique identifier of the food provider.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: foodProviderId
+          description: The unique identifier of the food provider.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "200":
           content:
@@ -254,12 +254,12 @@ paths:
               $ref: '#/components/schemas/FoodProvider'
         required: true
       parameters:
-      - name: foodProviderId
-        description: The unique identifier of the food provider.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: foodProviderId
+          description: The unique identifier of the food provider.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "200":
           description: Food provider updated successfully.
@@ -270,12 +270,12 @@ paths:
       summary: Update a food provider's details.
     delete:
       parameters:
-      - name: foodProviderId
-        description: The unique identifier of the food provider.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: foodProviderId
+          description: The unique identifier of the food provider.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "204":
           description: Food provider deleted successfully.
@@ -312,12 +312,12 @@ paths:
   /participants/{participantID}:
     get:
       parameters:
-      - name: participantID
-        description: The unique identifier of the participant.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: participantID
+          description: The unique identifier of the participant.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "200":
           content:
@@ -336,12 +336,12 @@ paths:
               $ref: '#/components/schemas/Participant'
         required: true
       parameters:
-      - name: participantID
-        description: The unique identifier of the participant.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: participantID
+          description: The unique identifier of the participant.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "200":
           description: Participant updated successfully.
@@ -352,12 +352,12 @@ paths:
       summary: Update a participant's details.
     delete:
       parameters:
-      - name: participantID
-        description: The unique identifier of the participant.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: participantID
+          description: The unique identifier of the participant.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "204":
           description: Participant deleted successfully.
@@ -367,18 +367,18 @@ paths:
   /participants/{participantID}/orders/{participantOrderID}:
     get:
       parameters:
-      - name: participantID
-        description: The unique identifier of the participant.
-        schema:
-          type: string
-        in: path
-        required: true
-      - name: participantOrderID
-        description: The unique identifier of the participant's order.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: participantID
+          description: The unique identifier of the participant.
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: participantOrderID
+          description: The unique identifier of the participant's order.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "200":
           content:
@@ -397,18 +397,18 @@ paths:
               $ref: '#/components/schemas/ParticipantOrder'
         required: true
       parameters:
-      - name: participantID
-        description: The unique identifier of the participant.
-        schema:
-          type: string
-        in: path
-        required: true
-      - name: participantOrderID
-        description: The unique identifier of the participant's order.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: participantID
+          description: The unique identifier of the participant.
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: participantOrderID
+          description: The unique identifier of the participant's order.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "200":
           description: Order updated successfully.
@@ -419,18 +419,18 @@ paths:
       summary: Update a participant's order.
     delete:
       parameters:
-      - name: participantID
-        description: The unique identifier of the participant.
-        schema:
-          type: string
-        in: path
-        required: true
-      - name: participantOrderID
-        description: The unique identifier of the participant's order.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: participantID
+          description: The unique identifier of the participant.
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: participantOrderID
+          description: The unique identifier of the participant's order.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "204":
           description: Order deleted successfully.
@@ -440,12 +440,12 @@ paths:
   /participants/{participantID}/orders:
     get:
       parameters:
-      - name: participantID
-        description: The unique identifier of the participant.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: participantID
+          description: The unique identifier of the participant.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "200":
           content:
@@ -464,12 +464,12 @@ paths:
               $ref: '#/components/schemas/ParticipantOrder'
         required: true
       parameters:
-      - name: participantID
-        description: The unique identifier of the participant.
-        schema:
-          type: string
-        in: path
-        required: true
+        - name: participantID
+          description: The unique identifier of the participant.
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         "201":
           description: Participant order created successfully.
@@ -521,13 +521,13 @@ components:
           type: string
     GroupOrderResponse:
       allOf:
-      - $ref: '#/components/schemas/GroupOrder'
-      - type: object
-        properties:
-          participantOrders:
-            type: array
-            items:
-              $ref: '#/components/schemas/ParticipantOrder'
+        - $ref: '#/components/schemas/GroupOrder'
+        - type: object
+          properties:
+            participantOrders:
+              type: array
+              items:
+                $ref: '#/components/schemas/ParticipantOrder'
     Participant:
       type: object
       properties:

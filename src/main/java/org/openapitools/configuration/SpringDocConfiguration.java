@@ -13,15 +13,13 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 @Configuration
 public class SpringDocConfiguration {
 
-    @Bean(name = "org.openapitools.configuration.SpringDocConfiguration.apiInfo")
-    OpenAPI apiInfo() {
-        return new OpenAPI()
-                .info(
-                        new Info()
-                                .title("GroupGrub")
-                                .description("API for managing group food orders.")
-                                .version("1.0.0")
-                )
-        ;
-    }
+  @Bean(name = "org.openapitools.configuration.SpringDocConfiguration.apiInfo")
+  OpenAPI apiInfo() {
+    return new OpenAPI()
+        .info(
+            new Info()
+                .title("GroupGrub")
+                .description("API for managing group food orders.")
+                .version("1.0.0"));
+  }
 }

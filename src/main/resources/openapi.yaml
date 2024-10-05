@@ -4,8 +4,8 @@ info:
   title: GroupGrub
   version: 1.0.0
 servers:
-- description: Production server
-  url: https://api.groupgrub.com
+  - description: Production server
+    url: https://api.groupgrub.com
 paths:
   /groups:
     get:
@@ -22,7 +22,7 @@ paths:
           description: No groups found in the service.
       summary: Retrieve a list of all groups in the service.
       x-accepts:
-      - application/json
+        - application/json
     post:
       requestBody:
         content:
@@ -40,18 +40,18 @@ paths:
       summary: Add a new group to the service.
       x-content-type: application/json
       x-accepts:
-      - application/json
+        - application/json
   /groups/{groupId}:
     delete:
       parameters:
-      - description: The unique identifier of the group.
-        explode: false
-        in: path
-        name: groupId
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the group.
+          explode: false
+          in: path
+          name: groupId
+          required: true
+          schema:
+            type: string
+          style: simple
       responses:
         "204":
           description: Group deleted successfully.
@@ -59,17 +59,17 @@ paths:
           description: Group not found.
       summary: Delete a group.
       x-accepts:
-      - application/json
+        - application/json
     get:
       parameters:
-      - description: The unique identifier of the group.
-        explode: false
-        in: path
-        name: groupId
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the group.
+          explode: false
+          in: path
+          name: groupId
+          required: true
+          schema:
+            type: string
+          style: simple
       responses:
         "200":
           content:
@@ -81,17 +81,17 @@ paths:
           description: Group not found.
       summary: Retrieve details of a specific group.
       x-accepts:
-      - application/json
+        - application/json
     put:
       parameters:
-      - description: The unique identifier of the group.
-        explode: false
-        in: path
-        name: groupId
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the group.
+          explode: false
+          in: path
+          name: groupId
+          required: true
+          schema:
+            type: string
+          style: simple
       requestBody:
         content:
           application/json:
@@ -106,18 +106,18 @@ paths:
       summary: Update a group's details.
       x-content-type: application/json
       x-accepts:
-      - application/json
+        - application/json
   /groups/{groupId}/orders:
     get:
       parameters:
-      - description: The unique identifier of the group.
-        explode: false
-        in: path
-        name: groupId
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the group.
+          explode: false
+          in: path
+          name: groupId
+          required: true
+          schema:
+            type: string
+          style: simple
       responses:
         "200":
           content:
@@ -129,17 +129,17 @@ paths:
           description: List of group orders retrieved successfully.
       summary: Retrieve all group orders for a specific group.
       x-accepts:
-      - application/json
+        - application/json
     post:
       parameters:
-      - description: The unique identifier of the group.
-        explode: false
-        in: path
-        name: groupId
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the group.
+          explode: false
+          in: path
+          name: groupId
+          required: true
+          schema:
+            type: string
+          style: simple
       requestBody:
         content:
           application/json:
@@ -152,26 +152,26 @@ paths:
       summary: Create a new group order.
       x-content-type: application/json
       x-accepts:
-      - application/json
+        - application/json
   /groups/{groupId}/orders/{orderId}:
     delete:
       parameters:
-      - description: The unique identifier of the group.
-        explode: false
-        in: path
-        name: groupId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The unique identifier of the order.
-        explode: false
-        in: path
-        name: orderId
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the group.
+          explode: false
+          in: path
+          name: groupId
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The unique identifier of the order.
+          explode: false
+          in: path
+          name: orderId
+          required: true
+          schema:
+            type: string
+          style: simple
       responses:
         "204":
           description: Group order deleted successfully.
@@ -179,25 +179,25 @@ paths:
           description: Group order not found.
       summary: Delete a group order.
       x-accepts:
-      - application/json
+        - application/json
     get:
       parameters:
-      - description: The unique identifier of the group.
-        explode: false
-        in: path
-        name: groupId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The unique identifier of the order.
-        explode: false
-        in: path
-        name: orderId
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the group.
+          explode: false
+          in: path
+          name: groupId
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The unique identifier of the order.
+          explode: false
+          in: path
+          name: orderId
+          required: true
+          schema:
+            type: string
+          style: simple
       responses:
         "200":
           content:
@@ -209,25 +209,25 @@ paths:
           description: Group order not found.
       summary: Retrieve details of a specific group order.
       x-accepts:
-      - application/json
+        - application/json
     put:
       parameters:
-      - description: The unique identifier of the group.
-        explode: false
-        in: path
-        name: groupId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The unique identifier of the order.
-        explode: false
-        in: path
-        name: orderId
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the group.
+          explode: false
+          in: path
+          name: groupId
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The unique identifier of the order.
+          explode: false
+          in: path
+          name: orderId
+          required: true
+          schema:
+            type: string
+          style: simple
       requestBody:
         content:
           application/json:
@@ -242,7 +242,7 @@ paths:
       summary: Update a group order.
       x-content-type: application/json
       x-accepts:
-      - application/json
+        - application/json
   /foodproviders:
     get:
       responses:
@@ -258,7 +258,7 @@ paths:
           description: No food providers found.
       summary: Retrieve a list of all food providers.
       x-accepts:
-      - application/json
+        - application/json
     post:
       requestBody:
         content:
@@ -275,18 +275,18 @@ paths:
       summary: Add a new food provider to the service.
       x-content-type: application/json
       x-accepts:
-      - application/json
+        - application/json
   /foodproviders/{foodProviderId}:
     delete:
       parameters:
-      - description: The unique identifier of the food provider.
-        explode: false
-        in: path
-        name: foodProviderId
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the food provider.
+          explode: false
+          in: path
+          name: foodProviderId
+          required: true
+          schema:
+            type: string
+          style: simple
       responses:
         "204":
           description: Food provider deleted successfully.
@@ -294,17 +294,17 @@ paths:
           description: Food provider not found.
       summary: Delete a food provider.
       x-accepts:
-      - application/json
+        - application/json
     get:
       parameters:
-      - description: The unique identifier of the food provider.
-        explode: false
-        in: path
-        name: foodProviderId
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the food provider.
+          explode: false
+          in: path
+          name: foodProviderId
+          required: true
+          schema:
+            type: string
+          style: simple
       responses:
         "200":
           content:
@@ -316,17 +316,17 @@ paths:
           description: Food provider not found.
       summary: Retrieve details of a specific food provider.
       x-accepts:
-      - application/json
+        - application/json
     put:
       parameters:
-      - description: The unique identifier of the food provider.
-        explode: false
-        in: path
-        name: foodProviderId
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the food provider.
+          explode: false
+          in: path
+          name: foodProviderId
+          required: true
+          schema:
+            type: string
+          style: simple
       requestBody:
         content:
           application/json:
@@ -344,7 +344,7 @@ paths:
       summary: Update a food provider's details.
       x-content-type: application/json
       x-accepts:
-      - application/json
+        - application/json
   /participants:
     get:
       responses:
@@ -360,7 +360,7 @@ paths:
           description: No participants found.
       summary: Retrieve all participants registered in the service.
       x-accepts:
-      - application/json
+        - application/json
     post:
       requestBody:
         content:
@@ -376,18 +376,18 @@ paths:
       summary: Add new participants.
       x-content-type: application/json
       x-accepts:
-      - application/json
+        - application/json
   /participants/{participantID}:
     delete:
       parameters:
-      - description: The unique identifier of the participant.
-        explode: false
-        in: path
-        name: participantID
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the participant.
+          explode: false
+          in: path
+          name: participantID
+          required: true
+          schema:
+            type: string
+          style: simple
       responses:
         "204":
           description: Participant deleted successfully.
@@ -395,17 +395,17 @@ paths:
           description: Participant not found.
       summary: Delete a participant.
       x-accepts:
-      - application/json
+        - application/json
     get:
       parameters:
-      - description: The unique identifier of the participant.
-        explode: false
-        in: path
-        name: participantID
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the participant.
+          explode: false
+          in: path
+          name: participantID
+          required: true
+          schema:
+            type: string
+          style: simple
       responses:
         "200":
           content:
@@ -417,17 +417,17 @@ paths:
           description: Participant not found.
       summary: Retrieve details of a participant by participantID.
       x-accepts:
-      - application/json
+        - application/json
     put:
       parameters:
-      - description: The unique identifier of the participant.
-        explode: false
-        in: path
-        name: participantID
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the participant.
+          explode: false
+          in: path
+          name: participantID
+          required: true
+          schema:
+            type: string
+          style: simple
       requestBody:
         content:
           application/json:
@@ -444,26 +444,26 @@ paths:
       summary: Update a participant's details.
       x-content-type: application/json
       x-accepts:
-      - application/json
+        - application/json
   /participants/{participantID}/orders/{participantOrderID}:
     delete:
       parameters:
-      - description: The unique identifier of the participant.
-        explode: false
-        in: path
-        name: participantID
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The unique identifier of the participant's order.
-        explode: false
-        in: path
-        name: participantOrderID
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the participant.
+          explode: false
+          in: path
+          name: participantID
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The unique identifier of the participant's order.
+          explode: false
+          in: path
+          name: participantOrderID
+          required: true
+          schema:
+            type: string
+          style: simple
       responses:
         "204":
           description: Order deleted successfully.
@@ -471,25 +471,25 @@ paths:
           description: Order not found.
       summary: Delete a participant's order.
       x-accepts:
-      - application/json
+        - application/json
     get:
       parameters:
-      - description: The unique identifier of the participant.
-        explode: false
-        in: path
-        name: participantID
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The unique identifier of the participant's order.
-        explode: false
-        in: path
-        name: participantOrderID
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the participant.
+          explode: false
+          in: path
+          name: participantID
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The unique identifier of the participant's order.
+          explode: false
+          in: path
+          name: participantOrderID
+          required: true
+          schema:
+            type: string
+          style: simple
       responses:
         "200":
           content:
@@ -501,25 +501,25 @@ paths:
           description: Order not found.
       summary: Retrieve a specific participant's order.
       x-accepts:
-      - application/json
+        - application/json
     put:
       parameters:
-      - description: The unique identifier of the participant.
-        explode: false
-        in: path
-        name: participantID
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: The unique identifier of the participant's order.
-        explode: false
-        in: path
-        name: participantOrderID
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the participant.
+          explode: false
+          in: path
+          name: participantID
+          required: true
+          schema:
+            type: string
+          style: simple
+        - description: The unique identifier of the participant's order.
+          explode: false
+          in: path
+          name: participantOrderID
+          required: true
+          schema:
+            type: string
+          style: simple
       requestBody:
         content:
           application/json:
@@ -536,18 +536,18 @@ paths:
       summary: Update a participant's order.
       x-content-type: application/json
       x-accepts:
-      - application/json
+        - application/json
   /participants/{participantID}/orders:
     get:
       parameters:
-      - description: The unique identifier of the participant.
-        explode: false
-        in: path
-        name: participantID
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the participant.
+          explode: false
+          in: path
+          name: participantID
+          required: true
+          schema:
+            type: string
+          style: simple
       responses:
         "200":
           content:
@@ -559,17 +559,17 @@ paths:
           description: List of participant orders retrieved successfully.
       summary: Retrieve all participant orders for a specific participant.
       x-accepts:
-      - application/json
+        - application/json
     post:
       parameters:
-      - description: The unique identifier of the participant.
-        explode: false
-        in: path
-        name: participantID
-        required: true
-        schema:
-          type: string
-        style: simple
+        - description: The unique identifier of the participant.
+          explode: false
+          in: path
+          name: participantID
+          required: true
+          schema:
+            type: string
+          style: simple
       requestBody:
         content:
           application/json:
@@ -582,20 +582,20 @@ paths:
       summary: Create a new participant order.
       x-content-type: application/json
       x-accepts:
-      - application/json
+        - application/json
 components:
   schemas:
     Group:
       example:
         administratorID: administratorID
         groupOrderIDs:
-        - groupOrderIDs
-        - groupOrderIDs
+          - groupOrderIDs
+          - groupOrderIDs
         groupID: groupID
         name: name
         participantIDs:
-        - participantIDs
-        - participantIDs
+          - participantIDs
+          - participantIDs
       properties:
         groupID:
           type: string
@@ -615,8 +615,8 @@ components:
     GroupOrder:
       example:
         participantOrderIDs:
-        - participantOrderIDs
-        - participantOrderIDs
+          - participantOrderIDs
+          - participantOrderIDs
         groupOrderID: groupOrderID
         menuItemIDs:
           key: 0
@@ -643,29 +643,29 @@ components:
       type: object
     GroupOrderResponse:
       allOf:
-      - $ref: '#/components/schemas/GroupOrder'
-      - properties:
-          participantOrders:
-            items:
-              $ref: '#/components/schemas/ParticipantOrder'
-            type: array
-        type: object
+        - $ref: '#/components/schemas/GroupOrder'
+        - properties:
+            participantOrders:
+              items:
+                $ref: '#/components/schemas/ParticipantOrder'
+              type: array
+          type: object
       example:
         participantOrderIDs:
-        - participantOrderIDs
-        - participantOrderIDs
+          - participantOrderIDs
+          - participantOrderIDs
         groupOrderID: groupOrderID
         menuItemIDs:
           key: 0
         participantOrders:
-        - menuItemIDs:
-            key: 6
-          comments: comments
-          participantOrderID: participantOrderID
-        - menuItemIDs:
-            key: 6
-          comments: comments
-          participantOrderID: participantOrderID
+          - menuItemIDs:
+              key: 6
+            comments: comments
+            participantOrderID: participantOrderID
+          - menuItemIDs:
+              key: 6
+            comments: comments
+            participantOrderID: participantOrderID
         desiredPickupTimeframe: desiredPickupTimeframe
         foodProviderID: foodProviderID
         status: status
@@ -673,8 +673,8 @@ components:
       example:
         participantID: participantID
         participantOrderIDs:
-        - participantOrderIDs
-        - participantOrderIDs
+          - participantOrderIDs
+          - participantOrderIDs
         name: name
       properties:
         participantID:
@@ -710,16 +710,16 @@ components:
         hoursOfOperation: hoursOfOperation
         foodProviderID: foodProviderID
         menu:
-        - image: image
-          cost: 0.8008281904610115
-          name: name
-          description: description
-          menuItemID: menuItemID
-        - image: image
-          cost: 0.8008281904610115
-          name: name
-          description: description
-          menuItemID: menuItemID
+          - image: image
+            cost: 0.8008281904610115
+            name: name
+            description: description
+            menuItemID: menuItemID
+          - image: image
+            cost: 0.8008281904610115
+            name: name
+            description: description
+            menuItemID: menuItemID
       properties:
         foodProviderID:
           type: string

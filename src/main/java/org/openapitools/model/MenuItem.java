@@ -18,24 +18,20 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-
 import java.util.*;
 import javax.annotation.Generated;
 
-/**
- * MenuItem
- */
-
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+/** MenuItem */
+@Generated(
+    value = "org.openapitools.codegen.languages.SpringCodegen",
+    date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]",
+    comments = "Generator version: 7.8.0")
 @Entity
 public class MenuItem {
 
   @Id
   @GeneratedValue(generator = "UUID")
-  @GenericGenerator(
-          name = "UUID",
-          strategy = "org.hibernate.id.UUIDGenerator"
-  )
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   private UUID menuItemID;
 
   @Column(nullable = false)
@@ -57,9 +53,10 @@ public class MenuItem {
 
   /**
    * Get menuItemID
+   *
    * @return menuItemID
    */
-  @Valid 
+  @Valid
   @Schema(name = "menuItemID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("menuItemID")
   public UUID getMenuItemID() {
@@ -77,9 +74,9 @@ public class MenuItem {
 
   /**
    * Get name
+   *
    * @return name
    */
-  
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
   public String getName() {
@@ -97,9 +94,9 @@ public class MenuItem {
 
   /**
    * Get image
+   *
    * @return image
    */
-  
   @Schema(name = "image", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("image")
   public String getImage() {
@@ -117,9 +114,9 @@ public class MenuItem {
 
   /**
    * Get description
+   *
    * @return description
    */
-  
   @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("description")
   public String getDescription() {
@@ -137,9 +134,10 @@ public class MenuItem {
 
   /**
    * Get cost
+   *
    * @return cost
    */
-  @Valid 
+  @Valid
   @Schema(name = "cost", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("cost")
   public BigDecimal getCost() {
@@ -159,11 +157,11 @@ public class MenuItem {
       return false;
     }
     MenuItem menuItem = (MenuItem) o;
-    return Objects.equals(this.menuItemID, menuItem.menuItemID) &&
-        Objects.equals(this.name, menuItem.name) &&
-        Objects.equals(this.image, menuItem.image) &&
-        Objects.equals(this.description, menuItem.description) &&
-        Objects.equals(this.cost, menuItem.cost);
+    return Objects.equals(this.menuItemID, menuItem.menuItemID)
+        && Objects.equals(this.name, menuItem.name)
+        && Objects.equals(this.image, menuItem.image)
+        && Objects.equals(this.description, menuItem.description)
+        && Objects.equals(this.cost, menuItem.cost);
   }
 
   @Override
@@ -185,8 +183,7 @@ public class MenuItem {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
     if (o == null) {
@@ -195,4 +192,3 @@ public class MenuItem {
     return o.toString().replace("\n", "\n    ");
   }
 }
-

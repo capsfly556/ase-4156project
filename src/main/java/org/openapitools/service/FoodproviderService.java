@@ -8,10 +8,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class FoodproviderService {
 
-    @Autowired
-    private FoodproviderRepository repository;
+  @Autowired private FoodproviderRepository repository;
 
-    public FoodProvider addFoodProvider(FoodProvider foodProvider) {
-        return repository.save(foodProvider);
-    }
+  public FoodProvider addFoodProvider(FoodProvider foodProvider) {
+    return repository.save(foodProvider);
+  }
 }

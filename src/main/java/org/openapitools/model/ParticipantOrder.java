@@ -20,24 +20,20 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-
 import java.util.*;
 import javax.annotation.Generated;
 
-/**
- * ParticipantOrder
- */
-
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+/** ParticipantOrder */
+@Generated(
+    value = "org.openapitools.codegen.languages.SpringCodegen",
+    date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]",
+    comments = "Generator version: 7.8.0")
 @Entity
 public class ParticipantOrder {
 
   @Id
   @GeneratedValue(generator = "UUID")
-  @GenericGenerator(
-          name = "UUID",
-          strategy = "org.hibernate.id.UUIDGenerator"
-  )
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   private UUID participantOrderID;
 
   @Valid
@@ -56,9 +52,10 @@ public class ParticipantOrder {
 
   /**
    * Get participantOrderID
+   *
    * @return participantOrderID
    */
-  @Valid 
+  @Valid
   @Schema(name = "participantOrderID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("participantOrderID")
   public UUID getParticipantOrderID() {
@@ -84,9 +81,9 @@ public class ParticipantOrder {
 
   /**
    * Get menuItemIDs
+   *
    * @return menuItemIDs
    */
-  
   @Schema(name = "menuItemIDs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("menuItemIDs")
   public Map<String, Integer> getMenuItemIDs() {
@@ -104,9 +101,9 @@ public class ParticipantOrder {
 
   /**
    * Get comments
+   *
    * @return comments
    */
-  
   @Schema(name = "comments", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("comments")
   public String getComments() {
@@ -126,9 +123,9 @@ public class ParticipantOrder {
       return false;
     }
     ParticipantOrder participantOrder = (ParticipantOrder) o;
-    return Objects.equals(this.participantOrderID, participantOrder.participantOrderID) &&
-        Objects.equals(this.menuItemIDs, participantOrder.menuItemIDs) &&
-        Objects.equals(this.comments, participantOrder.comments);
+    return Objects.equals(this.participantOrderID, participantOrder.participantOrderID)
+        && Objects.equals(this.menuItemIDs, participantOrder.menuItemIDs)
+        && Objects.equals(this.comments, participantOrder.comments);
   }
 
   @Override
@@ -148,8 +145,7 @@ public class ParticipantOrder {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
     if (o == null) {
@@ -158,4 +154,3 @@ public class ParticipantOrder {
     return o.toString().replace("\n", "\n    ");
   }
 }
-

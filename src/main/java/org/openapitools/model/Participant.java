@@ -20,32 +20,26 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-
 import java.util.*;
 import javax.annotation.Generated;
 
-/**
- * Participant
- */
-
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]", comments = "Generator version: 7.8.0")
+/** Participant */
+@Generated(
+    value = "org.openapitools.codegen.languages.SpringCodegen",
+    date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]",
+    comments = "Generator version: 7.8.0")
 @Entity
 public class Participant {
 
   @Id
   @GeneratedValue(generator = "UUID")
-  @GenericGenerator(
-          name = "UUID",
-          strategy = "org.hibernate.id.UUIDGenerator"
-  )
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   private UUID participantID;
 
   @Column(nullable = false)
   private String name;
 
-  @Valid
-  @ElementCollection
-  private List<UUID> participantOrderIDs = new ArrayList<>();
+  @Valid @ElementCollection private List<UUID> participantOrderIDs = new ArrayList<>();
 
   public Participant participantID(UUID participantID) {
     this.participantID = participantID;
@@ -54,9 +48,10 @@ public class Participant {
 
   /**
    * Get participantID
+   *
    * @return participantID
    */
-  @Valid 
+  @Valid
   @Schema(name = "participantID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("participantID")
   public UUID getParticipantID() {
@@ -74,9 +69,9 @@ public class Participant {
 
   /**
    * Get name
+   *
    * @return name
    */
-  
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
   public String getName() {
@@ -102,9 +97,10 @@ public class Participant {
 
   /**
    * Get participantOrderIDs
+   *
    * @return participantOrderIDs
    */
-  @Valid 
+  @Valid
   @Schema(name = "participantOrderIDs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("participantOrderIDs")
   public List<UUID> getParticipantOrderIDs() {
@@ -124,9 +120,9 @@ public class Participant {
       return false;
     }
     Participant participant = (Participant) o;
-    return Objects.equals(this.participantID, participant.participantID) &&
-        Objects.equals(this.name, participant.name) &&
-        Objects.equals(this.participantOrderIDs, participant.participantOrderIDs);
+    return Objects.equals(this.participantID, participant.participantID)
+        && Objects.equals(this.name, participant.name)
+        && Objects.equals(this.participantOrderIDs, participant.participantOrderIDs);
   }
 
   @Override
@@ -140,14 +136,15 @@ public class Participant {
     sb.append("class Participant {\n");
     sb.append("    participantID: ").append(toIndentedString(participantID)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    participantOrderIDs: ").append(toIndentedString(participantOrderIDs)).append("\n");
+    sb.append("    participantOrderIDs: ")
+        .append(toIndentedString(participantOrderIDs))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(Object o) {
     if (o == null) {
@@ -156,4 +153,3 @@ public class Participant {
     return o.toString().replace("\n", "\n    ");
   }
 }
-
