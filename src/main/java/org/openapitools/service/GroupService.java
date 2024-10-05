@@ -1,17 +1,17 @@
 package org.openapitools.service;
 
-import org.openapitools.repository.GroupsApiRepository;
+import org.openapitools.repository.GroupRepository;
 import org.openapitools.model.Group;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GroupsApiService {
+public class GroupService {
 
     @Autowired
-    private GroupsApiRepository repository;
+    private GroupRepository repository;
 
-    public Group addFoodProvider(Group group) {
+    public Group addGroup(Group group) {
         return repository.save(group);
     }
 }
