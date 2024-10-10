@@ -38,9 +38,9 @@ public class ParticipantOrder {
 
   @Valid
   @ElementCollection
-  @MapKeyColumn(name = "menu_item_name")
+  @MapKeyColumn(name = "menu_item_id")
   @Column(name = "menu_item_id")
-  private Map<String, Integer> menuItemIDs = new HashMap<>();
+  private Map<UUID, Integer> menuItemIDs = new HashMap<>();
 
   @Column(nullable = false)
   private String comments;
@@ -56,7 +56,7 @@ public class ParticipantOrder {
    * @return participantOrderID
    */
   @Valid
-  @Schema(name = "participantOrderID", requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(name = "participantOrderID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("participantOrderID")
   public UUID getParticipantOrderID() {
     return participantOrderID;
@@ -66,12 +66,12 @@ public class ParticipantOrder {
     this.participantOrderID = participantOrderID;
   }
 
-  public ParticipantOrder menuItemIDs(Map<String, Integer> menuItemIDs) {
+  public ParticipantOrder menuItemIDs(Map<UUID, Integer> menuItemIDs) {
     this.menuItemIDs = menuItemIDs;
     return this;
   }
 
-  public ParticipantOrder putMenuItemIDsItem(String key, Integer menuItemIDsItem) {
+  public ParticipantOrder putMenuItemIDsItem(UUID key, Integer menuItemIDsItem) {
     if (this.menuItemIDs == null) {
       this.menuItemIDs = new HashMap<>();
     }
@@ -86,11 +86,11 @@ public class ParticipantOrder {
    */
   @Schema(name = "menuItemIDs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("menuItemIDs")
-  public Map<String, Integer> getMenuItemIDs() {
+  public Map<UUID, Integer> getMenuItemIDs() {
     return menuItemIDs;
   }
 
-  public void setMenuItemIDs(Map<String, Integer> menuItemIDs) {
+  public void setMenuItemIDs(Map<UUID, Integer> menuItemIDs) {
     this.menuItemIDs = menuItemIDs;
   }
 
