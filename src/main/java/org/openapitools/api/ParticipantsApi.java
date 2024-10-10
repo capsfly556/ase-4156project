@@ -164,7 +164,7 @@ public interface ParticipantsApi {
    * participant.
    *
    * @param participantID The unique identifier of the participant. (required)
-   * @return List of participant orders retrieved successfully. (status code 200)
+   * @return List of participant orders retrieved successfully. (status code 200) or participant orders not fount (status code 404)
    */
   @Operation(
       operationId = "participantsParticipantIDOrdersGet",
@@ -177,7 +177,8 @@ public interface ParticipantsApi {
               @Content(
                   mediaType = "application/json",
                   array = @ArraySchema(schema = @Schema(implementation = ParticipantOrder.class)))
-            })
+            }),
+		@ApiResponse(responseCode = "404", description = "No participant orders found.")
       })
   @RequestMapping(
       method = RequestMethod.GET,
@@ -244,7 +245,7 @@ public interface ParticipantsApi {
 
   /**
    * GET /participants/{participantID}/orders/{participantOrderID} : Retrieve a specific
-   * participant&#39;s order.
+   * participant's order.
    *
    * @param participantID The unique identifier of the participant. (required)
    * @param participantOrderID The unique identifier of the participant's order. (required)
