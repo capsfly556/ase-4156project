@@ -52,7 +52,7 @@ public class Participant {
    * @return participantID
    */
   @Valid
-  @Schema(name = "participantID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "participantID", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("participantID")
   public UUID getParticipantID() {
     return participantID;
@@ -72,7 +72,7 @@ public class Participant {
    *
    * @return name
    */
-  @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "name", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("name")
   public String getName() {
     return name;

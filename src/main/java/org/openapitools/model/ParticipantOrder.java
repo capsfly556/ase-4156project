@@ -56,7 +56,7 @@ public class ParticipantOrder {
    * @return participantOrderID
    */
   @Valid
-  @Schema(name = "participantOrderID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "participantOrderID", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("participantOrderID")
   public UUID getParticipantOrderID() {
     return participantOrderID;
