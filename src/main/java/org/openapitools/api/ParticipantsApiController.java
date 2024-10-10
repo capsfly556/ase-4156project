@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 
@@ -27,6 +29,8 @@ import org.springframework.web.context.request.NativeWebRequest;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
+import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -77,7 +81,7 @@ public class ParticipantsApiController implements ParticipantsApi {
   }
 
   @DeleteMapping(value = "/participants/{participantID}")
-  public ResponseEntity<Void> participantsParticipantIDDelete(String participantID) {
+  public ResponseEntity<Void> participantsParticipantIDDelete(@PathVariable("participantID") String participantID) {
     boolean isDeleted = participantService.deleteParticipant(UUID.fromString(participantID));
 
     if (isDeleted) {
@@ -88,7 +92,7 @@ public class ParticipantsApiController implements ParticipantsApi {
   }
 
   @GetMapping(value = "/{participantID}", produces = {"application/json"})
-  public ResponseEntity<Participant> participantsParticipantIDGet(String participantID) {
+  public ResponseEntity<Participant> participantsParticipantIDGet(@PathVariable("participantID") String participantID) {
       Optional<Participant> participant = participantService.getParticipantById(UUID.fromString(participantID));
 
       if (participant.isPresent()) {
@@ -99,7 +103,7 @@ public class ParticipantsApiController implements ParticipantsApi {
   }
 
   @PutMapping(value = "/{participantID}", consumes = {"application/json"})
-  public ResponseEntity<Void> participantsParticipantIDPut(String participantID, @Valid @RequestBody Participant participant) {
+  public ResponseEntity<Void> participantsParticipantIDPut(@PathVariable("participantID") String participantID, @Valid @RequestBody Participant participant) {
     try {
       Participant updatedParticipant = participantService.updateParticipant(UUID.fromString(participantID), participant);
       return new ResponseEntity<>(HttpStatus.OK);
@@ -107,5 +111,80 @@ public class ParticipantsApiController implements ParticipantsApi {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
+
+  @GetMapping(value = "/participants/{participantID}/orders", produces = {"application/json"})
+  public ResponseEntity<List<ParticipantOrder>> participantsParticipantIDOrdersGet(@PathVariable("participantID") String participantID) {
+      List<ParticipantOrder> orders = participantService.getOrdersByParticipantId(UUID.fromString(participantID));
+      
+      if (orders.isEmpty()) {
+          return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+      
+      return ResponseEntity.ok(orders);
+  }
+
+  @DeleteMapping(value = "/participants/{participantID}/orders/{participantOrderID}")
+  public ResponseEntity<Void> participantsParticipantIDOrdersParticipantOrderIDDelete(
+          @PathVariable("participantID") String participantID,
+          @PathVariable("participantOrderID") String participantOrderID) {
+      
+      boolean isDeleted = participantService.deleteOrderByParticipantIdAndOrderId(
+              UUID.fromString(participantID), UUID.fromString(participantOrderID));
+      
+      if (isDeleted) {
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+      } else {
+          return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+  }
+
+  public ResponseEntity<ParticipantOrder> participantsParticipantIDOrdersParticipantOrderIDGet(
+        @PathVariable("participantID") String participantID,
+        @PathVariable("participantOrderID") String participantOrderID) {
+
+        Optional<ParticipantOrder> participantOrder = participantService.getOrderByParticipantIdAndOrderId(
+          UUID.fromString(participantID), UUID.fromString(participantOrderID));
+        
+        if (participantOrder.isPresent()) {
+            return new ResponseEntity<>(participantOrder.get(), HttpStatus.OK);
+        }
+        
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  }
+
+  @RequestMapping(
+    method = RequestMethod.POST,
+    value = "/participants/{participantID}/orders",
+    consumes = {"application/json"})
+  public ResponseEntity<Void> participantsParticipantIDOrdersPost(
+      @PathVariable("participantID") String participantID,
+      @Valid @RequestBody ParticipantOrder participantOrder) {
+      try {
+        participantService.createParticipantOrder(UUID.fromString(participantID), participantOrder);
+        return new ResponseEntity<>(HttpStatus.OK);
+      } catch (Exception e) {
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+      }
+  }
+
+
+  // @PutMapping(value = "/participants/{participantID}/orders/{participantOrderID}", consumes = {"application/json"})
+  // public ResponseEntity<Void> participantsParticipantIDOrdersParticipantOrderIDPut(
+  //     @PathVariable("participantID") String participantID,
+  //     @PathVariable("participantOrderID") String participantOrderID,
+  //     @Valid @RequestBody ParticipantOrder participantOrder) {
+
+  //     if (!participantService.orderExists(UUID.fromString(participantID), UUID.fromString(participantOrderID))) {
+  //       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  //     }
+
+  //     boolean updated = participantService.updateOrder(UUID.fromString(participantID), UUID.fromString(participantOrderID), participantOrder);
+      
+  //     if (updated) {
+  //       return new ResponseEntity<>(HttpStatus.OK);
+  //     } else {
+  //       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  //     }
+  // }
 
 }
