@@ -211,7 +211,7 @@ public interface ParticipantsApi {
    * order.
    *
    * @param participantID The unique identifier of the participant. (required)
-   * @param participantOrderID The unique identifier of the participant&#39;s order. (required)
+   * @param participantOrderID The unique identifier of the participant's order. (required)
    * @return Order deleted successfully. (status code 204) or Order not found. (status code 404)
    */
   @Operation(
@@ -247,7 +247,7 @@ public interface ParticipantsApi {
    * participant&#39;s order.
    *
    * @param participantID The unique identifier of the participant. (required)
-   * @param participantOrderID The unique identifier of the participant&#39;s order. (required)
+   * @param participantOrderID The unique identifier of the participant's order. (required)
    * @return Participant&#39;s order retrieved successfully. (status code 200) or Order not found.
    *     (status code 404)
    */
@@ -304,7 +304,7 @@ public interface ParticipantsApi {
    * order.
    *
    * @param participantID The unique identifier of the participant. (required)
-   * @param participantOrderID The unique identifier of the participant&#39;s order. (required)
+   * @param participantOrderID The unique identifier of the participant's order. (required)
    * @param participantOrder (required)
    * @return Order updated successfully. (status code 200) or Failed to update order. (status code
    *     400) or Order not found. (status code 404)
@@ -372,7 +372,7 @@ public interface ParticipantsApi {
   }
 
   /**
-   * PUT /participants/{participantID} : Update a participant&#39;s details.
+   * PUT /participants/{participantID} : Update a participant's details.
    *
    * @param participantID The unique identifier of the participant. (required)
    * @param participant (required)
@@ -405,18 +405,18 @@ public interface ParticipantsApi {
   }
 
   /**
-   * POST /participants : Add new participants.
+   * POST /participants : Add a new participant.
    *
    * @param participant (required)
-   * @return Participants added successfully. (status code 201) or Failed to add participants.
+   * @return Participant added successfully. (status code 201) or Failed to add participant.
    *     (status code 400)
    */
   @Operation(
       operationId = "participantsPost",
-      summary = "Add new participants.",
+      summary = "Add a new participant.",
       responses = {
-        @ApiResponse(responseCode = "201", description = "Participants added successfully."),
-        @ApiResponse(responseCode = "400", description = "Failed to add participants.")
+        @ApiResponse(responseCode = "201", description = "Participant added successfully."),
+        @ApiResponse(responseCode = "400", description = "Failed to add participant.")
       })
   @RequestMapping(
       method = RequestMethod.POST,
