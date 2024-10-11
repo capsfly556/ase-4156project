@@ -144,7 +144,7 @@ public interface GroupsApi {
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("groupId")
-          String groupId) {
+          UUID groupId) {
     getRequest()
         .ifPresent(
             request -> {
