@@ -3,6 +3,8 @@ package org.openapitools.api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.openapitools.model.Group;
 
@@ -72,5 +74,17 @@ public class GroupsApiController implements GroupsApi {
 
     groupService.deleteGroupById(groupId);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
 
-}}
+  @Override
+  @GetMapping(
+          value = "/groups/{groupId}",
+          produces = {"application/json"})
+  public ResponseEntity<Group> groupsGroupIdGet(@PathVariable("groupId") UUID groupId){
+    Group group=groupService.getGroupById(groupId);
+    if (group==null){
+      return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+    }
+    return new ResponseEntity<>(group,HttpStatus.OK);
+  }
+}
