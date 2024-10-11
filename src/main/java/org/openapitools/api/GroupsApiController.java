@@ -1,12 +1,6 @@
 package org.openapitools.api;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -14,7 +8,6 @@ import javax.annotation.Generated;
 import javax.validation.Valid;
 import org.openapitools.model.Group;
 import org.openapitools.model.GroupOrder;
-import org.openapitools.model.GroupOrderResponse;
 import org.openapitools.service.GroupOrderService;
 import org.openapitools.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,35 +112,12 @@ public class GroupsApiController implements GroupsApi {
   }
 
 
-  /**
-   * DELETE /groups/{groupId}/orders/{orderId} : Delete a group order.
-   *
-   * @param groupId The unique identifier of the group. (required)
-   * @param orderId The unique identifier of the order. (required)
-   * @return Group order deleted successfully. (status code 204) or Group order not found. (status
-   *     code 404)
-   */
-  @Operation(
-          operationId = "groupsGroupIdOrdersOrderIdDelete",
-          summary = "Delete a group order.",
-          responses = {
-                  @ApiResponse(responseCode = "204", description = "Group order deleted successfully."),
-                  @ApiResponse(responseCode = "404", description = "Group order not found.")
-          })
+
+  @Override
   @DeleteMapping(value = "/groups/{groupId}/orders/{orderId}")
   public ResponseEntity<Void> groupsGroupIdOrdersOrderIdDelete(
-          @Parameter(
-                  name = "groupId",
-                  description = "The unique identifier of the group.",
-                  required = true,
-                  in = ParameterIn.PATH)
           @PathVariable("groupId")
           UUID groupId,
-          @Parameter(
-                  name = "orderId",
-                  description = "The unique identifier of the order.",
-                  required = true,
-                  in = ParameterIn.PATH)
           @PathVariable("orderId")
           UUID orderId){
     Boolean deleteSuccess=groupService.deleteGroupOrder(groupId,orderId);
@@ -158,35 +128,10 @@ public class GroupsApiController implements GroupsApi {
   }
 
   @Override
-
-  /**
-   * GET /groups/{groupId}/orders : Retrieve all group orders for a specific group.
-   *
-   * @param groupId The unique identifier of the group. (required)
-   * @return List of group orders retrieved successfully. (status code 200)
-   */
-  @Operation(
-          operationId = "groupsGroupIdOrdersGet",
-          summary = "Retrieve all group orders for a specific group.",
-          responses = {
-                  @ApiResponse(
-                          responseCode = "200",
-                          description = "List of group orders retrieved successfully.",
-                          content = {
-                                  @Content(
-                                          mediaType = "application/json",
-                                          array = @ArraySchema(schema = @Schema(implementation = GroupOrderResponse.class)))
-                          })
-          })
   @GetMapping(
           value = "/groups/{groupId}/orders",
           produces = {"application/json"})
   public ResponseEntity<List<GroupOrder>> groupsGroupIdOrdersGet(
-          @Parameter(
-                  name = "groupId",
-                  description = "The unique identifier of the group.",
-                  required = true,
-                  in = ParameterIn.PATH)
           @PathVariable("groupId")
           UUID groupId){
     List<GroupOrder> groupOrderList=groupService.getGroupOrdersByGroupId(groupId);
@@ -197,44 +142,13 @@ public class GroupsApiController implements GroupsApi {
   }
 
 
-  /**
-   * GET /groups/{groupId}/orders/{orderId} : Retrieve details of a specific group order.
-   *
-   * @param groupId The unique identifier of the group. (required)
-   * @param orderId The unique identifier of the order. (required)
-   * @return Group order details retrieved successfully. (status code 200) or Group order not found.
-   *     (status code 404)
-   */
-  @Operation(
-          operationId = "groupsGroupIdOrdersOrderIdGet",
-          summary = "Retrieve details of a specific group order.",
-          responses = {
-                  @ApiResponse(
-                          responseCode = "200",
-                          description = "Group order details retrieved successfully.",
-                          content = {
-                                  @Content(
-                                          mediaType = "application/json",
-                                          schema = @Schema(implementation = GroupOrderResponse.class))
-                          }),
-                  @ApiResponse(responseCode = "404", description = "Group order not found.")
-          })
+  @Override
   @GetMapping(
           value = "/groups/{groupId}/orders/{orderId}",
           produces = {"application/json"})
   public ResponseEntity<GroupOrder> groupsGroupIdOrdersOrderIdGet(
-          @Parameter(
-                  name = "groupId",
-                  description = "The unique identifier of the group.",
-                  required = true,
-                  in = ParameterIn.PATH)
           @PathVariable("groupId")
           UUID groupId,
-          @Parameter(
-                  name = "orderId",
-                  description = "The unique identifier of the order.",
-                  required = true,
-                  in = ParameterIn.PATH)
           @PathVariable("orderId")
           UUID orderId){
     if (!groupService.hasGroupOrder(groupId, orderId) ) {
@@ -245,38 +159,13 @@ public class GroupsApiController implements GroupsApi {
   }
 
 
-  /**
-   * PUT /groups/{groupId}/orders/{orderId} : Update a group order.
-   *
-   * @param groupId The unique identifier of the group. (required)
-   * @param orderId The unique identifier of the order. (required)
-   * @param groupOrder (required)
-   * @return Group order updated successfully. (status code 200) or Failed to update the group
-   *     order. (status code 400)
-   */
-  @Operation(
-          operationId = "groupsGroupIdOrdersOrderIdPut",
-          summary = "Update a group order.",
-          responses = {
-                  @ApiResponse(responseCode = "200", description = "Group order updated successfully."),
-                  @ApiResponse(responseCode = "400", description = "Failed to update the group order.")
-          })
+  @Override
   @PutMapping(
           value = "/groups/{groupId}/orders/{orderId}",
           consumes = {"application/json"})
   public ResponseEntity<Void> groupsGroupIdOrdersOrderIdPut(
-          @Parameter(
-                  name = "groupId",
-                  description = "The unique identifier of the group.",
-                  required = true,
-                  in = ParameterIn.PATH)
           @PathVariable("groupId")
           UUID groupId,
-          @Parameter(
-                  name = "orderId",
-                  description = "The unique identifier of the order.",
-                  required = true,
-                  in = ParameterIn.PATH)
           @PathVariable("orderId")
           UUID orderId,
           @Parameter(name = "GroupOrder", description = "", required = true) @Valid @RequestBody
