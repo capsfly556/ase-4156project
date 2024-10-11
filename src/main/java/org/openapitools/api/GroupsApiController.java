@@ -116,4 +116,43 @@ public class GroupsApiController implements GroupsApi {
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
+
+  /**
+   * DELETE /groups/{groupId}/orders/{orderId} : Delete a group order.
+   *
+   * @param groupId The unique identifier of the group. (required)
+   * @param orderId The unique identifier of the order. (required)
+   * @return Group order deleted successfully. (status code 204) or Group order not found. (status
+   *     code 404)
+   */
+  @Operation(
+          operationId = "groupsGroupIdOrdersOrderIdDelete",
+          summary = "Delete a group order.",
+          responses = {
+                  @ApiResponse(responseCode = "204", description = "Group order deleted successfully."),
+                  @ApiResponse(responseCode = "404", description = "Group order not found.")
+          })
+  @DeleteMapping(value = "/groups/{groupId}/orders/{orderId}")
+  public ResponseEntity<Void> groupsGroupIdOrdersOrderIdDelete(
+          @Parameter(
+                  name = "groupId",
+                  description = "The unique identifier of the group.",
+                  required = true,
+                  in = ParameterIn.PATH)
+          @PathVariable("groupId")
+          UUID groupId,
+          @Parameter(
+                  name = "orderId",
+                  description = "The unique identifier of the order.",
+                  required = true,
+                  in = ParameterIn.PATH)
+          @PathVariable("orderId")
+          UUID orderId){
+    Boolean deleteSuccess=groupService.deleteGroupOrder(groupId,orderId);
+    if (!deleteSuccess){
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
+
 }
