@@ -6,15 +6,12 @@ package org.openapitools.api;
 
 import org.openapitools.model.Participant;
 import org.openapitools.model.ParticipantOrder;
-import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import org.springframework.http.HttpStatus;
@@ -23,12 +20,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import javax.validation.constraints.*;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
@@ -100,7 +94,7 @@ public interface ParticipantsApi {
         @ApiResponse(responseCode = "404", description = "Participant not found.")
       })
   @RequestMapping(method = RequestMethod.DELETE, value = "/participants/{participantID}")
-  default ResponseEntity<Void> participantsParticipantIDDelete(
+  default ResponseEntity<Participant> participantsParticipantIDDelete(
       @Parameter(
               name = "participantID",
               description = "The unique identifier of the participant.",
@@ -160,219 +154,6 @@ public interface ParticipantsApi {
   }
 
   /**
-   * GET /participants/{participantID}/orders : Retrieve all participant orders for a specific
-   * participant.
-   *
-   * @param participantID The unique identifier of the participant. (required)
-   * @return List of participant orders retrieved successfully. (status code 200) or participant orders not fount (status code 404)
-   */
-  @Operation(
-      operationId = "participantsParticipantIDOrdersGet",
-      summary = "Retrieve all participant orders for a specific participant.",
-      responses = {
-        @ApiResponse(
-            responseCode = "200",
-            description = "List of participant orders retrieved successfully.",
-            content = {
-              @Content(
-                  mediaType = "application/json",
-                  array = @ArraySchema(schema = @Schema(implementation = ParticipantOrder.class)))
-            }),
-		@ApiResponse(responseCode = "404", description = "No participant orders found.")
-      })
-  @RequestMapping(
-      method = RequestMethod.GET,
-      value = "/participants/{participantID}/orders",
-      produces = {"application/json"})
-  default ResponseEntity<List<ParticipantOrder>> participantsParticipantIDOrdersGet(
-      @Parameter(
-              name = "participantID",
-              description = "The unique identifier of the participant.",
-              required = true,
-              in = ParameterIn.PATH)
-          @PathVariable("participantID")
-          String participantID) {
-    getRequest()
-        .ifPresent(
-            request -> {
-              for (MediaType mediaType : MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                  String exampleString =
-                      "[ { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" }, { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" } ]";
-                  ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                  break;
-                }
-              }
-            });
-    return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-  }
-
-  /**
-   * DELETE /participants/{participantID}/orders/{participantOrderID} : Delete a participant&#39;s
-   * order.
-   *
-   * @param participantID The unique identifier of the participant. (required)
-   * @param participantOrderID The unique identifier of the participant's order. (required)
-   * @return Order deleted successfully. (status code 204) or Order not found. (status code 404)
-   */
-  @Operation(
-      operationId = "participantsParticipantIDOrdersParticipantOrderIDDelete",
-      summary = "Delete a participant's order.",
-      responses = {
-        @ApiResponse(responseCode = "204", description = "Order deleted successfully."),
-        @ApiResponse(responseCode = "404", description = "Order not found.")
-      })
-  @RequestMapping(
-      method = RequestMethod.DELETE,
-      value = "/participants/{participantID}/orders/{participantOrderID}")
-  default ResponseEntity<Void> participantsParticipantIDOrdersParticipantOrderIDDelete(
-      @Parameter(
-              name = "participantID",
-              description = "The unique identifier of the participant.",
-              required = true,
-              in = ParameterIn.PATH)
-          @PathVariable("participantID")
-          String participantID,
-      @Parameter(
-              name = "participantOrderID",
-              description = "The unique identifier of the participant's order.",
-              required = true,
-              in = ParameterIn.PATH)
-          @PathVariable("participantOrderID")
-          String participantOrderID) {
-    return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-  }
-
-  /**
-   * GET /participants/{participantID}/orders/{participantOrderID} : Retrieve a specific
-   * participant's order.
-   *
-   * @param participantID The unique identifier of the participant. (required)
-   * @param participantOrderID The unique identifier of the participant's order. (required)
-   * @return Participant&#39;s order retrieved successfully. (status code 200) or Order not found.
-   *     (status code 404)
-   */
-  @Operation(
-      operationId = "participantsParticipantIDOrdersParticipantOrderIDGet",
-      summary = "Retrieve a specific participant's order.",
-      responses = {
-        @ApiResponse(
-            responseCode = "200",
-            description = "Participant's order retrieved successfully.",
-            content = {
-              @Content(
-                  mediaType = "application/json",
-                  schema = @Schema(implementation = ParticipantOrder.class))
-            }),
-        @ApiResponse(responseCode = "404", description = "Order not found.")
-      })
-  @RequestMapping(
-      method = RequestMethod.GET,
-      value = "/participants/{participantID}/orders/{participantOrderID}",
-      produces = {"application/json"})
-  default ResponseEntity<ParticipantOrder> participantsParticipantIDOrdersParticipantOrderIDGet(
-      @Parameter(
-              name = "participantID",
-              description = "The unique identifier of the participant.",
-              required = true,
-              in = ParameterIn.PATH)
-          @PathVariable("participantID")
-          String participantID,
-      @Parameter(
-              name = "participantOrderID",
-              description = "The unique identifier of the participant's order.",
-              required = true,
-              in = ParameterIn.PATH)
-          @PathVariable("participantOrderID")
-          String participantOrderID) {
-    getRequest()
-        .ifPresent(
-            request -> {
-              for (MediaType mediaType : MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                  String exampleString =
-                      "{ \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" }";
-                  ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                  break;
-                }
-              }
-            });
-    return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-  }
-
-  /**
-   * PUT /participants/{participantID}/orders/{participantOrderID} : Update a participant&#39;s
-   * order.
-   *
-   * @param participantID The unique identifier of the participant. (required)
-   * @param participantOrderID The unique identifier of the participant's order. (required)
-   * @param participantOrder (required)
-   * @return Order updated successfully. (status code 200) or Failed to update order. (status code
-   *     400) or Order not found. (status code 404)
-   */
-  @Operation(
-      operationId = "participantsParticipantIDOrdersParticipantOrderIDPut",
-      summary = "Update a participant's order.",
-      responses = {
-        @ApiResponse(responseCode = "200", description = "Order updated successfully."),
-        @ApiResponse(responseCode = "400", description = "Failed to update order."),
-        @ApiResponse(responseCode = "404", description = "Order not found.")
-      })
-  @RequestMapping(
-      method = RequestMethod.PUT,
-      value = "/participants/{participantID}/orders/{participantOrderID}",
-      consumes = {"application/json"})
-  default ResponseEntity<Void> participantsParticipantIDOrdersParticipantOrderIDPut(
-      @Parameter(
-              name = "participantID",
-              description = "The unique identifier of the participant.",
-              required = true,
-              in = ParameterIn.PATH)
-          @PathVariable("participantID")
-          String participantID,
-      @Parameter(
-              name = "participantOrderID",
-              description = "The unique identifier of the participant's order.",
-              required = true,
-              in = ParameterIn.PATH)
-          @PathVariable("participantOrderID")
-          String participantOrderID,
-      @Parameter(name = "ParticipantOrder", description = "", required = true) @Valid @RequestBody
-          ParticipantOrder participantOrder) {
-    return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-  }
-
-  /**
-   * POST /participants/{participantID}/orders : Create a new participant order.
-   *
-   * @param participantID The unique identifier of the participant. (required)
-   * @param participantOrder (required)
-   * @return Participant order created successfully. (status code 201)
-   */
-  @Operation(
-      operationId = "participantsParticipantIDOrdersPost",
-      summary = "Create a new participant order.",
-      responses = {
-        @ApiResponse(responseCode = "201", description = "Participant order created successfully.")
-      })
-  @RequestMapping(
-      method = RequestMethod.POST,
-      value = "/participants/{participantID}/orders",
-      consumes = {"application/json"})
-  default ResponseEntity<Void> participantsParticipantIDOrdersPost(
-      @Parameter(
-              name = "participantID",
-              description = "The unique identifier of the participant.",
-              required = true,
-              in = ParameterIn.PATH)
-          @PathVariable("participantID")
-          String participantID,
-      @Parameter(name = "ParticipantOrder", description = "", required = true) @Valid @RequestBody
-          ParticipantOrder participantOrder) {
-    return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-  }
-
-  /**
    * PUT /participants/{participantID} : Update a participant's details.
    *
    * @param participantID The unique identifier of the participant. (required)
@@ -392,7 +173,7 @@ public interface ParticipantsApi {
       method = RequestMethod.PUT,
       value = "/participants/{participantID}",
       consumes = {"application/json"})
-  default ResponseEntity<Void> participantsParticipantIDPut(
+  default ResponseEntity<Participant> participantsParticipantIDPut(
       @Parameter(
               name = "participantID",
               description = "The unique identifier of the participant.",
@@ -423,7 +204,7 @@ public interface ParticipantsApi {
       method = RequestMethod.POST,
       value = "/participants",
       consumes = {"application/json"})
-  default ResponseEntity<Void> participantsPost(
+  default ResponseEntity<Participant> participantsPost(
       @Parameter(name = "Participant", description = "", required = true) @Valid @RequestBody
           Participant participant) {
     return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
