@@ -9,7 +9,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.openapitools.model.Group;
 
+import org.openapitools.model.GroupOrder;
 import org.openapitools.model.GroupOrderResponse;
+import org.openapitools.service.GroupOrderService;
 import org.openapitools.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,10 +37,14 @@ public class GroupsApiController implements GroupsApi {
 
   private final NativeWebRequest request;
   private final GroupService groupService;
+  private final GroupOrderService groupOrderService;
+
   @Autowired
-  public GroupsApiController(NativeWebRequest request, GroupService groupService) {
+  public GroupsApiController(NativeWebRequest request, GroupService groupService,
+                             GroupOrderService groupOrderService) {
     this.request = request;
     this.groupService = groupService;
+    this.groupOrderService=groupOrderService;
   }
 
   @Override
@@ -152,6 +158,45 @@ public class GroupsApiController implements GroupsApi {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
+
+  @Override
+
+  /**
+   * GET /groups/{groupId}/orders : Retrieve all group orders for a specific group.
+   *
+   * @param groupId The unique identifier of the group. (required)
+   * @return List of group orders retrieved successfully. (status code 200)
+   */
+  @Operation(
+          operationId = "groupsGroupIdOrdersGet",
+          summary = "Retrieve all group orders for a specific group.",
+          responses = {
+                  @ApiResponse(
+                          responseCode = "200",
+                          description = "List of group orders retrieved successfully.",
+                          content = {
+                                  @Content(
+                                          mediaType = "application/json",
+                                          array = @ArraySchema(schema = @Schema(implementation = GroupOrderResponse.class)))
+                          })
+          })
+  @GetMapping(
+          value = "/groups/{groupId}/orders",
+          produces = {"application/json"})
+  public ResponseEntity<List<GroupOrder>> groupsGroupIdOrdersGet(
+          @Parameter(
+                  name = "groupId",
+                  description = "The unique identifier of the group.",
+                  required = true,
+                  in = ParameterIn.PATH)
+          @PathVariable("groupId")
+          UUID groupId){
+    List<GroupOrder> groupOrderList=groupOrderService.getGroupOrdersByGroupId(groupId);
+    if (groupOrderList==null||groupOrderList.isEmpty()){
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    return new ResponseEntity<>(groupOrderList,HttpStatus.OK);
   }
 
 }
