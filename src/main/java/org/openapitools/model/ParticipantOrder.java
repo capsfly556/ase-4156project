@@ -1,26 +1,16 @@
 package org.openapitools.model;
 
-import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import org.hibernate.annotations.GenericGenerator;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ElementCollection;
-import javax.persistence.MapKeyColumn;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
 
-import java.util.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.*;
+import javax.validation.Valid;
+import io.swagger.v3.oas.annotations.media.Schema;
 import javax.annotation.Generated;
 
 /** ParticipantOrder */
@@ -39,11 +29,15 @@ public class ParticipantOrder {
   @Valid
   @ElementCollection
   @MapKeyColumn(name = "menu_item_id")
-  @Column(name = "menu_item_id")
+  @Column(name = "count")
   private Map<UUID, Integer> menuItemIDs = new HashMap<>();
 
   @Column(nullable = false)
   private String comments;
+
+  @ManyToOne
+  @JoinColumn(name = "participant_id", nullable = false)
+  private Participant participant;
 
   public ParticipantOrder participantOrderID(UUID participantOrderID) {
     this.participantOrderID = participantOrderID;
@@ -72,9 +66,6 @@ public class ParticipantOrder {
   }
 
   public ParticipantOrder putMenuItemIDsItem(UUID key, Integer menuItemIDsItem) {
-    if (this.menuItemIDs == null) {
-      this.menuItemIDs = new HashMap<>();
-    }
     this.menuItemIDs.put(key, menuItemIDsItem);
     return this;
   }
@@ -114,6 +105,14 @@ public class ParticipantOrder {
     this.comments = comments;
   }
 
+  public Participant getParticipant() {
+    return participant;
+  }
+
+  public void setParticipant(Participant participant) {
+    this.participant = participant;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -125,12 +124,13 @@ public class ParticipantOrder {
     ParticipantOrder participantOrder = (ParticipantOrder) o;
     return Objects.equals(this.participantOrderID, participantOrder.participantOrderID)
         && Objects.equals(this.menuItemIDs, participantOrder.menuItemIDs)
-        && Objects.equals(this.comments, participantOrder.comments);
+        && Objects.equals(this.comments, participantOrder.comments)
+        && Objects.equals(this.participant, participantOrder.participant);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(participantOrderID, menuItemIDs, comments);
+    return Objects.hash(participantOrderID, menuItemIDs, comments, participant);
   }
 
   @Override
@@ -140,13 +140,11 @@ public class ParticipantOrder {
     sb.append("    participantOrderID: ").append(toIndentedString(participantOrderID)).append("\n");
     sb.append("    menuItemIDs: ").append(toIndentedString(menuItemIDs)).append("\n");
     sb.append("    comments: ").append(toIndentedString(comments)).append("\n");
+    sb.append("    participant: ").append(toIndentedString(participant)).append("\n");
     sb.append("}");
     return sb.toString();
   }
 
-  /**
-   * Convert the given object to string with each line indented by 4 spaces (except the first line).
-   */
   private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
