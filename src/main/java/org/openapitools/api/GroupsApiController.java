@@ -47,11 +47,6 @@ public class GroupsApiController implements GroupsApi {
     return Optional.ofNullable(request);
   }
 
-  @Override
-  public ResponseEntity<Void> groupsPost(@Valid @RequestBody Group group) {
-    groupService.addGroup(group);
-    return new ResponseEntity<>(HttpStatus.CREATED);
-  }
 
   @Override
   @GetMapping(
@@ -105,6 +100,20 @@ public class GroupsApiController implements GroupsApi {
     }
     groupService.updateGroupById(groupId,group);
     return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @PostMapping(
+          value = "/groups",
+          consumes = {"application/json"})
+  public ResponseEntity<Void> groupsPost(
+          @Valid
+          @RequestBody
+          Group group){
+    Group returnGroup=groupService.addGroup(group);
+    if(group!=returnGroup){
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+    return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
 }
