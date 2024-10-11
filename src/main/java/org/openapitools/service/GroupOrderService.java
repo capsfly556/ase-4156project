@@ -17,13 +17,13 @@ public class GroupOrderService {
     return repository.findById(id).orElse(null);
   }
 
-  public boolean hasGroupOrder(UUID id){
+  public boolean hasGroupOrder(UUID id) {
     return !repository.findById(id).isEmpty();
   }
 
-  public boolean updateGroupOrder(UUID id,GroupOrder newOrder){
-    GroupOrder order=getGroupOrderById(id);
-    if (order==null||newOrder==null){
+  public boolean updateGroupOrder(UUID id, GroupOrder newOrder) {
+    GroupOrder order = getGroupOrderById(id);
+    if (order == null || newOrder == null) {
       return false;
     }
 
@@ -36,7 +36,4 @@ public class GroupOrderService {
     repository.save(order);
     return true;
   }
-
-
-
 }

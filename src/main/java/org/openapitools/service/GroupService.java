@@ -1,16 +1,14 @@
 package org.openapitools.service;
 
-import org.openapitools.model.GroupOrder;
-import org.openapitools.repository.GroupOrderRepository;
-import org.openapitools.repository.GroupRepository;
-import org.openapitools.model.Group;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import org.openapitools.model.Group;
+import org.openapitools.model.GroupOrder;
+import org.openapitools.repository.GroupRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class GroupService {
