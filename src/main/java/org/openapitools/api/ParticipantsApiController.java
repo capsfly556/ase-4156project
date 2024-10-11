@@ -20,8 +20,8 @@ import java.util.Optional;
     value = "org.openapitools.codegen.languages.SpringCodegen",
     date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]",
     comments = "Generator version: 7.8.0")
-@RestController
-@RequestMapping("${openapi.groupGrub.base-path:}/participants")
+@Controller
+@RequestMapping("${openapi.groupGrub.base-path:}")
 public class ParticipantsApiController implements ParticipantsApi {
 
   private final NativeWebRequest request;
