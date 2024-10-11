@@ -176,14 +176,14 @@ public interface GroupsApi {
             content = {
               @Content(
                   mediaType = "application/json",
-                  array = @ArraySchema(schema = @Schema(implementation = GroupOrderResponse.class)))
+                  array = @ArraySchema(schema = @Schema(implementation = GroupOrder.class)))
             })
       })
   @RequestMapping(
       method = RequestMethod.GET,
       value = "/groups/{groupId}/orders",
       produces = {"application/json"})
-  default ResponseEntity<List<GroupOrderResponse>> groupsGroupIdOrdersGet(
+  default ResponseEntity<List<GroupOrder>> groupsGroupIdOrdersGet(
       @Parameter(
               name = "groupId",
               description = "The unique identifier of the group.",
