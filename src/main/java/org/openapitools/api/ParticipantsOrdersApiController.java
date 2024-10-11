@@ -6,6 +6,7 @@ import org.openapitools.service.ParticipantsOrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Generated;
@@ -18,8 +19,8 @@ import java.util.Optional;
     value = "org.openapitools.codegen.languages.SpringCodegen",
     date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]",
     comments = "Generator version: 7.8.0")
-@RestController
-@RequestMapping("${openapi.groupGrub.base-path:}/participants")
+@Controller
+@RequestMapping("${openapi.groupGrub.base-path:}")
 public class ParticipantsOrdersApiController implements ParticipantsOrdersApi {
 
     private final ParticipantsOrdersService participantsOrdersService;
