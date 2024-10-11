@@ -38,6 +38,35 @@ public class GroupService {
     group.setGroupOrderIDs(newGroup.getGroupOrderIDs());
     group.setAdministratorID(newGroup.getAdministratorID());
     group.setParticipantIDs(newGroup.getParticipantIDs());
+    repository.save(group);
   }
+  public Boolean groupHasOrderId(Group group, UUID orderId){
+    List<UUID> groupOrderIds = group.getGroupOrderIDs();
+    if (groupOrderIds == null) {
+      return false;
+    }
+    for (UUID uuid : groupOrderIds) {
+      if (uuid.equals(orderId)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public Boolean deleteGroupOrder(UUID groupId, UUID orderId){
+    Optional<Group> group = repository.findById(groupId);
+    if (group.isEmpty()) {
+      return false;
+    }
+    if (!groupHasOrderId(group.get(), orderId)) {
+      return false;
+    }
+    List<UUID> groupOrderIds = group.get().getGroupOrderIDs();
+    groupOrderIds.remove(orderId);
+    group.get().setGroupOrderIDs(groupOrderIds);
+    repository.save(group.get());
+    return true;
+  }
+
 
 }
