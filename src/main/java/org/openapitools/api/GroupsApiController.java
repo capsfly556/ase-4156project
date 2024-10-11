@@ -3,11 +3,13 @@ package org.openapitools.api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.openapitools.model.Group;
 
+import org.openapitools.model.GroupOrderResponse;
 import org.openapitools.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -87,4 +89,22 @@ public class GroupsApiController implements GroupsApi {
     }
     return new ResponseEntity<>(group,HttpStatus.OK);
   }
+
+  @Override
+  @PutMapping(
+          value = "/groups/{groupId}",
+          consumes = {"application/json"})
+  public ResponseEntity<Void> groupsGroupIdPut(
+          @PathVariable("groupId")
+          UUID groupId,
+          @Valid @RequestBody
+          Group group){
+    Group oldGroup=groupService.getGroupById(groupId);
+    if (oldGroup==null){
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    groupService.updateGroupById(groupId,group);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
 }

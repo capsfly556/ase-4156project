@@ -190,7 +190,7 @@ public interface GroupsApi {
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("groupId")
-          String groupId) {
+          UUID groupId) {
     getRequest()
         .ifPresent(
             request -> {
@@ -229,7 +229,7 @@ public interface GroupsApi {
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("groupId")
-          String groupId,
+          UUID groupId,
       @Parameter(
               name = "orderId",
               description = "The unique identifier of the order.",
@@ -273,7 +273,7 @@ public interface GroupsApi {
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("groupId")
-          String groupId,
+          UUID groupId,
       @Parameter(
               name = "orderId",
               description = "The unique identifier of the order.",
@@ -323,7 +323,7 @@ public interface GroupsApi {
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("groupId")
-          String groupId,
+          UUID groupId,
       @Parameter(
               name = "orderId",
               description = "The unique identifier of the order.",
@@ -360,7 +360,7 @@ public interface GroupsApi {
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("groupId")
-          String groupId,
+          UUID groupId,
       @Parameter(name = "GroupOrder", description = "", required = true) @Valid @RequestBody
           GroupOrder groupOrder) {
     return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
@@ -391,7 +391,7 @@ public interface GroupsApi {
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("groupId")
-          String groupId,
+          UUID groupId,
       @Parameter(name = "Group", description = "", required = true) @Valid @RequestBody
           Group group) {
     return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
