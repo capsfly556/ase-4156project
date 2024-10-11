@@ -44,9 +44,9 @@ public class GroupOrder {
 
   @Valid
   @ElementCollection
-  @MapKeyColumn(name = "menu_item_name")
-  @Column(name = "menu_item_id")
-  private Map<String, Integer> menuItemIDs = new HashMap<>();
+  @MapKeyColumn(name = "menu_item_id")
+  @Column(name = "count")
+  private Map<UUID, Integer> menuItemIDs = new HashMap<>();
 
   @Valid @ElementCollection private List<UUID> participantOrderIDs = new ArrayList<>();
 
@@ -97,12 +97,12 @@ public class GroupOrder {
     this.status = status;
   }
 
-  public GroupOrder menuItemIDs(Map<String, Integer> menuItemIDs) {
+  public GroupOrder menuItemIDs(Map<UUID, Integer> menuItemIDs) {
     this.menuItemIDs = menuItemIDs;
     return this;
   }
 
-  public GroupOrder putMenuItemIDsItem(String key, Integer menuItemIDsItem) {
+  public GroupOrder putMenuItemIDsItem(UUID key, Integer menuItemIDsItem) {
     if (this.menuItemIDs == null) {
       this.menuItemIDs = new HashMap<>();
     }
@@ -117,11 +117,11 @@ public class GroupOrder {
    */
   @Schema(name = "menuItemIDs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("menuItemIDs")
-  public Map<String, Integer> getMenuItemIDs() {
+  public Map<UUID, Integer> getMenuItemIDs() {
     return menuItemIDs;
   }
 
-  public void setMenuItemIDs(Map<String, Integer> menuItemIDs) {
+  public void setMenuItemIDs(Map<UUID, Integer> menuItemIDs) {
     this.menuItemIDs = menuItemIDs;
   }
 
