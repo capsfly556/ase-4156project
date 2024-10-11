@@ -247,4 +247,50 @@ public class GroupsApiController implements GroupsApi {
     return new ResponseEntity<>(groupOrderService.getGroupOrderById(orderId),
             HttpStatus.OK);
   }
+
+
+  /**
+   * PUT /groups/{groupId}/orders/{orderId} : Update a group order.
+   *
+   * @param groupId The unique identifier of the group. (required)
+   * @param orderId The unique identifier of the order. (required)
+   * @param groupOrder (required)
+   * @return Group order updated successfully. (status code 200) or Failed to update the group
+   *     order. (status code 400)
+   */
+  @Operation(
+          operationId = "groupsGroupIdOrdersOrderIdPut",
+          summary = "Update a group order.",
+          responses = {
+                  @ApiResponse(responseCode = "200", description = "Group order updated successfully."),
+                  @ApiResponse(responseCode = "400", description = "Failed to update the group order.")
+          })
+  @PutMapping(
+          value = "/groups/{groupId}/orders/{orderId}",
+          consumes = {"application/json"})
+  public ResponseEntity<Void> groupsGroupIdOrdersOrderIdPut(
+          @Parameter(
+                  name = "groupId",
+                  description = "The unique identifier of the group.",
+                  required = true,
+                  in = ParameterIn.PATH)
+          @PathVariable("groupId")
+          UUID groupId,
+          @Parameter(
+                  name = "orderId",
+                  description = "The unique identifier of the order.",
+                  required = true,
+                  in = ParameterIn.PATH)
+          @PathVariable("orderId")
+          UUID orderId,
+          @Parameter(name = "GroupOrder", description = "", required = true) @Valid @RequestBody
+          GroupOrder groupOrder){
+    if (!groupService.hasGroupOrder(groupId,orderId)){
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+    if(!groupOrderService.updateGroupOrder(orderId,groupOrder)){
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
 }
