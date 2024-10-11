@@ -60,7 +60,7 @@ public class ParticipantsOrdersApiController implements ParticipantsOrdersApi {
       @PathVariable("participantID") String participantID,
       @PathVariable("participantOrderID") String participantOrderID) {
       Optional<ParticipantOrder> order = participantsOrdersService.getParticipantOrder(UUID.fromString(participantID), UUID.fromString(participantOrderID));
-      if (order.isPresent()) {
+      if (!order.isPresent()) {
           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
       }
       return new ResponseEntity<>(order.get(), HttpStatus.OK);
