@@ -266,7 +266,7 @@ public interface GroupsApi {
       method = RequestMethod.GET,
       value = "/groups/{groupId}/orders/{orderId}",
       produces = {"application/json"})
-  default ResponseEntity<GroupOrderResponse> groupsGroupIdOrdersOrderIdGet(
+  default ResponseEntity<GroupOrder> groupsGroupIdOrdersOrderIdGet(
       @Parameter(
               name = "groupId",
               description = "The unique identifier of the group.",
@@ -280,7 +280,7 @@ public interface GroupsApi {
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("orderId")
-          String orderId) {
+          UUID orderId) {
     getRequest()
         .ifPresent(
             request -> {
