@@ -330,7 +330,7 @@ public interface GroupsApi {
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("orderId")
-          String orderId,
+          UUID orderId,
       @Parameter(name = "GroupOrder", description = "", required = true) @Valid @RequestBody
           GroupOrder groupOrder) {
     return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
