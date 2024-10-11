@@ -35,7 +35,6 @@ public class GroupsApiController implements GroupsApi {
 
   private final NativeWebRequest request;
   private final GroupService groupService;
-
   @Autowired
   public GroupsApiController(NativeWebRequest request, GroupService groupService) {
     this.request = request;
