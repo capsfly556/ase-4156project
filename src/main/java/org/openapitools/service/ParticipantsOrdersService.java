@@ -1,6 +1,8 @@
 package org.openapitools.service;
 
+import org.openapitools.model.Participant;
 import org.openapitools.model.ParticipantOrder;
+import org.openapitools.repository.ParticipantRepository;
 import org.openapitools.repository.ParticipantsOrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +14,13 @@ import java.util.UUID;
 @Service
 public class ParticipantsOrdersService {
 
+  private final ParticipantRepository participantRepository;
   private final ParticipantsOrdersRepository repository;
 
   @Autowired
-  public ParticipantsOrdersService(ParticipantsOrdersRepository repository) {
+  public ParticipantsOrdersService(ParticipantsOrdersRepository repository, ParticipantRepository participantRepository) {
     this.repository = repository;
+	this.participantRepository = participantRepository;
   }
 
   public List<ParticipantOrder> getParticipantOrders(UUID participantID) {
@@ -40,11 +44,32 @@ public class ParticipantsOrdersService {
     if (!repository.existsById(participantOrderID)) {
         throw new RuntimeException("Participant order not found");
     }
+    
+    Optional<Participant> participant = participantRepository.findById(participantID);
+    if (!participant.isPresent()) {
+        throw new RuntimeException("Participant not found");
+    }
+
     participantOrder.setParticipantOrderID(participantOrderID);
+    participantOrder.setParticipant(participant.get());
+
     return repository.save(participantOrder);
-  }
+}
+
 
   public void createParticipantOrder(UUID participantID, ParticipantOrder participantOrder) {
+	Optional<Participant> participantOptional = participantRepository.findById(participantID);
+    
+    if (participantOptional.isPresent()) {
+        participantOrder.setParticipant(participantOptional.get());
+    } else {
+        throw new RuntimeException("Participant not found with ID: " + participantID);
+    }
+
+    if (participantOrder.getParticipantOrderID() == null) {
+        participantOrder.setParticipantOrderID(UUID.randomUUID());
+    }
+
     repository.save(participantOrder);
   }
 }
