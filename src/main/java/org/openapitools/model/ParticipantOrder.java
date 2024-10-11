@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -24,6 +26,7 @@ public class ParticipantOrder {
   @Id
   @GeneratedValue(generator = "UUID")
   @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  @Type(type="org.hibernate.type.UUIDCharType")
   private UUID participantOrderID;
 
   @Valid
@@ -36,6 +39,7 @@ public class ParticipantOrder {
   private String comments;
 
   @ManyToOne
+  @JsonIgnore
   @JoinColumn(name = "participantid", nullable = false)
   private Participant participant;
 
