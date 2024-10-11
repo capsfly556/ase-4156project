@@ -1,23 +1,17 @@
 package org.openapitools.model;
 
-import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import org.openapitools.model.ParticipantOrder;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import java.util.*;
 import javax.annotation.Generated;
 
 /** GroupOrderResponse */
@@ -31,7 +25,7 @@ public class GroupOrderResponse {
 
   private String status;
 
-  @Valid private Map<String, Integer> menuItemIDs = new HashMap<>();
+  @Valid private Map<UUID, Integer> menuItemCounts = new HashMap<>();
 
   @Valid private List<UUID> participantOrderIDs = new ArrayList<>();
 
@@ -82,16 +76,16 @@ public class GroupOrderResponse {
     this.status = status;
   }
 
-  public GroupOrderResponse menuItemIDs(Map<String, Integer> menuItemIDs) {
-    this.menuItemIDs = menuItemIDs;
+  public GroupOrderResponse menuItemCounts(Map<UUID, Integer> menuItemCounts) {
+    this.menuItemCounts = menuItemCounts;
     return this;
   }
 
-  public GroupOrderResponse putMenuItemIDsItem(String key, Integer menuItemIDsItem) {
-    if (this.menuItemIDs == null) {
-      this.menuItemIDs = new HashMap<>();
+  public GroupOrderResponse putMenuItemCounts(UUID key, Integer menuItemIDsItem) {
+    if (this.menuItemCounts == null) {
+      this.menuItemCounts = new HashMap<>();
     }
-    this.menuItemIDs.put(key, menuItemIDsItem);
+    this.menuItemCounts.put(key, menuItemIDsItem);
     return this;
   }
 
@@ -102,12 +96,12 @@ public class GroupOrderResponse {
    */
   @Schema(name = "menuItemIDs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("menuItemIDs")
-  public Map<String, Integer> getMenuItemIDs() {
-    return menuItemIDs;
+  public Map<UUID, Integer> getMenuItemCounts() {
+    return menuItemCounts;
   }
 
-  public void setMenuItemIDs(Map<String, Integer> menuItemIDs) {
-    this.menuItemIDs = menuItemIDs;
+  public void setMenuItemCounts(Map<UUID, Integer> menuItemCounts) {
+    this.menuItemCounts = menuItemCounts;
   }
 
   public GroupOrderResponse participantOrderIDs(List<UUID> participantOrderIDs) {
@@ -220,7 +214,7 @@ public class GroupOrderResponse {
     GroupOrderResponse groupOrderResponse = (GroupOrderResponse) o;
     return Objects.equals(this.groupOrderID, groupOrderResponse.groupOrderID)
         && Objects.equals(this.status, groupOrderResponse.status)
-        && Objects.equals(this.menuItemIDs, groupOrderResponse.menuItemIDs)
+        && Objects.equals(this.menuItemCounts, groupOrderResponse.menuItemCounts)
         && Objects.equals(this.participantOrderIDs, groupOrderResponse.participantOrderIDs)
         && Objects.equals(this.desiredPickupTimeframe, groupOrderResponse.desiredPickupTimeframe)
         && Objects.equals(this.foodProviderID, groupOrderResponse.foodProviderID)
@@ -232,7 +226,7 @@ public class GroupOrderResponse {
     return Objects.hash(
         groupOrderID,
         status,
-        menuItemIDs,
+            menuItemCounts,
         participantOrderIDs,
         desiredPickupTimeframe,
         foodProviderID,
@@ -245,7 +239,7 @@ public class GroupOrderResponse {
     sb.append("class GroupOrderResponse {\n");
     sb.append("    groupOrderID: ").append(toIndentedString(groupOrderID)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    menuItemIDs: ").append(toIndentedString(menuItemIDs)).append("\n");
+    sb.append("    menuItemIDs: ").append(toIndentedString(menuItemCounts)).append("\n");
     sb.append("    participantOrderIDs: ")
         .append(toIndentedString(participantOrderIDs))
         .append("\n");
