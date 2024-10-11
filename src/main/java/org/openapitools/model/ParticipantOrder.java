@@ -36,7 +36,7 @@ public class ParticipantOrder {
   private String comments;
 
   @ManyToOne
-  @JoinColumn(name = "participant_id", nullable = false)
+  @JoinColumn(name = "participantid", nullable = false)
   private Participant participant;
 
   public ParticipantOrder participantOrderID(UUID participantOrderID) {
