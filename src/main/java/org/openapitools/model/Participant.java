@@ -1,26 +1,20 @@
 package org.openapitools.model;
 
-import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import org.hibernate.annotations.GenericGenerator;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ElementCollection;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
-
-import java.util.*;
 import javax.annotation.Generated;
 
 /** Participant */
@@ -34,11 +28,12 @@ public class Participant {
   @Id
   @GeneratedValue(generator = "UUID")
   @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  @Column(name = "participant_id", updatable = false, nullable = false)
   private UUID participantID;
 
-  @Column(nullable = false)
+  @Column(name = "name", nullable = false)
   private String name;
-
+  
   @Valid @ElementCollection private List<UUID> participantOrderIDs = new ArrayList<>();
 
   public Participant participantID(UUID participantID) {
