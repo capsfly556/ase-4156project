@@ -44,7 +44,7 @@ public class ParticipantsApiController implements ParticipantsApi {
       Participant savedParticipant = participantService.addParticipant(participant);
       return new ResponseEntity<>(savedParticipant, HttpStatus.CREATED);
     } catch (Exception e) { 
-      return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -72,7 +72,7 @@ public class ParticipantsApiController implements ParticipantsApi {
     if (participant.isPresent()) {
         return new ResponseEntity<>(participant.get(), HttpStatus.OK);
     } else {
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
 
