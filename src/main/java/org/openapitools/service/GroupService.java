@@ -1,12 +1,13 @@
 package org.openapitools.service;
 
-import org.hibernate.criterion.Order;
+import org.openapitools.model.GroupOrder;
+import org.openapitools.repository.GroupOrderRepository;
 import org.openapitools.repository.GroupRepository;
 import org.openapitools.model.Group;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.config.RepositoryNameSpaceHandler;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -14,23 +15,24 @@ import java.util.UUID;
 @Service
 public class GroupService {
 
-  @Autowired private GroupRepository repository;
+  @Autowired private GroupRepository groupRepository;
+  @Autowired private GroupOrderService groupOrderService;
 
   public Group addGroup(Group group) {
-    return repository.save(group);
+    return groupRepository.save(group);
   }
 
   public List<Group> getAllGroup(){//retrieve all group in the database
-    return repository.findAll();
+    return groupRepository.findAll();
   }
   public Group getGroupById(UUID groupId){
-    return repository.findById(groupId).orElse(null);
+    return groupRepository.findById(groupId).orElse(null);
   }
   public void deleteGroupById(UUID groupId){
-    repository.deleteById(groupId);
+    groupRepository.deleteById(groupId);
   }
   public void updateGroupById(UUID groupId,Group newGroup){
-    Group group=repository.findById(groupId).orElse(null);
+    Group group= groupRepository.findById(groupId).orElse(null);
     if(group==null){
       return;
     }
@@ -38,7 +40,7 @@ public class GroupService {
     group.setGroupOrderIDs(newGroup.getGroupOrderIDs());
     group.setAdministratorID(newGroup.getAdministratorID());
     group.setParticipantIDs(newGroup.getParticipantIDs());
-    repository.save(group);
+    groupRepository.save(group);
   }
   public Boolean groupHasOrderId(Group group, UUID orderId){
     List<UUID> groupOrderIds = group.getGroupOrderIDs();
@@ -54,7 +56,7 @@ public class GroupService {
   }
 
   public Boolean deleteGroupOrder(UUID groupId, UUID orderId){
-    Optional<Group> group = repository.findById(groupId);
+    Optional<Group> group = groupRepository.findById(groupId);
     if (group.isEmpty()) {
       return false;
     }
@@ -64,9 +66,42 @@ public class GroupService {
     List<UUID> groupOrderIds = group.get().getGroupOrderIDs();
     groupOrderIds.remove(orderId);
     group.get().setGroupOrderIDs(groupOrderIds);
-    repository.save(group.get());
+    groupRepository.save(group.get());
     return true;
   }
+
+  public boolean hasGroupOrder(UUID groupId, UUID orderId) {
+    Group group = getGroupById(groupId);
+    if (group == null) {
+      return false;
+    }
+    List<UUID> orderIdList = group.getGroupOrderIDs();
+    return orderIdList.contains(orderId);
+  }
+
+  public List<GroupOrder> getGroupOrdersByGroupId(UUID id) {
+    Group group = getGroupById(id);
+    if (group == null) {
+      return null;
+    }
+
+    List<UUID> groupOrderIds = group.getGroupOrderIDs();
+    if (groupOrderIds==null||groupOrderIds.isEmpty()) {
+      return null;
+    }
+
+    List<GroupOrder> groupOrderList = new ArrayList<GroupOrder>();
+    for (UUID groupOrderId : groupOrderIds) {
+      GroupOrder groupOrder =groupOrderService.getGroupOrderById(groupOrderId);
+      if (groupOrder == null) {
+        continue;
+      }
+      groupOrderList.add(groupOrder);
+    }
+    return groupOrderList;
+  }
+
+
 
 
 }

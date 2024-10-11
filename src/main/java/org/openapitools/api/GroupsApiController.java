@@ -14,6 +14,7 @@ import org.openapitools.model.GroupOrderResponse;
 import org.openapitools.service.GroupOrderService;
 import org.openapitools.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.support.ResourcePropertiesPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -192,11 +193,58 @@ public class GroupsApiController implements GroupsApi {
                   in = ParameterIn.PATH)
           @PathVariable("groupId")
           UUID groupId){
-    List<GroupOrder> groupOrderList=groupOrderService.getGroupOrdersByGroupId(groupId);
+    List<GroupOrder> groupOrderList=groupService.getGroupOrdersByGroupId(groupId);
     if (groupOrderList==null||groupOrderList.isEmpty()){
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     return new ResponseEntity<>(groupOrderList,HttpStatus.OK);
   }
 
+
+  /**
+   * GET /groups/{groupId}/orders/{orderId} : Retrieve details of a specific group order.
+   *
+   * @param groupId The unique identifier of the group. (required)
+   * @param orderId The unique identifier of the order. (required)
+   * @return Group order details retrieved successfully. (status code 200) or Group order not found.
+   *     (status code 404)
+   */
+  @Operation(
+          operationId = "groupsGroupIdOrdersOrderIdGet",
+          summary = "Retrieve details of a specific group order.",
+          responses = {
+                  @ApiResponse(
+                          responseCode = "200",
+                          description = "Group order details retrieved successfully.",
+                          content = {
+                                  @Content(
+                                          mediaType = "application/json",
+                                          schema = @Schema(implementation = GroupOrderResponse.class))
+                          }),
+                  @ApiResponse(responseCode = "404", description = "Group order not found.")
+          })
+  @GetMapping(
+          value = "/groups/{groupId}/orders/{orderId}",
+          produces = {"application/json"})
+  public ResponseEntity<GroupOrder> groupsGroupIdOrdersOrderIdGet(
+          @Parameter(
+                  name = "groupId",
+                  description = "The unique identifier of the group.",
+                  required = true,
+                  in = ParameterIn.PATH)
+          @PathVariable("groupId")
+          UUID groupId,
+          @Parameter(
+                  name = "orderId",
+                  description = "The unique identifier of the order.",
+                  required = true,
+                  in = ParameterIn.PATH)
+          @PathVariable("orderId")
+          UUID orderId){
+    if (!groupService.hasGroupOrder(groupId, orderId) ) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    return new ResponseEntity<>(groupOrderService.getGroupOrderById(orderId),
+            HttpStatus.OK);
+  }
 }
