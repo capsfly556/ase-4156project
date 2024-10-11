@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class GroupService {
@@ -18,5 +19,11 @@ public class GroupService {
 
   public List<Group> getAllGroup(){//retrieve all group in the database
     return repository.findAll();
+  }
+  public Group getGroupById(UUID groupId){
+    return repository.findById(groupId).orElse(null);
+  }
+  public void deleteGroupById(UUID groupId){
+    repository.deleteById(groupId);
   }
 }

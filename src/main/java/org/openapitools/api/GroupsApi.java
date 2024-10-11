@@ -31,6 +31,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 import javax.annotation.Generated;
 
 @Generated(
@@ -107,7 +108,7 @@ public interface GroupsApi {
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("groupId")
-          String groupId) {
+      UUID groupId) {
     return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
   }
 
