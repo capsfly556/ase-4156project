@@ -58,7 +58,7 @@ public class ParticipantsApiController implements ParticipantsApi {
   }
   @DeleteMapping(value = "/participants/{participantID}", produces = {"application/json"})
   public ResponseEntity<Participant> participantsParticipantIDDelete(@PathVariable String participantID) {
-    boolean deleted = participantService.deleteParticipantById(UUID.fromString(participantID));
+    boolean deleted = participantService.deleteParticipant(UUID.fromString(participantID));
     if (deleted) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     } else {
