@@ -4,6 +4,7 @@ import org.hibernate.criterion.Order;
 import org.openapitools.repository.GroupRepository;
 import org.openapitools.model.Group;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.config.RepositoryNameSpaceHandler;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,4 +39,5 @@ public class GroupService {
     group.setAdministratorID(newGroup.getAdministratorID());
     group.setParticipantIDs(newGroup.getParticipantIDs());
   }
+
 }
