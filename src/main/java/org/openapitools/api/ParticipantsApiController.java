@@ -38,6 +38,8 @@ public class ParticipantsApiController implements ParticipantsApi {
   public Optional<NativeWebRequest> getRequest() {
     return Optional.ofNullable(request);
   }
+
+  @Override
   @PostMapping(value = "/participants", produces = {"application/json"})
   public ResponseEntity<Participant> participantsPost(@Valid @RequestBody Participant participant) {
     try {
@@ -48,6 +50,7 @@ public class ParticipantsApiController implements ParticipantsApi {
     }
   }
 
+  @Override
   @GetMapping(value = "/participants", produces = {"application/json"})
   public ResponseEntity<List<Participant>> participantsGet() {
       List<Participant> participants = participantService.getAllParticipants();
@@ -56,6 +59,8 @@ public class ParticipantsApiController implements ParticipantsApi {
       }
       return new ResponseEntity<>(participants, HttpStatus.OK);
   }
+
+  @Override
   @DeleteMapping(value = "/participants/{participantID}", produces = {"application/json"})
   public ResponseEntity<Participant> participantsParticipantIDDelete(@PathVariable String participantID) {
     boolean deleted = participantService.deleteParticipant(UUID.fromString(participantID));
@@ -66,6 +71,7 @@ public class ParticipantsApiController implements ParticipantsApi {
     }
   }
 
+  @Override
   @GetMapping(value = "/participants/{participantID}", produces = {"application/json"})
   public ResponseEntity<Participant> participantsParticipantIDGet(@PathVariable String participantID) {
     Optional<Participant> participant = participantService.getParticipantById(UUID.fromString(participantID));
@@ -76,6 +82,7 @@ public class ParticipantsApiController implements ParticipantsApi {
     }
   }
 
+  @Override
   @PutMapping(value = "/participants/{participantID}", consumes = {"application/json"})
     public ResponseEntity<Participant> participantsParticipantIDPut(String participantID, @Valid @RequestBody Participant participant) {
       try {
