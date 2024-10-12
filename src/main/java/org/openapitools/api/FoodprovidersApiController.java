@@ -24,6 +24,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 import javax.annotation.Generated;
 
 @Generated(
@@ -51,7 +52,90 @@ public class FoodprovidersApiController implements FoodprovidersApi {
 
   @Override
   public ResponseEntity<Void> foodprovidersPost(@Valid @RequestBody FoodProvider foodProvider) {
-    foodproviderService.addFoodProvider(foodProvider);
-    return new ResponseEntity<>(HttpStatus.CREATED);
+    if (foodProvider.getMenu() == null || foodProvider.getMenu().isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+    foodProvider.getMenu().forEach(menuItem -> {
+
+      menuItem.setFoodProvider(foodProvider);
+    });
+
+    Boolean added = foodproviderService.addFoodProvider(foodProvider);
+    if (added) {
+      return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+  }
+
+
+  @Override
+  public ResponseEntity<Void> foodprovidersFoodProviderIdDelete(String foodProviderId){
+    try {
+      System.out.println("Received foodProviderId: " + foodProviderId);
+      UUID uuid = UUID.fromString(foodProviderId);
+      System.out.print("uuid"+uuid);
+      Optional<FoodProvider> foodProviderOptional = foodproviderService.findById(foodProviderId);
+
+      if (foodProviderOptional.isPresent()) {
+        Boolean deleteStatus = foodproviderService.deleteFoodProvider(foodProviderId);
+
+        if (deleteStatus) {
+          return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+          return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+      } else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+    } catch (Exception e) {
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Override
+  public ResponseEntity<FoodProvider> foodprovidersFoodProviderIdGet(String foodProviderId) {
+    try {
+      Optional<FoodProvider> foodProviderOptional = foodproviderService.findById(foodProviderId);
+
+      if (foodProviderOptional.isPresent()) {
+        return new ResponseEntity<>(foodProviderOptional.get(), HttpStatus.OK);
+      } else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+    } catch (Exception e) {
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Override
+  public ResponseEntity<Void> foodprovidersFoodProviderIdPut(String foodProviderId,
+                                                             @Valid @RequestBody FoodProvider foodProvider) {
+    try {
+      boolean updated = foodproviderService.updateFoodProvider(foodProviderId, foodProvider);
+
+      if(updated){
+        return new ResponseEntity<>(HttpStatus.OK);
+      }else if (foodproviderService.checkExistsPhoneNumberIdNot(foodProvider.getPhoneNumber(), foodProviderId) ||
+              foodproviderService.checkExistsNameIdNot(foodProvider.getName(), foodProviderId)) {
+        return new ResponseEntity<>(HttpStatus.CONFLICT);}
+        else{
+          return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+      } catch (Exception e) {
+      e.printStackTrace();
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+  }
+
+
+  @Override
+  public ResponseEntity<List<FoodProvider>> foodprovidersGet() {
+    List<FoodProvider> foodProviders = foodproviderService.getAllFoodProviders();
+
+    if (foodProviders.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    } else {
+      return new ResponseEntity<>(foodProviders, HttpStatus.OK);
+    }
   }
 }

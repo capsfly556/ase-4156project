@@ -2,6 +2,8 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -9,14 +11,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import org.openapitools.model.MenuItem;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ElementCollection;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -32,9 +31,11 @@ import javax.annotation.Generated;
 @Entity
 public class FoodProvider {
 
+
   @Id
   @GeneratedValue(generator = "UUID")
   @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  @Type(type="org.hibernate.type.UUIDCharType")
   private UUID foodProviderID;
 
   @Column(nullable = false)
@@ -49,12 +50,16 @@ public class FoodProvider {
   @Column(nullable = false)
   private String hoursOfOperation;
 
-  @Valid @ElementCollection private List<@Valid MenuItem> menu = new ArrayList<>();
+  @Valid
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JsonManagedReference
+  private List<@Valid MenuItem> menu = new ArrayList<>();
 
   public FoodProvider foodProviderID(UUID foodProviderID) {
     this.foodProviderID = foodProviderID;
     return this;
   }
+
 
   /**
    * Get foodProviderID
@@ -68,14 +73,14 @@ public class FoodProvider {
     return foodProviderID;
   }
 
-  public void setFoodProviderID(UUID foodProviderID) {
-    this.foodProviderID = foodProviderID;
-  }
+
 
   public FoodProvider name(String name) {
     this.name = name;
     return this;
   }
+
+
 
   /**
    * Get name
@@ -197,6 +202,7 @@ public class FoodProvider {
         && Objects.equals(this.hoursOfOperation, foodProvider.hoursOfOperation)
         && Objects.equals(this.menu, foodProvider.menu);
   }
+
 
   @Override
   public int hashCode() {

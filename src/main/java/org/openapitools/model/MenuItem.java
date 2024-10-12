@@ -2,11 +2,14 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.math.BigDecimal;
 import java.util.UUID;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.persistence.Column;
@@ -17,6 +20,9 @@ import javax.persistence.ElementCollection;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 import java.util.*;
 import javax.annotation.Generated;
@@ -32,6 +38,7 @@ public class MenuItem {
   @Id
   @GeneratedValue(generator = "UUID")
   @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  @Type(type="org.hibernate.type.UUIDCharType")
   private UUID menuItemID;
 
   @Column(nullable = false)
@@ -45,6 +52,15 @@ public class MenuItem {
 
   @Column(nullable = false)
   private BigDecimal cost;
+
+
+
+  @ManyToOne
+  @JoinColumn(name = "food_provider_id", nullable = false)
+  @JsonBackReference
+  private FoodProvider foodProvider;
+
+
 
   public MenuItem menuItemID(UUID menuItemID) {
     this.menuItemID = menuItemID;
@@ -144,8 +160,18 @@ public class MenuItem {
     return cost;
   }
 
+
+
   public void setCost(BigDecimal cost) {
     this.cost = cost;
+  }
+
+  public FoodProvider getFoodProvider() {
+    return foodProvider;
+  }
+
+  public void setFoodProvider(FoodProvider foodProvider) {
+    this.foodProvider = foodProvider;
   }
 
   @Override
