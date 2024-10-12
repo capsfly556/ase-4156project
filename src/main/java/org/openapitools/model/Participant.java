@@ -1,26 +1,17 @@
 package org.openapitools.model;
 
-import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import org.hibernate.annotations.GenericGenerator;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ElementCollection;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
+import org.hibernate.annotations.Type;
 
-import java.util.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.*;
+import javax.validation.Valid;
+import io.swagger.v3.oas.annotations.media.Schema;
 import javax.annotation.Generated;
 
 /** Participant */
@@ -34,23 +25,21 @@ public class Participant {
   @Id
   @GeneratedValue(generator = "UUID")
   @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  @Column(name = "participantid", updatable = false, nullable = false)
+  @Type(type="org.hibernate.type.UUIDCharType")
   private UUID participantID;
 
-  @Column(nullable = false)
+  @Column(name = "name", nullable = false)
   private String name;
 
-  @Valid @ElementCollection private List<UUID> participantOrderIDs = new ArrayList<>();
+  @OneToMany(mappedBy = "participant", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<ParticipantOrder> participantOrders = new ArrayList<>();
 
   public Participant participantID(UUID participantID) {
     this.participantID = participantID;
     return this;
   }
 
-  /**
-   * Get participantID
-   *
-   * @return participantID
-   */
   @Valid
   @Schema(name = "participantID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("participantID")
@@ -67,11 +56,6 @@ public class Participant {
     return this;
   }
 
-  /**
-   * Get name
-   *
-   * @return name
-   */
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
   public String getName() {
@@ -82,33 +66,23 @@ public class Participant {
     this.name = name;
   }
 
-  public Participant participantOrderIDs(List<UUID> participantOrderIDs) {
-    this.participantOrderIDs = participantOrderIDs;
+  public Participant participantOrders(List<ParticipantOrder> participantOrders) {
+    this.participantOrders = participantOrders;
     return this;
   }
 
-  public Participant addParticipantOrderIDsItem(UUID participantOrderIDsItem) {
-    if (this.participantOrderIDs == null) {
-      this.participantOrderIDs = new ArrayList<>();
-    }
-    this.participantOrderIDs.add(participantOrderIDsItem);
+  public Participant addParticipantOrder(ParticipantOrder participantOrder) {
+    participantOrders.add(participantOrder);
+    participantOrder.setParticipant(this);
     return this;
   }
 
-  /**
-   * Get participantOrderIDs
-   *
-   * @return participantOrderIDs
-   */
-  @Valid
-  @Schema(name = "participantOrderIDs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("participantOrderIDs")
-  public List<UUID> getParticipantOrderIDs() {
-    return participantOrderIDs;
+  public List<ParticipantOrder> getParticipantOrders() {
+    return participantOrders;
   }
 
-  public void setParticipantOrderIDs(List<UUID> participantOrderIDs) {
-    this.participantOrderIDs = participantOrderIDs;
+  public void setParticipantOrders(List<ParticipantOrder> participantOrders) {
+    this.participantOrders = participantOrders;
   }
 
   @Override
@@ -122,12 +96,12 @@ public class Participant {
     Participant participant = (Participant) o;
     return Objects.equals(this.participantID, participant.participantID)
         && Objects.equals(this.name, participant.name)
-        && Objects.equals(this.participantOrderIDs, participant.participantOrderIDs);
+        && Objects.equals(this.participantOrders, participant.participantOrders);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(participantID, name, participantOrderIDs);
+    return Objects.hash(participantID, name, participantOrders);
   }
 
   @Override
@@ -136,16 +110,13 @@ public class Participant {
     sb.append("class Participant {\n");
     sb.append("    participantID: ").append(toIndentedString(participantID)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    participantOrderIDs: ")
-        .append(toIndentedString(participantOrderIDs))
+    sb.append("    participantOrders: ")
+        .append(toIndentedString(participantOrders))
         .append("\n");
     sb.append("}");
     return sb.toString();
   }
 
-  /**
-   * Convert the given object to string with each line indented by 4 spaces (except the first line).
-   */
   private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
