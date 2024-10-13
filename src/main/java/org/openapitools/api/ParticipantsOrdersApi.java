@@ -225,13 +225,14 @@ public interface ParticipantsOrdersApi {
    *
    * @param participantID The unique identifier of the participant. (required)
    * @param participantOrder (required)
-   * @return Participant order created successfully. (status code 201)
+   * @return Participant order created successfully. (status code 201 or status code 404)
    */
   @Operation(
       operationId = "participantsParticipantIDOrdersPost",
       summary = "Create a new participant order.",
       responses = {
-        @ApiResponse(responseCode = "201", description = "Participant order created successfully.")
+        @ApiResponse(responseCode = "201", description = "Participant order created successfully."),
+		@ApiResponse(responseCode = "400", description = "Failed to create a new order.")
       })
   @RequestMapping(
       method = RequestMethod.POST,
