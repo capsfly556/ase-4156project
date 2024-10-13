@@ -40,36 +40,50 @@ public class ParticipantsOrdersService {
     return false;
   }
 
-  public ParticipantOrder updateParticipantOrder(UUID participantID, UUID participantOrderID, ParticipantOrder participantOrder) {
-    if (!repository.existsById(participantOrderID)) {
+  public ParticipantOrder updateParticipantOrder(UUID participantID, UUID participantOrderID, ParticipantOrder updatedOrder) {
+    Optional<ParticipantOrder> existingOrderOpt = repository.findById(participantOrderID);
+    if (!existingOrderOpt.isPresent()) {
         throw new RuntimeException("Participant order not found");
     }
     
-    Optional<Participant> participant = participantRepository.findById(participantID);
-    if (!participant.isPresent()) {
+    Optional<Participant> participantOpt = participantRepository.findById(participantID);
+    if (!participantOpt.isPresent()) {
         throw new RuntimeException("Participant not found");
     }
 
-    participantOrder.setParticipantOrderID(participantOrderID);
-    participantOrder.setParticipant(participant.get());
+    ParticipantOrder existingOrder = existingOrderOpt.get();
+    Participant participant = participantOpt.get();
+    
+    if (existingOrder.getParticipant() == null) {
+        existingOrder.setParticipant(participant);
+    }
 
-    return repository.save(participantOrder);
+    existingOrder.setComments(updatedOrder.getComments());
+    existingOrder.setMenuItemIDs(updatedOrder.getMenuItemIDs());
+    
+    return repository.save(existingOrder);
 }
 
 
-  public void createParticipantOrder(UUID participantID, ParticipantOrder participantOrder) {
-	Optional<Participant> participantOptional = participantRepository.findById(participantID);
-    
+public void createParticipantOrder(UUID participantID, ParticipantOrder participantOrder) {
+    Optional<Participant> participantOptional = participantRepository.findById(participantID);
+
     if (participantOptional.isPresent()) {
         participantOrder.setParticipant(participantOptional.get());
     } else {
         throw new RuntimeException("Participant not found with ID: " + participantID);
     }
 
-    if (participantOrder.getParticipantOrderID() == null) {
+    if (participantOrder.getParticipantOrderID() != null) {
+        if (repository.existsById(participantOrder.getParticipantOrderID())) {
+            throw new RuntimeException("ParticipantOrder with ID: " 
+                + participantOrder.getParticipantOrderID() + " already exists.");
+        }
+    } else {
         participantOrder.setParticipantOrderID(UUID.randomUUID());
     }
 
     repository.save(participantOrder);
-  }
+}
+
 }
