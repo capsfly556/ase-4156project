@@ -102,7 +102,7 @@ public interface GroupsApi {
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("groupId")
-      UUID groupId) {
+          UUID groupId) {
     return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
   }
 

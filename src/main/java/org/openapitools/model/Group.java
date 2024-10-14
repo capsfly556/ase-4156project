@@ -8,19 +8,16 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import javax.annotation.Generated;
-import javax.naming.Name;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /** Group */
 @Generated(

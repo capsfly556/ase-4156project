@@ -2,12 +2,6 @@ package org.openapitools.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-import javax.annotation.Generated;
-import javax.validation.Valid;
-
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import java.util.List;

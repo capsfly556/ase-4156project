@@ -17,27 +17,30 @@ public class GroupService {
   @Autowired private GroupOrderService groupOrderService;
 
   public Group addGroup(Group group) {
-    List<UUID> groupOrders=group.getGroupOrderIDs();
-    for(UUID orderId:groupOrders){
-      if (!groupOrderService.hasGroupOrder(orderId)){
+    List<UUID> groupOrders = group.getGroupOrderIDs();
+    for (UUID orderId : groupOrders) {
+      if (!groupOrderService.hasGroupOrder(orderId)) {
         groupOrderService.createGroupOrder(orderId);
       }
     }
     return groupRepository.save(group);
   }
 
-  public List<Group> getAllGroup(){//retrieve all group in the database
+  public List<Group> getAllGroup() { // retrieve all group in the database
     return groupRepository.findAll();
   }
-  public Group getGroupById(UUID groupId){
+
+  public Group getGroupById(UUID groupId) {
     return groupRepository.findById(groupId).orElse(null);
   }
-  public void deleteGroupById(UUID groupId){
+
+  public void deleteGroupById(UUID groupId) {
     groupRepository.deleteById(groupId);
   }
-  public void updateGroupById(UUID groupId,Group newGroup){
-    Group group= groupRepository.findById(groupId).orElse(null);
-    if(group==null){
+
+  public void updateGroupById(UUID groupId, Group newGroup) {
+    Group group = groupRepository.findById(groupId).orElse(null);
+    if (group == null) {
       return;
     }
     group.setName(newGroup.getName());
@@ -46,7 +49,8 @@ public class GroupService {
     group.setParticipantIDs(newGroup.getParticipantIDs());
     groupRepository.save(group);
   }
-  public Boolean groupHasOrderId(Group group, UUID orderId){
+
+  public Boolean groupHasOrderId(Group group, UUID orderId) {
     List<UUID> groupOrderIds = group.getGroupOrderIDs();
     if (groupOrderIds == null) {
       return false;
@@ -59,7 +63,7 @@ public class GroupService {
     return false;
   }
 
-  public Boolean deleteGroupOrder(UUID groupId, UUID orderId){
+  public Boolean deleteGroupOrder(UUID groupId, UUID orderId) {
     Optional<Group> group = groupRepository.findById(groupId);
     if (group.isEmpty()) {
       return false;
@@ -92,13 +96,13 @@ public class GroupService {
     }
 
     List<UUID> groupOrderIds = group.getGroupOrderIDs();
-    if (groupOrderIds==null||groupOrderIds.isEmpty()) {
+    if (groupOrderIds == null || groupOrderIds.isEmpty()) {
       return null;
     }
 
     List<GroupOrder> groupOrderList = new ArrayList<GroupOrder>();
     for (UUID groupOrderId : groupOrderIds) {
-      GroupOrder groupOrder =groupOrderService.getGroupOrderById(groupOrderId);
+      GroupOrder groupOrder = groupOrderService.getGroupOrderById(groupOrderId);
       if (groupOrder == null) {
         continue;
       }
@@ -106,13 +110,14 @@ public class GroupService {
     }
     return groupOrderList;
   }
-  public boolean addGroupOrder(UUID groupId,GroupOrder order){
-    Group group=getGroupById(groupId);
-    if (group==null){
+
+  public boolean addGroupOrder(UUID groupId, GroupOrder order) {
+    Group group = getGroupById(groupId);
+    if (group == null) {
       return false;
     }
     order.fillFields();
-    List<UUID> groupOrders=group.getGroupOrderIDs();
+    List<UUID> groupOrders = group.getGroupOrderIDs();
     if (!groupOrders.contains(order.getGroupOrderID())) {
       groupOrders.add(order.getGroupOrderID());
     }
