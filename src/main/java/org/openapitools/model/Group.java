@@ -40,11 +40,16 @@ public class Group {
   @Column(nullable = false)
   private String name;
 
-  @Valid @ElementCollection private List<UUID> participantIDs = new ArrayList<>();
+  @Valid @ElementCollection
+  @Type(type="org.hibernate.type.UUIDCharType")
+  private List<UUID> participantIDs = new ArrayList<>();
 
-  @Valid @ElementCollection private List<UUID> groupOrderIDs = new ArrayList<>();
+  @Valid @ElementCollection
+  @Type(type="org.hibernate.type.UUIDCharType")
+  private List<UUID> groupOrderIDs = new ArrayList<>();
 
   @Column(nullable = false)
+  @Type(type="org.hibernate.type.UUIDCharType")
   private UUID administratorID;
 
   public Group groupID(UUID groupID) {

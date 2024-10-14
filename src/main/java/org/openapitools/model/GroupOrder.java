@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.MapKeyColumn;
 import javax.validation.Valid;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 /** GroupOrder */
 @Generated(
@@ -29,6 +30,7 @@ public class GroupOrder {
   @Id
   @GeneratedValue(generator = "UUID")
   @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  @Type(type="org.hibernate.type.UUIDCharType")
   private UUID groupOrderID;
 
   @Column(nullable = false)
