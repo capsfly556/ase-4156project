@@ -45,7 +45,7 @@ public class GroupsApiController implements GroupsApi {
 
   @Override
   @GetMapping(
-          value = "/groups",
+          value = "/groups/getAllGroups",
           produces = {"application/json"})
   public ResponseEntity<List<Group>> groupsGet(){
     List<Group>groupList=groupService.getAllGroup();
@@ -104,10 +104,7 @@ public class GroupsApiController implements GroupsApi {
           @Valid
           @RequestBody
           Group group){
-    Group returnGroup=groupService.addGroup(group);
-    if(group!=returnGroup){
-      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
+    groupService.addGroup(group);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 

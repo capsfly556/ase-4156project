@@ -62,7 +62,7 @@ public interface GroupsApi {
       })
   @RequestMapping(
       method = RequestMethod.GET,
-      value = "/groups",
+      value = "/groups/getAllGroups",
       produces = {"application/json"})
   default ResponseEntity<List<Group>> groupsGet() {
 

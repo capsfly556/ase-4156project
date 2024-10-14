@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import javax.annotation.Generated;
+import javax.naming.Name;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -16,6 +17,10 @@ import javax.persistence.Id;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /** Group */
 @Generated(
@@ -23,6 +28,7 @@ import org.hibernate.annotations.GenericGenerator;
     date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]",
     comments = "Generator version: 7.8.0")
 @Entity
+@Table(name = "`group`")
 public class Group {
 
   @Id
