@@ -46,6 +46,7 @@ public class GroupOrderService {
   public boolean createGroupOrder(UUID id){
     GroupOrder order=new GroupOrder();
     order.fillFields();
+    order.setGroupOrderID(id);
     repository.save(order);
     return true;
   }

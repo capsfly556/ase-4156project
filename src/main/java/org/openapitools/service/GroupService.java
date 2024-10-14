@@ -18,7 +18,11 @@ public class GroupService {
 
   public Group addGroup(Group group) {
     List<UUID> groupOrders=group.getGroupOrderIDs();
-
+    for(UUID orderId:groupOrders){
+      if (!groupOrderService.hasGroupOrder(orderId)){
+        groupOrderService.createGroupOrder(orderId);
+      }
+    }
     return groupRepository.save(group);
   }
 
