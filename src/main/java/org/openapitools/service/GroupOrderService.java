@@ -38,6 +38,14 @@ public class GroupOrderService {
   }
 
   public boolean createGroupOrder(GroupOrder order){
+    order.fillFields();
+    repository.save(order);
+    return true;
+  }
+
+  public boolean createGroupOrder(UUID id){
+    GroupOrder order=new GroupOrder();
+    order.fillFields();
     repository.save(order);
     return true;
   }

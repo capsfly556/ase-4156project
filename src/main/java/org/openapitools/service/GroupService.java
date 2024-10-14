@@ -17,6 +17,8 @@ public class GroupService {
   @Autowired private GroupOrderService groupOrderService;
 
   public Group addGroup(Group group) {
+    List<UUID> groupOrders=group.getGroupOrderIDs();
+
     return groupRepository.save(group);
   }
 
@@ -103,6 +105,7 @@ public class GroupService {
     if (group==null){
       return false;
     }
+    order.fillFields();
     List<UUID> groupOrders=group.getGroupOrderIDs();
     if (!groupOrders.contains(order.getGroupOrderID())) {
       groupOrders.add(order.getGroupOrderID());

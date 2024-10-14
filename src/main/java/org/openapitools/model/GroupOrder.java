@@ -28,7 +28,6 @@ import org.hibernate.annotations.Type;
 public class GroupOrder {
 
   @Id
-  @GeneratedValue(generator = "UUID")
   @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   @Type(type="org.hibernate.type.UUIDCharType")
   private UUID groupOrderID;
@@ -67,6 +66,7 @@ public class GroupOrder {
   public UUID getGroupOrderID() {
     return groupOrderID;
   }
+
 
   public void setGroupOrderID(UUID groupOrderID) {
     this.groupOrderID = groupOrderID;
@@ -191,6 +191,21 @@ public class GroupOrder {
 
   public void setFoodProviderID(UUID foodProviderID) {
     this.foodProviderID = foodProviderID;
+  }
+
+  public void fillFields(){
+    if (groupOrderID==null){
+      groupOrderID=UUID.randomUUID();
+    }
+    if (status==null){
+      status = "status";
+    }
+    if (desiredPickupTimeframe==null){
+      desiredPickupTimeframe="desiredPickupTimeframe";
+    }
+    if (foodProviderID==null){
+      foodProviderID=UUID.randomUUID();
+    }
   }
 
   @Override

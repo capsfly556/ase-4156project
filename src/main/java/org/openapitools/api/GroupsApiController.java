@@ -10,6 +10,11 @@ import javax.validation.Valid;
 
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+import javax.annotation.Generated;
+import javax.validation.Valid;
 import org.openapitools.model.Group;
 import org.openapitools.model.GroupOrder;
 import org.openapitools.service.GroupOrderService;
@@ -207,7 +212,6 @@ public class GroupsApiController implements GroupsApi {
           UUID groupId,
           @Parameter(name = "GroupOrder", description = "", required = true) @Valid @RequestBody
           GroupOrder groupOrder){
-
     boolean success=groupService.addGroupOrder(groupId,groupOrder);
     if(!success){
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
