@@ -1,11 +1,15 @@
 package org.openapitools.api;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import javax.annotation.Generated;
 import javax.validation.Valid;
+
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.openapitools.model.Group;
 import org.openapitools.model.GroupOrder;
 import org.openapitools.service.GroupOrderService;
@@ -174,5 +178,40 @@ public class GroupsApiController implements GroupsApi {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
     return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+
+  /**
+   * POST /groups/{groupId}/orders : Create a new group order.
+   *
+   * @param groupId The unique identifier of the group. (required)
+   * @param groupOrder (required)
+   * @return Group order created successfully. (status code 201)
+   */
+  @Operation(
+          operationId = "groupsGroupIdOrdersPost",
+          summary = "Create a new group order.",
+          responses = {
+                  @ApiResponse(responseCode = "201", description = "Group order created successfully.")
+          })
+  @PostMapping(
+          value = "/groups/{groupId}/orders",
+          consumes = {"application/json"})
+  public ResponseEntity<Void> groupsGroupIdOrdersPost(
+          @Parameter(
+                  name = "groupId",
+                  description = "The unique identifier of the group.",
+                  required = true,
+                  in = ParameterIn.PATH)
+          @PathVariable("groupId")
+          UUID groupId,
+          @Parameter(name = "GroupOrder", description = "", required = true) @Valid @RequestBody
+          GroupOrder groupOrder){
+
+    boolean success=groupService.addGroupOrder(groupId,groupOrder);
+    if(!success){
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+    return new ResponseEntity<>(HttpStatus.CREATED);
   }
 }

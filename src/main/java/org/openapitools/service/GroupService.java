@@ -98,8 +98,17 @@ public class GroupService {
     }
     return groupOrderList;
   }
-
-
-
-
+  public boolean addGroupOrder(UUID groupId,GroupOrder order){
+    Group group=getGroupById(groupId);
+    if (group==null){
+      return false;
+    }
+    List<UUID> groupOrders=group.getGroupOrderIDs();
+    if (!groupOrders.contains(order.getGroupOrderID())) {
+      groupOrders.add(order.getGroupOrderID());
+    }
+    group.setGroupOrderIDs(groupOrders);
+    groupOrderService.createGroupOrder(order);
+    return true;
+  }
 }

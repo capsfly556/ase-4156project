@@ -36,4 +36,9 @@ public class GroupOrderService {
     repository.save(order);
     return true;
   }
+
+  public boolean createGroupOrder(GroupOrder order){
+    repository.save(order);
+    return true;
+  }
 }
