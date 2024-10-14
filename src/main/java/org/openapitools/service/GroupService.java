@@ -70,6 +70,8 @@ public class GroupService {
     List<UUID> groupOrderIds = group.get().getGroupOrderIDs();
     groupOrderIds.remove(orderId);
     group.get().setGroupOrderIDs(groupOrderIds);
+
+    groupOrderService.deleteGroupOrder(orderId);
     groupRepository.save(group.get());
     return true;
   }
