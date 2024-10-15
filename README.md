@@ -20,6 +20,11 @@ The unit tests are located under the directory <code>src/test</code>. To run the
 
 From there, you can right-click any of the classes present in the src/test directory and click run to see the results.
 
+## mvn checkstyle:check
+You can run the command mvn checkstyle:check > checkstyle-output.txt to verify if the repository adheres to Google's Java style guide. In this case, the check passed successfully with no violations or warnings.
+
+![](mvn checkstyle output.png)
+
 ## Endpoints
 This section describes the endpoints that the service provides, as well as their inputs and outputs.
 
