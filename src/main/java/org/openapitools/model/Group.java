@@ -1,27 +1,23 @@
 package org.openapitools.model;
 
-import java.net.URI;
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
-import org.hibernate.annotations.GenericGenerator;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
+import javax.annotation.Generated;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ElementCollection;
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
-
-import java.util.*;
-import javax.annotation.Generated;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 /** Group */
 @Generated(
@@ -29,21 +25,28 @@ import javax.annotation.Generated;
     date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]",
     comments = "Generator version: 7.8.0")
 @Entity
+@Table(name = "`group`")
 public class Group {
 
   @Id
   @GeneratedValue(generator = "UUID")
   @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  @Type(type="org.hibernate.type.UUIDCharType")
   private UUID groupID;
 
   @Column(nullable = false)
   private String name;
 
-  @Valid @ElementCollection private List<UUID> participantIDs = new ArrayList<>();
+  @Valid @ElementCollection
+  @Type(type="org.hibernate.type.UUIDCharType")
+  private List<UUID> participantIDs = new ArrayList<>();
 
-  @Valid @ElementCollection private List<UUID> groupOrderIDs = new ArrayList<>();
+  @Valid @ElementCollection
+  @Type(type="org.hibernate.type.UUIDCharType")
+  private List<UUID> groupOrderIDs = new ArrayList<>();
 
   @Column(nullable = false)
+  @Type(type="org.hibernate.type.UUIDCharType")
   private UUID administratorID;
 
   public Group groupID(UUID groupID) {

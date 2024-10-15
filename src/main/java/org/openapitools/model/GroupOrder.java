@@ -1,30 +1,22 @@
 package org.openapitools.model;
 
-import java.net.URI;
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
-import org.hibernate.annotations.GenericGenerator;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
+import javax.annotation.Generated;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.MapKeyColumn;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
-
-import java.util.*;
-import javax.annotation.Generated;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 /** GroupOrder */
 @Generated(
@@ -35,8 +27,8 @@ import javax.annotation.Generated;
 public class GroupOrder {
 
   @Id
-  @GeneratedValue(generator = "UUID")
   @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  @Type(type="org.hibernate.type.UUIDCharType")
   private UUID groupOrderID;
 
   @Column(nullable = false)
@@ -46,7 +38,8 @@ public class GroupOrder {
   @ElementCollection
   @MapKeyColumn(name = "menu_item_id")
   @Column(name = "count")
-  private Map<UUID, Integer> menuItemIDs = new HashMap<>();
+
+  private Map<UUID, Integer> menuItemCounts = new HashMap<>();
 
   @Valid @ElementCollection private List<UUID> participantOrderIDs = new ArrayList<>();
 
@@ -73,6 +66,7 @@ public class GroupOrder {
     return groupOrderID;
   }
 
+
   public void setGroupOrderID(UUID groupOrderID) {
     this.groupOrderID = groupOrderID;
   }
@@ -97,16 +91,17 @@ public class GroupOrder {
     this.status = status;
   }
 
-  public GroupOrder menuItemIDs(Map<UUID, Integer> menuItemIDs) {
-    this.menuItemIDs = menuItemIDs;
+
+  public GroupOrder menuItemCounts(Map<UUID, Integer> menuItemCounts) {
+    this.menuItemCounts = menuItemCounts;
     return this;
   }
 
-  public GroupOrder putMenuItemIDsItem(UUID key, Integer menuItemIDsItem) {
-    if (this.menuItemIDs == null) {
-      this.menuItemIDs = new HashMap<>();
+  public GroupOrder putMenuItemCounts(UUID key, Integer menuItemIDsItem) {
+    if (this.menuItemCounts == null) {
+      this.menuItemCounts = new HashMap<>();
     }
-    this.menuItemIDs.put(key, menuItemIDsItem);
+    this.menuItemCounts.put(key, menuItemIDsItem);
     return this;
   }
 
@@ -117,12 +112,14 @@ public class GroupOrder {
    */
   @Schema(name = "menuItemIDs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("menuItemIDs")
-  public Map<UUID, Integer> getMenuItemIDs() {
-    return menuItemIDs;
+
+  public Map<UUID, Integer> getMenuItemCounts() {
+    return menuItemCounts;
   }
 
-  public void setMenuItemIDs(Map<UUID, Integer> menuItemIDs) {
-    this.menuItemIDs = menuItemIDs;
+  public void setMenuItemCounts(Map<UUID, Integer> menuItemCounts) {
+    this.menuItemCounts = menuItemCounts;
+
   }
 
   public GroupOrder participantOrderIDs(List<UUID> participantOrderIDs) {
@@ -195,6 +192,21 @@ public class GroupOrder {
     this.foodProviderID = foodProviderID;
   }
 
+  public void fillFields(){
+    if (groupOrderID==null){
+      groupOrderID=UUID.randomUUID();
+    }
+    if (status==null){
+      status = "status";
+    }
+    if (desiredPickupTimeframe==null){
+      desiredPickupTimeframe="desiredPickupTimeframe";
+    }
+    if (foodProviderID==null){
+      foodProviderID=UUID.randomUUID();
+    }
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -206,7 +218,7 @@ public class GroupOrder {
     GroupOrder groupOrder = (GroupOrder) o;
     return Objects.equals(this.groupOrderID, groupOrder.groupOrderID)
         && Objects.equals(this.status, groupOrder.status)
-        && Objects.equals(this.menuItemIDs, groupOrder.menuItemIDs)
+        && Objects.equals(this.menuItemCounts, groupOrder.menuItemCounts)
         && Objects.equals(this.participantOrderIDs, groupOrder.participantOrderIDs)
         && Objects.equals(this.desiredPickupTimeframe, groupOrder.desiredPickupTimeframe)
         && Objects.equals(this.foodProviderID, groupOrder.foodProviderID);
@@ -217,7 +229,7 @@ public class GroupOrder {
     return Objects.hash(
         groupOrderID,
         status,
-        menuItemIDs,
+            menuItemCounts,
         participantOrderIDs,
         desiredPickupTimeframe,
         foodProviderID);
@@ -229,7 +241,7 @@ public class GroupOrder {
     sb.append("class GroupOrder {\n");
     sb.append("    groupOrderID: ").append(toIndentedString(groupOrderID)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    menuItemIDs: ").append(toIndentedString(menuItemIDs)).append("\n");
+    sb.append("    menuItemIDs: ").append(toIndentedString(menuItemCounts)).append("\n");
     sb.append("    participantOrderIDs: ")
         .append(toIndentedString(participantOrderIDs))
         .append("\n");
