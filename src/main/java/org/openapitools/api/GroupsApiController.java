@@ -33,11 +33,11 @@ public class GroupsApiController implements GroupsApi {
   private final GroupOrderService groupOrderService;
 
   @Autowired
-  public GroupsApiController(NativeWebRequest request, GroupService groupService,
-                             GroupOrderService groupOrderService) {
+  public GroupsApiController(
+      NativeWebRequest request, GroupService groupService, GroupOrderService groupOrderService) {
     this.request = request;
     this.groupService = groupService;
-    this.groupOrderService=groupOrderService;
+    this.groupOrderService = groupOrderService;
   }
 
   @Override
@@ -45,25 +45,22 @@ public class GroupsApiController implements GroupsApi {
     return Optional.ofNullable(request);
   }
 
-
   @Override
   @GetMapping(
-          value = "/groups/getAllGroups",
-          produces = {"application/json"})
-  public ResponseEntity<List<Group>> groupsGet(){
-    List<Group>groupList=groupService.getAllGroup();
-    if(groupList.isEmpty()){
+      value = "/groups/getAllGroups",
+      produces = {"application/json"})
+  public ResponseEntity<List<Group>> groupsGet() {
+    List<Group> groupList = groupService.getAllGroup();
+    if (groupList.isEmpty()) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    return new ResponseEntity<>(groupList,HttpStatus.OK);
+    return new ResponseEntity<>(groupList, HttpStatus.OK);
   }
 
   @Override
-  @DeleteMapping (value = "/groups/{groupId}")
-  public ResponseEntity<Void> groupsGroupIdDelete(
-          @PathVariable("groupId")
-          UUID groupId){
-    if(groupService.getGroupById(groupId)==null){
+  @DeleteMapping(value = "/groups/{groupId}")
+  public ResponseEntity<Void> groupsGroupIdDelete(@PathVariable("groupId") UUID groupId) {
+    if (groupService.getGroupById(groupId) == null) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
@@ -73,55 +70,44 @@ public class GroupsApiController implements GroupsApi {
 
   @Override
   @GetMapping(
-          value = "/groups/{groupId}",
-          produces = {"application/json"})
-  public ResponseEntity<Group> groupsGroupIdGet(@PathVariable("groupId") UUID groupId){
-    Group group=groupService.getGroupById(groupId);
-    if (group==null){
-      return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+      value = "/groups/{groupId}",
+      produces = {"application/json"})
+  public ResponseEntity<Group> groupsGroupIdGet(@PathVariable("groupId") UUID groupId) {
+    Group group = groupService.getGroupById(groupId);
+    if (group == null) {
+      return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
-    return new ResponseEntity<>(group,HttpStatus.OK);
+    return new ResponseEntity<>(group, HttpStatus.OK);
   }
 
   @Override
   @PutMapping(
-          value = "/groups/{groupId}",
-          consumes = {"application/json"})
+      value = "/groups/{groupId}",
+      consumes = {"application/json"})
   public ResponseEntity<Void> groupsGroupIdPut(
-          @PathVariable("groupId")
-          UUID groupId,
-          @Valid @RequestBody
-          Group group){
-    Group oldGroup=groupService.getGroupById(groupId);
-    if (oldGroup==null){
+      @PathVariable("groupId") UUID groupId, @Valid @RequestBody Group group) {
+    Group oldGroup = groupService.getGroupById(groupId);
+    if (oldGroup == null) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    groupService.updateGroupById(groupId,group);
+    groupService.updateGroupById(groupId, group);
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
   @PostMapping(
-          value = "/groups",
-          consumes = {"application/json"})
-  public ResponseEntity<Void> groupsPost(
-          @Valid
-          @RequestBody
-          Group group){
+      value = "/groups",
+      consumes = {"application/json"})
+  public ResponseEntity<Void> groupsPost(@Valid @RequestBody Group group) {
     groupService.addGroup(group);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
-
-
   @Override
   @DeleteMapping(value = "/groups/{groupId}/orders/{orderId}")
   public ResponseEntity<Void> groupsGroupIdOrdersOrderIdDelete(
-          @PathVariable("groupId")
-          UUID groupId,
-          @PathVariable("orderId")
-          UUID orderId){
-    Boolean deleteSuccess=groupService.deleteGroupOrder(groupId,orderId);
-    if (!deleteSuccess){
+      @PathVariable("groupId") UUID groupId, @PathVariable("orderId") UUID orderId) {
+    Boolean deleteSuccess = groupService.deleteGroupOrder(groupId, orderId);
+    if (!deleteSuccess) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -129,56 +115,46 @@ public class GroupsApiController implements GroupsApi {
 
   @Override
   @GetMapping(
-          value = "/groups/{groupId}/orders",
-          produces = {"application/json"})
+      value = "/groups/{groupId}/orders",
+      produces = {"application/json"})
   public ResponseEntity<List<GroupOrder>> groupsGroupIdOrdersGet(
-          @PathVariable("groupId")
-          UUID groupId){
-    List<GroupOrder> groupOrderList=groupService.getGroupOrdersByGroupId(groupId);
-    if (groupOrderList==null||groupOrderList.isEmpty()){
+      @PathVariable("groupId") UUID groupId) {
+    List<GroupOrder> groupOrderList = groupService.getGroupOrdersByGroupId(groupId);
+    if (groupOrderList == null || groupOrderList.isEmpty()) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    return new ResponseEntity<>(groupOrderList,HttpStatus.OK);
+    return new ResponseEntity<>(groupOrderList, HttpStatus.OK);
   }
-
 
   @Override
   @GetMapping(
-          value = "/groups/{groupId}/orders/{orderId}",
-          produces = {"application/json"})
+      value = "/groups/{groupId}/orders/{orderId}",
+      produces = {"application/json"})
   public ResponseEntity<GroupOrder> groupsGroupIdOrdersOrderIdGet(
-          @PathVariable("groupId")
-          UUID groupId,
-          @PathVariable("orderId")
-          UUID orderId){
-    if (!groupService.hasGroupOrder(groupId, orderId) ) {
+      @PathVariable("groupId") UUID groupId, @PathVariable("orderId") UUID orderId) {
+    if (!groupService.hasGroupOrder(groupId, orderId)) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    return new ResponseEntity<>(groupOrderService.getGroupOrderById(orderId),
-            HttpStatus.OK);
+    return new ResponseEntity<>(groupOrderService.getGroupOrderById(orderId), HttpStatus.OK);
   }
-
 
   @Override
   @PutMapping(
-          value = "/groups/{groupId}/orders/{orderId}",
-          consumes = {"application/json"})
+      value = "/groups/{groupId}/orders/{orderId}",
+      consumes = {"application/json"})
   public ResponseEntity<Void> groupsGroupIdOrdersOrderIdPut(
-          @PathVariable("groupId")
-          UUID groupId,
-          @PathVariable("orderId")
-          UUID orderId,
-          @Parameter(name = "GroupOrder", description = "", required = true) @Valid @RequestBody
-          GroupOrder groupOrder){
-    if (!groupService.hasGroupOrder(groupId,orderId)){
+      @PathVariable("groupId") UUID groupId,
+      @PathVariable("orderId") UUID orderId,
+      @Parameter(name = "GroupOrder", description = "", required = true) @Valid @RequestBody
+          GroupOrder groupOrder) {
+    if (!groupService.hasGroupOrder(groupId, orderId)) {
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
-    if(!groupOrderService.updateGroupOrder(orderId,groupOrder)){
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    if (!groupOrderService.updateGroupOrder(orderId, groupOrder)) {
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
     return new ResponseEntity<>(HttpStatus.OK);
   }
-
 
   /**
    * POST /groups/{groupId}/orders : Create a new group order.
@@ -188,26 +164,26 @@ public class GroupsApiController implements GroupsApi {
    * @return Group order created successfully. (status code 201)
    */
   @Operation(
-          operationId = "groupsGroupIdOrdersPost",
-          summary = "Create a new group order.",
-          responses = {
-                  @ApiResponse(responseCode = "201", description = "Group order created successfully.")
-          })
+      operationId = "groupsGroupIdOrdersPost",
+      summary = "Create a new group order.",
+      responses = {
+        @ApiResponse(responseCode = "201", description = "Group order created successfully.")
+      })
   @PostMapping(
-          value = "/groups/{groupId}/orders",
-          consumes = {"application/json"})
+      value = "/groups/{groupId}/orders",
+      consumes = {"application/json"})
   public ResponseEntity<Void> groupsGroupIdOrdersPost(
-          @Parameter(
-                  name = "groupId",
-                  description = "The unique identifier of the group.",
-                  required = true,
-                  in = ParameterIn.PATH)
+      @Parameter(
+              name = "groupId",
+              description = "The unique identifier of the group.",
+              required = true,
+              in = ParameterIn.PATH)
           @PathVariable("groupId")
           UUID groupId,
-          @Parameter(name = "GroupOrder", description = "", required = true) @Valid @RequestBody
-          GroupOrder groupOrder){
-    boolean success=groupService.addGroupOrder(groupId,groupOrder);
-    if(!success){
+      @Parameter(name = "GroupOrder", description = "", required = true) @Valid @RequestBody
+          GroupOrder groupOrder) {
+    boolean success = groupService.addGroupOrder(groupId, groupOrder);
+    if (!success) {
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
     return new ResponseEntity<>(HttpStatus.CREATED);

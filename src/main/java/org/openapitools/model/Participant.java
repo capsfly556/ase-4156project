@@ -1,18 +1,16 @@
 package org.openapitools.model;
 
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+import javax.annotation.Generated;
 import javax.persistence.*;
 import javax.validation.Valid;
-import io.swagger.v3.oas.annotations.media.Schema;
-import javax.annotation.Generated;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 /** Participant */
 @Generated(

@@ -10,10 +10,13 @@ import java.util.UUID;
 
 @Repository
 public interface FoodproviderRepository extends JpaRepository<FoodProvider, UUID> {
-    Optional<FoodProvider> findByName(String name);
-    Boolean existsByNameAndFoodProviderIDNot(String name, UUID foodProviderID);
-    Boolean existsByName(String name);
-    Boolean existsByPhoneNumber(String phoneNumber);
-    Boolean existsByPhoneNumberAndFoodProviderIDNot(String phoneNumber, UUID foodProviderID);
+  Optional<FoodProvider> findByName(String name);
 
+  Boolean existsByNameAndFoodProviderIDNot(String name, UUID foodProviderID);
+
+  Boolean existsByName(String name);
+
+  Boolean existsByPhoneNumber(String phoneNumber);
+
+  Boolean existsByPhoneNumberAndFoodProviderIDNot(String phoneNumber, UUID foodProviderID);
 }
