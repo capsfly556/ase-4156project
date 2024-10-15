@@ -35,7 +35,7 @@ public class ParticipantOrder {
   @Column(name = "count")
   private Map<UUID, Integer> menuItemIDs = new HashMap<>();
 
-  @Column(nullable = false)
+  @Column(nullable = true)
   private String comments;
 
   @ManyToOne
