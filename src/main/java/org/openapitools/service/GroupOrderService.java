@@ -15,7 +15,7 @@ public class GroupOrderService {
   }
 
   public boolean hasGroupOrder(UUID id) {
-    return !repository.findById(id).isEmpty();
+    return repository.findById(id).isPresent();
   }
 
   public boolean updateGroupOrder(UUID id, GroupOrder newOrder) {
@@ -27,7 +27,6 @@ public class GroupOrderService {
     order.setParticipantOrderIDs(newOrder.getParticipantOrderIDs());
     order.setStatus(newOrder.getStatus());
     order.setFoodProviderID(newOrder.getFoodProviderID());
-    order.setMenuItemCounts(newOrder.getMenuItemCounts());
     order.setDesiredPickupTimeframe(newOrder.getDesiredPickupTimeframe());
 
     repository.save(order);

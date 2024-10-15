@@ -20,7 +20,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import org.openapitools.model.Group;
 import org.openapitools.model.GroupOrder;
-import org.openapitools.model.GroupOrderResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -252,7 +251,7 @@ public interface GroupsApi {
             content = {
               @Content(
                   mediaType = "application/json",
-                  schema = @Schema(implementation = GroupOrderResponse.class))
+                  schema = @Schema(implementation = GroupOrder.class))
             }),
         @ApiResponse(responseCode = "404", description = "Group order not found.")
       })

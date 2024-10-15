@@ -65,7 +65,7 @@ public class GroupService {
 
   public Boolean deleteGroupOrder(UUID groupId, UUID orderId) {
     Optional<Group> group = groupRepository.findById(groupId);
-    if (group.isEmpty()) {
+    if (!group.isPresent()) {
       return false;
     }
     if (!groupHasOrderId(group.get(), orderId)) {
