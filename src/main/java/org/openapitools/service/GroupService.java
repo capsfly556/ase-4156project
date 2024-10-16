@@ -16,6 +16,12 @@ public class GroupService {
   @Autowired private GroupRepository groupRepository;
   @Autowired private GroupOrderService groupOrderService;
 
+  /**
+   * Adds a new group to the repository and ensures that all associated group orders exist.
+   *
+   * @param group A {@code Group} object representing the group to be added.
+   * @return The saved {@code Group} object.
+   */
   public Group addGroup(Group group) {
     List<UUID> groupOrders = group.getGroupOrderIDs();
     for (UUID orderId : groupOrders) {
@@ -26,18 +32,41 @@ public class GroupService {
     return groupRepository.save(group);
   }
 
-  public List<Group> getAllGroup() { // retrieve all group in the database
+  /**
+   * Retrieves all groups from the database.
+   *
+   * @return A {@code List} of {@code Group} objects.
+   */
+  public List<Group> getAllGroup() {
     return groupRepository.findAll();
   }
 
+  /**
+   * Retrieves a group by its unique ID.
+   *
+   * @param groupId A {@code UUID} representing the unique ID of the group.
+   * @return The {@code Group} object if found, or {@code null} if no group exists with the given
+   *     ID.
+   */
   public Group getGroupById(UUID groupId) {
     return groupRepository.findById(groupId).orElse(null);
   }
 
+  /**
+   * Deletes a group by its unique ID.
+   *
+   * @param groupId A {@code UUID} representing the unique ID of the group to be deleted.
+   */
   public void deleteGroupById(UUID groupId) {
     groupRepository.deleteById(groupId);
   }
 
+  /**
+   * Updates a group by its unique ID with the details from a new group object.
+   *
+   * @param groupId A {@code UUID} representing the unique ID of the group to update.
+   * @param newGroup A {@code Group} object containing the updated details.
+   */
   public void updateGroupById(UUID groupId, Group newGroup) {
     Group group = groupRepository.findById(groupId).orElse(null);
     if (group == null) {
@@ -50,6 +79,13 @@ public class GroupService {
     groupRepository.save(group);
   }
 
+  /**
+   * Checks if a group contains a specific order ID.
+   *
+   * @param group A {@code Group} object representing the group to check.
+   * @param orderId A {@code UUID} representing the order ID to check for.
+   * @return {@code true} if the group contains the specified order ID, otherwise {@code false}.
+   */
   public Boolean groupHasOrderId(Group group, UUID orderId) {
     List<UUID> groupOrderIds = group.getGroupOrderIDs();
     if (groupOrderIds == null) {
@@ -63,6 +99,13 @@ public class GroupService {
     return false;
   }
 
+  /**
+   * Deletes a group order from a group and the associated group order in the repository.
+   *
+   * @param groupId A {@code UUID} representing the unique ID of the group.
+   * @param orderId A {@code UUID} representing the order ID to delete.
+   * @return {@code true} if the group order was successfully deleted, otherwise {@code false}.
+   */
   public Boolean deleteGroupOrder(UUID groupId, UUID orderId) {
     Optional<Group> group = groupRepository.findById(groupId);
     if (!group.isPresent()) {
@@ -80,6 +123,13 @@ public class GroupService {
     return true;
   }
 
+  /**
+   * Checks if a group contains a specific order ID.
+   *
+   * @param groupId A {@code UUID} representing the unique ID of the group.
+   * @param orderId A {@code UUID} representing the order ID to check for.
+   * @return {@code true} if the group contains the specified order ID, otherwise {@code false}.
+   */
   public boolean hasGroupOrder(UUID groupId, UUID orderId) {
     Group group = getGroupById(groupId);
     if (group == null) {
@@ -89,6 +139,12 @@ public class GroupService {
     return orderIdList.contains(orderId);
   }
 
+  /**
+   * Retrieves all group orders associated with a specific group ID.
+   *
+   * @param id A {@code UUID} representing the unique ID of the group.
+   * @return A {@code List} of {@code GroupOrder} objects, or {@code null} if no orders are found.
+   */
   public List<GroupOrder> getGroupOrdersByGroupId(UUID id) {
     Group group = getGroupById(id);
     if (group == null) {
@@ -100,7 +156,7 @@ public class GroupService {
       return null;
     }
 
-    List<GroupOrder> groupOrderList = new ArrayList<GroupOrder>();
+    List<GroupOrder> groupOrderList = new ArrayList<>();
     for (UUID groupOrderId : groupOrderIds) {
       GroupOrder groupOrder = groupOrderService.getGroupOrderById(groupOrderId);
       if (groupOrder == null) {
@@ -111,6 +167,13 @@ public class GroupService {
     return groupOrderList;
   }
 
+  /**
+   * Adds a group order to a group and saves it in the repository.
+   *
+   * @param groupId A {@code UUID} representing the unique ID of the group.
+   * @param order A {@code GroupOrder} object representing the group order to be added.
+   * @return {@code true} if the group order was successfully added, otherwise {@code false}.
+   */
   public boolean addGroupOrder(UUID groupId, GroupOrder order) {
     Group group = getGroupById(groupId);
     if (group == null) {

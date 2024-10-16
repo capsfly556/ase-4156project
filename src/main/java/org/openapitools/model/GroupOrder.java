@@ -17,15 +17,15 @@ import org.hibernate.annotations.Type;
 
 /** GroupOrder */
 @Generated(
-        value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]",
-        comments = "Generator version: 7.8.0")
+    value = "org.openapitools.codegen.languages.SpringCodegen",
+    date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]",
+    comments = "Generator version: 7.8.0")
 @Entity
 public class GroupOrder {
 
   @Id
   @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-  @Type(type="org.hibernate.type.UUIDCharType")
+  @Type(type = "org.hibernate.type.UUIDCharType")
   private UUID groupOrderID;
 
   @Column(nullable = false)
@@ -43,7 +43,6 @@ public class GroupOrder {
    * Sets the groupOrderID of the GroupOrder and returns the updated GroupOrder object.
    *
    * @param groupOrderID A {@code UUID} representing the unique ID of the group order.
-   *
    * @return The updated {@code GroupOrder} object with the specified groupOrderID.
    */
   public GroupOrder groupOrderID(UUID groupOrderID) {
@@ -76,7 +75,6 @@ public class GroupOrder {
    * Sets the status of the GroupOrder and returns the updated GroupOrder object.
    *
    * @param status A {@code String} representing the current status of the group order.
-   *
    * @return The updated {@code GroupOrder} object with the specified status.
    */
   public GroupOrder status(String status) {
@@ -107,8 +105,8 @@ public class GroupOrder {
   /**
    * Sets the list of participant order IDs for the GroupOrder and returns the updated object.
    *
-   * @param participantOrderIDs A {@code List} of {@code UUID} objects representing participant order IDs.
-   *
+   * @param participantOrderIDs A {@code List} of {@code UUID} objects representing participant
+   *     order IDs.
    * @return The updated {@code GroupOrder} object with the specified participant order IDs.
    */
   public GroupOrder participantOrderIDs(List<UUID> participantOrderIDs) {
@@ -120,7 +118,6 @@ public class GroupOrder {
    * Adds a participant order ID to the GroupOrder's participant order list.
    *
    * @param participantOrderIDsItem A {@code UUID} representing a participant's order ID to add.
-   *
    * @return The updated {@code GroupOrder} object with the added participant order ID.
    */
   public GroupOrder addParticipantOrderIDsItem(UUID participantOrderIDsItem) {
@@ -146,7 +143,8 @@ public class GroupOrder {
   /**
    * Sets the list of participant order IDs for the GroupOrder.
    *
-   * @param participantOrderIDs A {@code List} of {@code UUID} representing the participant order IDs.
+   * @param participantOrderIDs A {@code List} of {@code UUID} representing the participant order
+   *     IDs.
    */
   public void setParticipantOrderIDs(List<UUID> participantOrderIDs) {
     this.participantOrderIDs = participantOrderIDs;
@@ -155,8 +153,8 @@ public class GroupOrder {
   /**
    * Sets the desired pickup timeframe for the GroupOrder and returns the updated object.
    *
-   * @param desiredPickupTimeframe A {@code String} representing the desired pickup timeframe for the group order.
-   *
+   * @param desiredPickupTimeframe A {@code String} representing the desired pickup timeframe for
+   *     the group order.
    * @return The updated {@code GroupOrder} object with the specified pickup timeframe.
    */
   public GroupOrder desiredPickupTimeframe(String desiredPickupTimeframe) {
@@ -188,7 +186,6 @@ public class GroupOrder {
    * Sets the food provider ID for the GroupOrder and returns the updated object.
    *
    * @param foodProviderID A {@code UUID} representing the food provider's ID.
-   *
    * @return The updated {@code GroupOrder} object with the specified food provider ID.
    */
   public GroupOrder foodProviderID(UUID foodProviderID) {
@@ -218,7 +215,8 @@ public class GroupOrder {
   }
 
   /**
-   * Fills default values for groupOrderID, status, desiredPickupTimeframe, and foodProviderID if they are null.
+   * Fills default values for groupOrderID, status, desiredPickupTimeframe, and foodProviderID if
+   * they are null.
    */
   public void fillFields() {
     if (groupOrderID == null) {
@@ -239,7 +237,6 @@ public class GroupOrder {
    * Compares the current GroupOrder object with another object for equality.
    *
    * @param o The object to be compared.
-   *
    * @return {@code true} if the objects are equal, {@code false} otherwise.
    */
   @Override
@@ -252,10 +249,10 @@ public class GroupOrder {
     }
     GroupOrder groupOrder = (GroupOrder) o;
     return Objects.equals(this.groupOrderID, groupOrder.groupOrderID)
-            && Objects.equals(this.status, groupOrder.status)
-            && Objects.equals(this.participantOrderIDs, groupOrder.participantOrderIDs)
-            && Objects.equals(this.desiredPickupTimeframe, groupOrder.desiredPickupTimeframe)
-            && Objects.equals(this.foodProviderID, groupOrder.foodProviderID);
+        && Objects.equals(this.status, groupOrder.status)
+        && Objects.equals(this.participantOrderIDs, groupOrder.participantOrderIDs)
+        && Objects.equals(this.desiredPickupTimeframe, groupOrder.desiredPickupTimeframe)
+        && Objects.equals(this.foodProviderID, groupOrder.foodProviderID);
   }
 
   /**
@@ -266,7 +263,7 @@ public class GroupOrder {
   @Override
   public int hashCode() {
     return Objects.hash(
-            groupOrderID, status, participantOrderIDs, desiredPickupTimeframe, foodProviderID);
+        groupOrderID, status, participantOrderIDs, desiredPickupTimeframe, foodProviderID);
   }
 
   /**
@@ -280,8 +277,12 @@ public class GroupOrder {
     sb.append("class GroupOrder {\n");
     sb.append("    groupOrderID: ").append(toIndentedString(groupOrderID)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    participantOrderIDs: ").append(toIndentedString(participantOrderIDs)).append("\n");
-    sb.append("    desiredPickupTimeframe: ").append(toIndentedString(desiredPickupTimeframe)).append("\n");
+    sb.append("    participantOrderIDs: ")
+        .append(toIndentedString(participantOrderIDs))
+        .append("\n");
+    sb.append("    desiredPickupTimeframe: ")
+        .append(toIndentedString(desiredPickupTimeframe))
+        .append("\n");
     sb.append("    foodProviderID: ").append(toIndentedString(foodProviderID)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -291,7 +292,6 @@ public class GroupOrder {
    * Converts the given object to a string with each line indented by 4 spaces.
    *
    * @param o The object to convert to string.
-   *
    * @return A string representation of the object with each line indented.
    */
   private String toIndentedString(Object o) {

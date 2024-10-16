@@ -40,11 +40,23 @@ public class GroupsApiController implements GroupsApi {
     this.groupOrderService = groupOrderService;
   }
 
+  /**
+   * Provides access to the current web request.
+   *
+   * @return An {@code Optional} containing the {@code NativeWebRequest} object if available, or
+   *     empty if not.
+   */
   @Override
   public Optional<NativeWebRequest> getRequest() {
     return Optional.ofNullable(request);
   }
 
+  /**
+   * Retrieves all groups in the system.
+   *
+   * @return A {@code ResponseEntity} containing a list of {@code Group} objects and an HTTP 200
+   *     status if successful, or an HTTP 404 status if no groups are found.
+   */
   @Override
   @GetMapping(
       value = "/groups/getAllGroups",
@@ -57,6 +69,13 @@ public class GroupsApiController implements GroupsApi {
     return new ResponseEntity<>(groupList, HttpStatus.OK);
   }
 
+  /**
+   * Deletes a group by its unique ID.
+   *
+   * @param groupId A {@code UUID} representing the unique ID of the group.
+   * @return A {@code ResponseEntity} with HTTP 204 (No Content) if the deletion is successful, or
+   *     HTTP 404 (Not Found) if the group does not exist.
+   */
   @Override
   @DeleteMapping(value = "/groups/{groupId}")
   public ResponseEntity<Void> groupsGroupIdDelete(@PathVariable("groupId") UUID groupId) {
@@ -68,6 +87,13 @@ public class GroupsApiController implements GroupsApi {
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 
+  /**
+   * Retrieves a group by its unique ID.
+   *
+   * @param groupId A {@code UUID} representing the unique ID of the group.
+   * @return A {@code ResponseEntity} containing the {@code Group} object and an HTTP 200 status if
+   *     successful, or an HTTP 404 status if the group is not found.
+   */
   @Override
   @GetMapping(
       value = "/groups/{groupId}",
@@ -80,6 +106,14 @@ public class GroupsApiController implements GroupsApi {
     return new ResponseEntity<>(group, HttpStatus.OK);
   }
 
+  /**
+   * Updates an existing group by its unique ID.
+   *
+   * @param groupId A {@code UUID} representing the unique ID of the group.
+   * @param group A {@code Group} object containing the updated group details.
+   * @return A {@code ResponseEntity} with HTTP 200 (OK) if successful, or HTTP 404 (Not Found) if
+   *     the group does not exist.
+   */
   @Override
   @PutMapping(
       value = "/groups/{groupId}",
@@ -94,6 +128,12 @@ public class GroupsApiController implements GroupsApi {
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
+  /**
+   * Creates a new group in the system.
+   *
+   * @param group A {@code Group} object representing the group to be created.
+   * @return A {@code ResponseEntity} with HTTP 201 (Created) if successful.
+   */
   @PostMapping(
       value = "/groups",
       consumes = {"application/json"})
@@ -102,6 +142,14 @@ public class GroupsApiController implements GroupsApi {
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
+  /**
+   * Deletes a group order by its unique ID within a group.
+   *
+   * @param groupId A {@code UUID} representing the unique ID of the group.
+   * @param orderId A {@code UUID} representing the unique ID of the order.
+   * @return A {@code ResponseEntity} with HTTP 204 (No Content) if successful, or HTTP 404 (Not
+   *     Found) if the group or order is not found.
+   */
   @Override
   @DeleteMapping(value = "/groups/{groupId}/orders/{orderId}")
   public ResponseEntity<Void> groupsGroupIdOrdersOrderIdDelete(
@@ -113,6 +161,13 @@ public class GroupsApiController implements GroupsApi {
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 
+  /**
+   * Retrieves all orders associated with a group by the group's unique ID.
+   *
+   * @param groupId A {@code UUID} representing the unique ID of the group.
+   * @return A {@code ResponseEntity} containing a list of {@code GroupOrder} objects and an HTTP
+   *     200 status if successful, or an HTTP 404 status if no orders are found.
+   */
   @Override
   @GetMapping(
       value = "/groups/{groupId}/orders",
@@ -126,6 +181,14 @@ public class GroupsApiController implements GroupsApi {
     return new ResponseEntity<>(groupOrderList, HttpStatus.OK);
   }
 
+  /**
+   * Retrieves a group order by its unique ID within a group.
+   *
+   * @param groupId A {@code UUID} representing the unique ID of the group.
+   * @param orderId A {@code UUID} representing the unique ID of the order.
+   * @return A {@code ResponseEntity} containing the {@code GroupOrder} object and an HTTP 200
+   *     status if successful, or an HTTP 404 status if the group or order is not found.
+   */
   @Override
   @GetMapping(
       value = "/groups/{groupId}/orders/{orderId}",
@@ -138,6 +201,15 @@ public class GroupsApiController implements GroupsApi {
     return new ResponseEntity<>(groupOrderService.getGroupOrderById(orderId), HttpStatus.OK);
   }
 
+  /**
+   * Updates an existing group order by its unique ID within a group.
+   *
+   * @param groupId A {@code UUID} representing the unique ID of the group.
+   * @param orderId A {@code UUID} representing the unique ID of the order.
+   * @param groupOrder A {@code GroupOrder} object containing the updated order details.
+   * @return A {@code ResponseEntity} with HTTP 200 (OK) if successful, or HTTP 400 (Bad Request) if
+   *     the update fails.
+   */
   @Override
   @PutMapping(
       value = "/groups/{groupId}/orders/{orderId}",
@@ -157,11 +229,12 @@ public class GroupsApiController implements GroupsApi {
   }
 
   /**
-   * POST /groups/{groupId}/orders : Create a new group order.
+   * Creates a new group order associated with a group.
    *
-   * @param groupId The unique identifier of the group. (required)
-   * @param groupOrder (required)
-   * @return Group order created successfully. (status code 201)
+   * @param groupId A {@code UUID} representing the unique identifier of the group.
+   * @param groupOrder A {@code GroupOrder} object representing the new group order.
+   * @return A {@code ResponseEntity} with HTTP 201 (Created) if the group order is successfully
+   *     created.
    */
   @Operation(
       operationId = "groupsGroupIdOrdersPost",

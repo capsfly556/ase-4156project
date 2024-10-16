@@ -21,9 +21,9 @@ import org.hibernate.annotations.Type;
 
 /** Group */
 @Generated(
-        value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]",
-        comments = "Generator version: 7.8.0")
+    value = "org.openapitools.codegen.languages.SpringCodegen",
+    date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]",
+    comments = "Generator version: 7.8.0")
 @Entity
 @Table(name = "`group`")
 public class Group {
@@ -55,7 +55,6 @@ public class Group {
    * Sets the groupID of the Group and returns the updated Group object.
    *
    * @param groupID A {@code UUID} representing the unique ID of the group.
-   *
    * @return The updated {@code Group} object with the specified groupID.
    */
   public Group groupID(UUID groupID) {
@@ -88,7 +87,6 @@ public class Group {
    * Sets the name of the Group and returns the updated Group object.
    *
    * @param name A {@code String} representing the name of the group.
-   *
    * @return The updated {@code Group} object with the specified name.
    */
   public Group name(String name) {
@@ -120,7 +118,6 @@ public class Group {
    * Sets the participant IDs of the Group and returns the updated Group object.
    *
    * @param participantIDs A {@code List} of {@code UUID} objects representing the participant IDs.
-   *
    * @return The updated {@code Group} object with the specified participant IDs.
    */
   public Group participantIDs(List<UUID> participantIDs) {
@@ -132,7 +129,6 @@ public class Group {
    * Adds a participant ID to the Group's participant list.
    *
    * @param participantIDsItem A {@code UUID} representing a participant's ID to add.
-   *
    * @return The updated {@code Group} object with the added participant ID.
    */
   public Group addParticipantIDsItem(UUID participantIDsItem) {
@@ -168,7 +164,6 @@ public class Group {
    * Sets the group order IDs of the Group and returns the updated Group object.
    *
    * @param groupOrderIDs A {@code List} of {@code UUID} objects representing the group order IDs.
-   *
    * @return The updated {@code Group} object with the specified group order IDs.
    */
   public Group groupOrderIDs(List<UUID> groupOrderIDs) {
@@ -180,7 +175,6 @@ public class Group {
    * Adds a group order ID to the Group's order list.
    *
    * @param groupOrderIDsItem A {@code UUID} representing a group order ID to add.
-   *
    * @return The updated {@code Group} object with the added group order ID.
    */
   public Group addGroupOrderIDsItem(UUID groupOrderIDsItem) {
@@ -216,7 +210,6 @@ public class Group {
    * Sets the administrator ID of the Group and returns the updated Group object.
    *
    * @param administratorID A {@code UUID} representing the administrator's ID.
-   *
    * @return The updated {@code Group} object with the specified administrator ID.
    */
   public Group administratorID(UUID administratorID) {
@@ -249,7 +242,6 @@ public class Group {
    * Compares the current Group object with another object for equality.
    *
    * @param o The object to be compared.
-   *
    * @return {@code true} if the objects are equal, {@code false} otherwise.
    */
   @Override
@@ -262,10 +254,10 @@ public class Group {
     }
     Group group = (Group) o;
     return Objects.equals(this.groupID, group.groupID)
-            && Objects.equals(this.name, group.name)
-            && Objects.equals(this.participantIDs, group.participantIDs)
-            && Objects.equals(this.groupOrderIDs, group.groupOrderIDs)
-            && Objects.equals(this.administratorID, group.administratorID);
+        && Objects.equals(this.name, group.name)
+        && Objects.equals(this.participantIDs, group.participantIDs)
+        && Objects.equals(this.groupOrderIDs, group.groupOrderIDs)
+        && Objects.equals(this.administratorID, group.administratorID);
   }
 
   /**
@@ -300,7 +292,6 @@ public class Group {
    * Converts the given object to a string with each line indented by 4 spaces.
    *
    * @param o The object to convert to string.
-   *
    * @return A string representation of the object with each line indented.
    */
   private String toIndentedString(Object o) {

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
 import org.junit.jupiter.api.Test;
 
 public class GroupTest {
@@ -182,11 +181,11 @@ public class GroupTest {
 
         assertNotNull(groupString, "toString should not return null");
         assertTrue(groupString.contains("class Group"), "toString should contain class name");
-        assertTrue(groupString.contains("groupID: " + groupID.toString()), "toString should contain groupID");
+        assertTrue(groupString.contains("groupID: " + groupID), "toString should contain groupID");
         assertTrue(groupString.contains("name: Test Group"), "toString should contain name");
-        assertTrue(groupString.contains("participantIDs: [" + participantID.toString() + "]"), "toString should contain participantIDs");
-        assertTrue(groupString.contains("groupOrderIDs: [" + groupOrderID.toString() + "]"), "toString should contain groupOrderIDs");
-        assertTrue(groupString.contains("administratorID: " + administratorID.toString()), "toString should contain administratorID");
+        assertTrue(groupString.contains("participantIDs: [" + participantID + "]"), "toString should contain participantIDs");
+        assertTrue(groupString.contains("groupOrderIDs: [" + groupOrderID + "]"), "toString should contain groupOrderIDs");
+        assertTrue(groupString.contains("administratorID: " + administratorID), "toString should contain administratorID");
     }
 
     @Test
