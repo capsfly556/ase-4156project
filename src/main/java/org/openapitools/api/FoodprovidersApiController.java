@@ -27,6 +27,10 @@ import java.util.Optional;
 import java.util.UUID;
 import javax.annotation.Generated;
 
+
+/**
+ * This class contains all the food provider related API routes.
+ */
 @Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
         date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]",
@@ -50,6 +54,17 @@ public class FoodprovidersApiController implements FoodprovidersApi {
     return Optional.ofNullable(request);
   }
 
+  /**
+   * Creates a new FoodProvider entity and adds it to the system.
+   *
+   * @param foodProvider A {@code FoodProvider} object representing the food provider
+   *                     and its menu to be added. The input is validated to ensure
+   *                     it contains a non-empty menu.
+   *
+   * @return A {@code ResponseEntity} object with an HTTP 201 response if the food provider
+   *         is successfully added, or an HTTP 400 response if the input is invalid
+   *         or the addition fails.
+   */
   @Override
   public ResponseEntity<Void> foodprovidersPost(@Valid @RequestBody FoodProvider foodProvider) {
     if (foodProvider.getMenu() == null || foodProvider.getMenu().isEmpty()) {
@@ -67,7 +82,17 @@ public class FoodprovidersApiController implements FoodprovidersApi {
     return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
   }
 
-
+  /**
+   * Deletes the FoodProvider entity with the specified ID.
+   *
+   * @param foodProviderId A {@code String} representing the unique ID of the food provider
+   *                       to be deleted. The ID is expected to be a valid UUID.
+   *
+   * @return A {@code ResponseEntity} object with an HTTP 204 (NO CONTENT) response if the
+   *         food provider is successfully deleted, an HTTP 404 (NOT FOUND) response if the
+   *         food provider does not exist, or an HTTP 500 (INTERNAL SERVER ERROR) response if
+   *         an error occurs during the operation.
+   */
   @Override
   public ResponseEntity<Void> foodprovidersFoodProviderIdDelete(String foodProviderId){
     try {
@@ -92,6 +117,17 @@ public class FoodprovidersApiController implements FoodprovidersApi {
     }
   }
 
+  /**
+   * Retrieves the FoodProvider entity with the specified ID.
+   *
+   * @param foodProviderId A {@code String} representing the unique ID of the food provider
+   *                       to retrieve.
+   *
+   * @return A {@code ResponseEntity} object containing the {@code FoodProvider} with an HTTP 200
+   *         (OK) response if found, an HTTP 404 (NOT FOUND) response if the food provider
+   *         does not exist, or an HTTP 500 (INTERNAL SERVER ERROR) response if an error occurs
+   *         during the operation.
+   */
   @Override
   public ResponseEntity<FoodProvider> foodprovidersFoodProviderIdGet(String foodProviderId) {
     try {
@@ -107,6 +143,19 @@ public class FoodprovidersApiController implements FoodprovidersApi {
     }
   }
 
+  /**
+   * Updates the FoodProvider entity with the specified ID.
+   *
+   * @param foodProviderId A {@code String} representing the unique ID of the food provider
+   *                       to update.
+   * @param foodProvider A {@code FoodProvider} object containing the updated information
+   *                     for the food provider.
+   *
+   * @return A {@code ResponseEntity} object with an HTTP 200 (OK) response if the update is
+   *         successful, an HTTP 409 (CONFLICT) response if there is a conflict with the name or
+   *         phone number, an HTTP 404 (NOT FOUND) response if the food provider does not exist,
+   *         or an HTTP 400 (BAD REQUEST) response if there is an error in the request.
+   */
   @Override
   public ResponseEntity<Void> foodprovidersFoodProviderIdPut(String foodProviderId,
                                                              @Valid @RequestBody FoodProvider foodProvider) {
@@ -127,7 +176,13 @@ public class FoodprovidersApiController implements FoodprovidersApi {
     }
   }
 
-
+  /**
+   * Retrieves a list of all FoodProvider entities.
+   *
+   * @return A {@code ResponseEntity} object containing a list of {@code FoodProvider} entities
+   *         with an HTTP 200 (OK) response if the list is not empty, or an HTTP 404 (NOT FOUND)
+   *         response if no food providers are found.
+   */
   @Override
   public ResponseEntity<List<FoodProvider>> foodprovidersGet() {
     List<FoodProvider> foodProviders = foodproviderService.getAllFoodProviders();
