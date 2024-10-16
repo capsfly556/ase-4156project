@@ -17,9 +17,9 @@ import org.hibernate.annotations.Type;
 
 /** FoodProvider */
 @Generated(
-    value = "org.openapitools.codegen.languages.SpringCodegen",
-    date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]",
-    comments = "Generator version: 7.8.0")
+        value = "org.openapitools.codegen.languages.SpringCodegen",
+        date = "2024-10-05T01:59:00.934263-04:00[America/Toronto]",
+        comments = "Generator version: 7.8.0")
 @Entity
 public class FoodProvider {
 
@@ -188,11 +188,11 @@ public class FoodProvider {
     }
     FoodProvider foodProvider = (FoodProvider) o;
     return Objects.equals(this.foodProviderID, foodProvider.foodProviderID)
-        && Objects.equals(this.name, foodProvider.name)
-        && Objects.equals(this.location, foodProvider.location)
-        && Objects.equals(this.phoneNumber, foodProvider.phoneNumber)
-        && Objects.equals(this.hoursOfOperation, foodProvider.hoursOfOperation)
-        && Objects.equals(this.menu, foodProvider.menu);
+            && Objects.equals(this.name, foodProvider.name)
+            && Objects.equals(this.location, foodProvider.location)
+            && Objects.equals(this.phoneNumber, foodProvider.phoneNumber)
+            && Objects.equals(this.hoursOfOperation, foodProvider.hoursOfOperation)
+            && Objects.equals(this.menu, foodProvider.menu);
   }
 
 
