@@ -28,9 +28,9 @@ import java.util.UUID;
 import javax.annotation.Generated;
 
 @Generated(
-    value = "org.openapitools.codegen.languages.SpringCodegen",
-    date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]",
-    comments = "Generator version: 7.8.0")
+        value = "org.openapitools.codegen.languages.SpringCodegen",
+        date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]",
+        comments = "Generator version: 7.8.0")
 @Controller
 @RequestMapping("${openapi.groupGrub.base-path:}")
 public class FoodprovidersApiController implements FoodprovidersApi {
@@ -40,7 +40,7 @@ public class FoodprovidersApiController implements FoodprovidersApi {
 
   @Autowired
   public FoodprovidersApiController(
-      NativeWebRequest request, FoodproviderService foodproviderService) {
+          NativeWebRequest request, FoodproviderService foodproviderService) {
     this.request = request;
     this.foodproviderService = foodproviderService;
   }
@@ -118,10 +118,10 @@ public class FoodprovidersApiController implements FoodprovidersApi {
       }else if (foodproviderService.checkExistsPhoneNumberIdNot(foodProvider.getPhoneNumber(), foodProviderId) ||
               foodproviderService.checkExistsNameIdNot(foodProvider.getName(), foodProviderId)) {
         return new ResponseEntity<>(HttpStatus.CONFLICT);}
-        else{
-          return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-      } catch (Exception e) {
+      else{
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+    } catch (Exception e) {
       e.printStackTrace();
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }

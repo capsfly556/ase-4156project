@@ -22,16 +22,16 @@ public class FoodproviderService {
   }
 
   public Boolean deleteFoodProvider(String foodProviderId) {
-    repository.deleteById(UUID.fromString(foodProviderId));
-    return !repository.existsById(UUID.fromString(foodProviderId));
-  }
-  public Boolean checkExistsId(String foodProviderId) {
-    return repository.existsById(UUID.fromString(foodProviderId));
+    UUID uuid = UUID.fromString(foodProviderId);
+    if(repository.existsById(uuid)) {
+      repository.deleteById(uuid);
+      return true;
+    }
+    return false;
+
   }
 
-  public Optional<FoodProvider> findByName(String name) {
-    return repository.findByName(name);
-  }
+
 
   public Boolean checkExistsNameIdNot(String name, String foodProviderId) {
     UUID uuid = UUID.fromString(foodProviderId);
@@ -82,7 +82,4 @@ public class FoodproviderService {
     return true;
   }
 
-  public void deleteByID(String foodProviderId) {
-    repository.deleteById(UUID.fromString(foodProviderId));
-  }
 }
