@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.openapitools.api.FoodprovidersApiController;
 import org.openapitools.model.FoodProvider;
 import org.openapitools.model.MenuItem;
@@ -30,7 +31,7 @@ public class foodproviderAPITest {
 
     @BeforeEach
     void setUp() {
-
+        MockitoAnnotations.openMocks(this);
         foodProvider = new FoodProvider();
         foodProvider.setName("TestFoodProvider");
         foodProvider.setPhoneNumber("1234567890");
