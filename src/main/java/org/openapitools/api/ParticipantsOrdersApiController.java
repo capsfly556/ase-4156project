@@ -1,6 +1,5 @@
 package org.openapitools.api;
 
-import org.openapitools.model.Participant;
 import org.openapitools.model.ParticipantOrder;
 import org.openapitools.service.ParticipantsOrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Generated;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.UUID;
 import java.util.Optional;
+import java.util.UUID;
 
+/**
+ * API Controller class that handles HTTP requests related to participant orders.
+ */
 @Generated(
     value = "org.openapitools.codegen.languages.SpringCodegen",
     date = "2024-10-02T19:11:02.971027-04:00[America/Toronto]",
@@ -25,11 +27,22 @@ public class ParticipantsOrdersApiController implements ParticipantsOrdersApi {
 
     private final ParticipantsOrdersService participantsOrdersService;
 
+    /**
+     * Constructs the ParticipantsOrdersApiController with the given service.
+     *
+     * @param participantsOrdersService the service handling participant order operations
+     */
     @Autowired
     public ParticipantsOrdersApiController(ParticipantsOrdersService participantsOrdersService) {
       this.participantsOrdersService = participantsOrdersService;
     }
 
+    /**
+     * Retrieves all orders for a specific participant.
+     *
+     * @param participantID the ID of the participant
+     * @return a list of participant orders and an HTTP status of 200 if found, 404 if no orders exist
+     */
     @Override
     @GetMapping("/participants/{participantID}/orders")
     public ResponseEntity<List<ParticipantOrder>> participantsParticipantIDOrdersGet(
@@ -41,6 +54,13 @@ public class ParticipantsOrdersApiController implements ParticipantsOrdersApi {
       return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
+    /**
+     * Deletes a specific participant order.
+     *
+     * @param participantID the ID of the participant
+     * @param participantOrderID the ID of the order to delete
+     * @return 204 if the order is successfully deleted, or 404 if it doesn't exist
+     */
     @Override
     @DeleteMapping("/participants/{participantID}/orders/{participantOrderID}")
     public ResponseEntity<Void> participantsParticipantIDOrdersParticipantOrderIDDelete(
@@ -54,6 +74,13 @@ public class ParticipantsOrdersApiController implements ParticipantsOrdersApi {
       }
     }
 
+    /**
+     * Retrieves a specific participant order by its ID.
+     *
+     * @param participantID the ID of the participant
+     * @param participantOrderID the ID of the order
+     * @return the participant order and an HTTP status of 200 if found, 404 if not found
+     */
     @Override
     @GetMapping("/participants/{participantID}/orders/{participantOrderID}")
     public ResponseEntity<ParticipantOrder> participantsParticipantIDOrdersParticipantOrderIDGet(
@@ -66,6 +93,14 @@ public class ParticipantsOrdersApiController implements ParticipantsOrdersApi {
       return new ResponseEntity<>(order.get(), HttpStatus.OK);
     }
 
+    /**
+     * Updates a specific participant order.
+     *
+     * @param participantID the ID of the participant
+     * @param participantOrderID the ID of the order to update
+     * @param participantOrder the updated ParticipantOrder object
+     * @return the updated ParticipantOrder and an HTTP status of 200 if updated, 404 if not found, 400 on errors
+     */
     @Override
     @PutMapping("/participants/{participantID}/orders/{participantOrderID}")
     public ResponseEntity<ParticipantOrder> participantsParticipantIDOrdersParticipantOrderIDPut(
@@ -84,16 +119,23 @@ public class ParticipantsOrdersApiController implements ParticipantsOrdersApi {
       }
     }
 
+    /**
+     * Creates a new participant order.
+     *
+     * @param participantID the ID of the participant
+     * @param participantOrder the ParticipantOrder object to be created
+     * @return 201 if the order is created successfully, 400 on errors
+     */
     @Override
     @PostMapping("/participants/{participantID}/orders")
     public ResponseEntity<Void> participantsParticipantIDOrdersPost(
-    @PathVariable("participantID") String participantID,
-    @Valid @RequestBody ParticipantOrder participantOrder) {
-    try {
+      @PathVariable("participantID") String participantID,
+      @Valid @RequestBody ParticipantOrder participantOrder) {
+      try {
         participantsOrdersService.createParticipantOrder(UUID.fromString(participantID), participantOrder);
         return new ResponseEntity<>(HttpStatus.CREATED);
-    } catch (RuntimeException e) {
+      } catch (RuntimeException e) {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+      }
     }
-}
 }
