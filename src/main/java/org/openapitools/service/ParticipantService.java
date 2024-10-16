@@ -20,22 +20,22 @@ public class ParticipantService {
   }
 
   public Participant addParticipant(Participant participant) {
-	  System.out.println("Adding participant: " + participant.getName());
+    System.out.println("Adding participant: " + participant.getName());
     return repository.save(participant);
   }
 
   public List<Participant> getAllParticipants() {
-	  System.out.println("Getting all participants");
+    System.out.println("Getting all participants");
     return repository.findAll();
   }
 
   public Optional<Participant> getParticipantById(UUID participantID) {
-	  System.out.println("Getting participant with ID: " + participantID);
+    System.out.println("Getting participant with ID: " + participantID);
     return repository.findById(participantID);
   }
 
   public Participant updateParticipant(UUID participantID, Participant participant) {
-	  System.out.println("Updating participant with ID: " + participantID);
+    System.out.println("Updating participant with ID: " + participantID);
     if (!repository.existsById(participantID)) {
       throw new RuntimeException("Participant not found");
     }
@@ -44,10 +44,10 @@ public class ParticipantService {
   }
 
   public boolean deleteParticipant(UUID participantID) {
-	  System.out.println("Deleting participant with ID: " + participantID);
+    System.out.println("Deleting participant with ID: " + participantID);
     if (repository.existsById(participantID)) {
-        repository.deleteById(participantID);
-        return true;
+      repository.deleteById(participantID);
+      return true;
     }
     return false;
   }

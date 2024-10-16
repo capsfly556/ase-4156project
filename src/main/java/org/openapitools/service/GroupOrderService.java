@@ -33,22 +33,22 @@ public class GroupOrderService {
     return true;
   }
 
-  public boolean createGroupOrder(GroupOrder order){
+  public boolean createGroupOrder(GroupOrder order) {
     order.fillFields();
     repository.save(order);
     return true;
   }
 
-  public boolean createGroupOrder(UUID id){
-    GroupOrder order=new GroupOrder();
+  public boolean createGroupOrder(UUID id) {
+    GroupOrder order = new GroupOrder();
     order.fillFields();
     order.setGroupOrderID(id);
     repository.save(order);
     return true;
   }
 
-  public boolean deleteGroupOrder(UUID id){
-    if (!repository.existsById(id)){
+  public boolean deleteGroupOrder(UUID id) {
+    if (!repository.existsById(id)) {
       return false;
     }
     repository.deleteById(id);
