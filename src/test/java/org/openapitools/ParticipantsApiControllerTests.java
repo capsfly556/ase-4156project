@@ -17,41 +17,58 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class ParticipantsApiControllerTest {
+  @InjectMocks
+  private ParticipantsApiController participantsApiController;
 
-    @InjectMocks
-    private ParticipantsApiController participantsApiController;
+  @Mock
+  private ParticipantService participantService;
 
-    @Mock
-    private ParticipantService participantService;
+  private UUID participantID;
+  private Participant participant;
 
-    private UUID participantID;
-    private Participant participant;
+  @BeforeEach
+  void setUp() {
+    MockitoAnnotations.openMocks(this);
+    participantID = UUID.randomUUID();
+    participant = new Participant();
+    participant.setParticipantID(participantID);
+    participant.setName("John Doe");
+  }
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-        participantID = UUID.randomUUID();
-        participant = new Participant();
-        participant.setParticipantID(participantID);
-        participant.setName("John Doe");
-    }
+  @Test
+  void testAddParticipant_Success() {
+    when(participantService.addParticipant(participant)).thenReturn(participant);
 
-    @Test
-    void testAddParticipant_Success() {
-        when(participantService.addParticipant(participant)).thenReturn(participant);
+    ResponseEntity<Participant> response = participantsApiController.participantsPost(participant);
+    assertEquals(HttpStatus.CREATED, response.getStatusCode());
+    assertEquals(participant, response.getBody());
+  }
 
-        ResponseEntity<Participant> response = participantsApiController.participantsPost(participant);
+  @Test
+  void testAddParticipant_BadRequest() {
+    when(participantService.addParticipant(participant)).thenThrow(new RuntimeException("Failed to add participant"));
 
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals(participant, response.getBody());
-    }
+    ResponseEntity<Participant> response = participantsApiController.participantsPost(participant);
+    assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+  }
 
-    @Test
-    void testAddParticipant_BadRequest() {
-        when(participantService.addParticipant(participant)).thenThrow(new RuntimeException("Failed to add participant"));
+	@Test
+  void testGetAllParticipants_Success() {
+    List<Participant> participants = Collections.singletonList(participant);
+    when(participantService.getAllParticipants()).thenReturn(participants);
 
-        ResponseEntity<Participant> response = participantsApiController.participantsPost(participant);
+    ResponseEntity<List<Participant>> response = participantsApiController.participantsGet();
 
-        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-    }
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals(1, response.getBody().size());
+    assertEquals(participant, response.getBody().get(0));
+  }
+
+  @Test
+  void testGetAllParticipants_NotFound() {
+    when(participantService.getAllParticipants()).thenReturn(Collections.emptyList());
+
+    ResponseEntity<List<Participant>> response = participantsApiController.participantsGet();
+    assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+  }
 }
