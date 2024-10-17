@@ -71,4 +71,23 @@ class ParticipantsApiControllerTest {
     ResponseEntity<List<Participant>> response = participantsApiController.participantsGet();
     assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
   }
+
+  @Test
+  void testGetParticipantById_Success() {
+    when(participantService.getParticipantById(participantID)).thenReturn(Optional.of(participant));
+
+    ResponseEntity<Participant> response = participantsApiController.participantsParticipantIDGet(participantID.toString());
+
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals(participant, response.getBody());
+  }
+
+  @Test
+  void testGetParticipantById_NotFound() {
+    when(participantService.getParticipantById(participantID)).thenReturn(Optional.empty());
+
+    ResponseEntity<Participant> response = participantsApiController.participantsParticipantIDGet(participantID.toString());
+
+    assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+  }
 }
