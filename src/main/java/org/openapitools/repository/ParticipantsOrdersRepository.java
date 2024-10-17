@@ -16,7 +16,6 @@ import java.util.UUID;
 @Repository
 public interface ParticipantsOrdersRepository extends JpaRepository<ParticipantOrder, UUID> {
 
-	@Query("SELECT o FROM ParticipantOrder o WHERE o.participant.id = :participantId")
-    List<ParticipantOrder> findByParticipantId(UUID participantId);
-
+  @Query("SELECT o FROM ParticipantOrder o WHERE o.participant.id = :participantId")
+  List<ParticipantOrder> findByParticipantId(UUID participantId);
 }
