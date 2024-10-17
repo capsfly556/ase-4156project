@@ -12,8 +12,17 @@ In order to build and use this service you must install the following (This guid
 2. OpenJDK 22: This project used OpenJDK 22 for development so that is what We recommend you use: https://formulae.brew.sh/formula/openjdk
 3. IntelliJ IDE: We recommend using IntelliJ but you are free to use any other IDE that you are comfortable with: https://www.jetbrains.com/idea/download/?section=mac
 4. When you open IntelliJ you have the option to clone from a GitHub repo, click the green code button and copy the http line that is provided there and give it to your IDE to clone.
-5. `cd` to the repository folder in Terminal. In order to setup the project with maven you can run <code>mvn clean install</code> and then you can either run the tests via the test files described below or the main application by running <code>GroupgrubserviceApplication.java</code> from your IDE. You can use <code>mvn clean package</code> to package the project too.
-6. If you wish to run the style checker you can with <code>mvn checkstyle:check</code> or <code>mvn checkstyle:checkstyle</code> if you wish to generate the report.
+5. To set up the database credentials (which is mandatory for running this project), if you are running it in terminal, source a script of this format:
+```
+#!/bin/bash
+
+export GROUPGRUB_DB_URL=jdbc:mysql://{$YOUR_DB_IP}:3306/{$YOUR_DB_NAME}
+export GROUPGRUB_DB_USER={$YOUR_DB_USER}
+export GROUPGRUB_DB_PASSWORD={$YOUR_DB_PASSWORD}
+```
+Also, add these environment variables in IntelliJ run configuration.
+6. `cd` to the repository folder in Terminal. In order to set up the project with maven you can run <code>mvn clean install</code> and then you can either run the tests via the test files described below or the main application by running <code>GroupgrubserviceApplication.java</code> from your IDE. You can use <code>mvn clean package</code> to package the project too.
+7. If you wish to run the style checker you can with <code>mvn checkstyle:check</code> or <code>mvn checkstyle:checkstyle</code> if you wish to generate the report.
 
 ## Running Tests
 The unit tests are located under the directory <code>src/test</code>. To run the project's tests in IntelliJ using Java 22, you must first build the project.
@@ -234,20 +243,20 @@ This section describes the endpoints that the service provides, as well as their
   * HTTP 404 Status Code with "Food provider not found" in the response body.
 
 ## Style Checking Report
-We used the tool "checkstyle" to check the style of the code and generate style checking reports. Here is the report as of the day of ??? (These can be found in the reports folder):
+We used the tool "checkstyle" to check the style of the code and generate style checking reports. Here is the report as of the day of 2024/10/16 (these can be found in the images folder):
 
-![Screenshot of a checkstyle with no errors](???)
-![Second Screenshot of a checkstyle with no errors](???)
+![Screenshot of a checkstyle terminal output with no errors](images/checkstyle_output_screenshot.png)
+![Screenshot of a checkstyle report with no errors](images/checkstyle_report_screenshot.png)
 
 ## Branch Coverage Reporting
 We used JaCoCo to perform branch analysis in order to see the branch coverage of the relevant code within the code base. See below for screenshots demonstrating output.
 
-![Screenshot of a code coverage report from the plugin](???)
+![Screenshot of a code coverage report from the plugin](images/test_coverage_screenshot.png)
 
 ## Project management
 We used the tool Trello for the project management. Here is the screenshot of the board as of the day of ???:
 
-![Screenshot Trello of the board](???)
+![Screenshot Trello of the board](images/trello_screenshot.png)
 
 ## Third-party code
 The initial project skeleton is generated using [openapi-generator](https://github.com/OpenAPITools/openapi-generator) with the OpenAPI specs wrote by our team. Specifically, <code>in src/main/java/org/openapitools</code>, the <code>api/\*Api.\*</code> files, the <code>api/ApiUtil.java</code> file, the <code>configuration/\*</code> files, the <code>GroupgrubserviceApplication.java</code> file, and the <code>RFC3339DateFormat.java</code> file are auto-generated and are excluded from the test report.
