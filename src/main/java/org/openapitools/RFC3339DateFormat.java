@@ -1,7 +1,6 @@
 package org.openapitools;
 
 import com.fasterxml.jackson.databind.util.StdDateFormat;
-
 import java.text.DateFormat;
 import java.text.FieldPosition;
 import java.text.ParsePosition;

@@ -4,34 +4,28 @@
  */
 package org.openapitools.api;
 
-import org.openapitools.model.Group;
-import org.openapitools.model.GroupOrder;
-import org.openapitools.model.GroupOrderResponse;
-import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+import javax.annotation.Generated;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
+import org.openapitools.model.Group;
+import org.openapitools.model.GroupOrder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.validation.Valid;
-import javax.validation.constraints.*;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import javax.annotation.Generated;
 
 @Generated(
     value = "org.openapitools.codegen.languages.SpringCodegen",
@@ -67,7 +61,7 @@ public interface GroupsApi {
       })
   @RequestMapping(
       method = RequestMethod.GET,
-      value = "/groups",
+      value = "/groups/getAllGroups",
       produces = {"application/json"})
   default ResponseEntity<List<Group>> groupsGet() {
 
@@ -107,7 +101,7 @@ public interface GroupsApi {
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("groupId")
-          String groupId) {
+          UUID groupId) {
     return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
   }
 
@@ -143,7 +137,7 @@ public interface GroupsApi {
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("groupId")
-          String groupId) {
+          UUID groupId) {
     getRequest()
         .ifPresent(
             request -> {
@@ -175,28 +169,28 @@ public interface GroupsApi {
             content = {
               @Content(
                   mediaType = "application/json",
-                  array = @ArraySchema(schema = @Schema(implementation = GroupOrderResponse.class)))
+                  array = @ArraySchema(schema = @Schema(implementation = GroupOrder.class)))
             })
       })
   @RequestMapping(
       method = RequestMethod.GET,
       value = "/groups/{groupId}/orders",
       produces = {"application/json"})
-  default ResponseEntity<List<GroupOrderResponse>> groupsGroupIdOrdersGet(
+  default ResponseEntity<List<GroupOrder>> groupsGroupIdOrdersGet(
       @Parameter(
               name = "groupId",
               description = "The unique identifier of the group.",
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("groupId")
-          String groupId) {
+          UUID groupId) {
     getRequest()
         .ifPresent(
             request -> {
               for (MediaType mediaType : MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                   String exampleString =
-                      "[ { \"participantOrderIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ], \"groupOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"menuItemIDs\" : { \"key\" : 0 }, \"participantOrders\" : [ { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" }, { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" } ], \"desiredPickupTimeframe\" : \"desiredPickupTimeframe\", \"foodProviderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"status\" : \"status\" }, { \"participantOrderIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ], \"groupOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"menuItemIDs\" : { \"key\" : 0 }, \"participantOrders\" : [ { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" }, { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" } ], \"desiredPickupTimeframe\" : \"desiredPickupTimeframe\", \"foodProviderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"status\" : \"status\" } ]";
+                      "[ { \"participantOrderIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ], \"groupOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"menuItemCounts\" : { \"key\" : 0 }, \"participantOrders\" : [ { \"menuItemCounts\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" }, { \"menuItemCounts\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" } ], \"desiredPickupTimeframe\" : \"desiredPickupTimeframe\", \"foodProviderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"status\" : \"status\" }, { \"participantOrderIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ], \"groupOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"menuItemCounts\" : { \"key\" : 0 }, \"participantOrders\" : [ { \"menuItemCounts\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" }, { \"menuItemCounts\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" } ], \"desiredPickupTimeframe\" : \"desiredPickupTimeframe\", \"foodProviderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"status\" : \"status\" } ]";
                   ApiUtil.setExampleResponse(request, "application/json", exampleString);
                   break;
                 }
@@ -228,14 +222,14 @@ public interface GroupsApi {
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("groupId")
-          String groupId,
+          UUID groupId,
       @Parameter(
               name = "orderId",
               description = "The unique identifier of the order.",
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("orderId")
-          String orderId) {
+          UUID orderId) {
     return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
   }
 
@@ -257,7 +251,7 @@ public interface GroupsApi {
             content = {
               @Content(
                   mediaType = "application/json",
-                  schema = @Schema(implementation = GroupOrderResponse.class))
+                  schema = @Schema(implementation = GroupOrder.class))
             }),
         @ApiResponse(responseCode = "404", description = "Group order not found.")
       })
@@ -265,28 +259,28 @@ public interface GroupsApi {
       method = RequestMethod.GET,
       value = "/groups/{groupId}/orders/{orderId}",
       produces = {"application/json"})
-  default ResponseEntity<GroupOrderResponse> groupsGroupIdOrdersOrderIdGet(
+  default ResponseEntity<GroupOrder> groupsGroupIdOrdersOrderIdGet(
       @Parameter(
               name = "groupId",
               description = "The unique identifier of the group.",
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("groupId")
-          String groupId,
+          UUID groupId,
       @Parameter(
               name = "orderId",
               description = "The unique identifier of the order.",
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("orderId")
-          String orderId) {
+          UUID orderId) {
     getRequest()
         .ifPresent(
             request -> {
               for (MediaType mediaType : MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                   String exampleString =
-                      "{ \"participantOrderIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ], \"groupOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"menuItemIDs\" : { \"key\" : 0 }, \"participantOrders\" : [ { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" }, { \"menuItemIDs\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" } ], \"desiredPickupTimeframe\" : \"desiredPickupTimeframe\", \"foodProviderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"status\" : \"status\" }";
+                      "{ \"participantOrderIDs\" : [ \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" ], \"groupOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"menuItemCounts\" : { \"key\" : 0 }, \"participantOrders\" : [ { \"menuItemCounts\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" }, { \"menuItemCounts\" : { \"key\" : 6 }, \"comments\" : \"comments\", \"participantOrderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\" } ], \"desiredPickupTimeframe\" : \"desiredPickupTimeframe\", \"foodProviderID\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\", \"status\" : \"status\" }";
                   ApiUtil.setExampleResponse(request, "application/json", exampleString);
                   break;
                 }
@@ -322,14 +316,14 @@ public interface GroupsApi {
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("groupId")
-          String groupId,
+          UUID groupId,
       @Parameter(
               name = "orderId",
               description = "The unique identifier of the order.",
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("orderId")
-          String orderId,
+          UUID orderId,
       @Parameter(name = "GroupOrder", description = "", required = true) @Valid @RequestBody
           GroupOrder groupOrder) {
     return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
@@ -359,7 +353,7 @@ public interface GroupsApi {
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("groupId")
-          String groupId,
+          UUID groupId,
       @Parameter(name = "GroupOrder", description = "", required = true) @Valid @RequestBody
           GroupOrder groupOrder) {
     return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
@@ -390,7 +384,7 @@ public interface GroupsApi {
               required = true,
               in = ParameterIn.PATH)
           @PathVariable("groupId")
-          String groupId,
+          UUID groupId,
       @Parameter(name = "Group", description = "", required = true) @Valid @RequestBody
           Group group) {
     return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
