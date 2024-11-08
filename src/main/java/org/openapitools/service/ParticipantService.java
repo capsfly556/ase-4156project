@@ -35,6 +35,10 @@ public class ParticipantService {
    */
   public Participant addParticipant(Participant participant) {
     System.out.println("Adding participant: " + participant.getName());
+    Optional<Participant> optionalUserByEmail = repository.findUserByName(participant.getName());
+    if (optionalUserByEmail.isPresent()) {
+      return optionalUserByEmail.get();
+    }
     return repository.save(participant);
   }
 
