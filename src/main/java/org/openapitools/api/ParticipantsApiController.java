@@ -75,8 +75,13 @@ public class ParticipantsApiController implements ParticipantsApi {
    */
   @Override
   @GetMapping(value = "/participants", produces = {"application/json"})
-  public ResponseEntity<List<Participant>> participantsGet() {
-      List<Participant> participants = participantService.getAllParticipants();
+  public ResponseEntity<List<Participant>> participantsGet(@RequestParam("participantsOrderIdFilter") Optional<UUID> participantsOrderIdFilter) {
+      List<Participant> participants;
+      if (!participantsOrderIdFilter.isPresent()) {
+          participants = participantService.getAllParticipants();
+      } else {
+          participants = participantService.getFilteredParticipants(participantsOrderIdFilter.get());
+      }
       if (participants.isEmpty()) {
           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
       }

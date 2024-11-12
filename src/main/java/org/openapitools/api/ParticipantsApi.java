@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import javax.annotation.Generated;
 import javax.validation.Valid;
 import org.openapitools.model.Participant;
@@ -60,7 +61,7 @@ public interface ParticipantsApi {
       method = RequestMethod.GET,
       value = "/participants",
       produces = {"application/json"})
-  default ResponseEntity<List<Participant>> participantsGet() {
+  default ResponseEntity<List<Participant>> participantsGet(@RequestParam("participantsOrderIdFilter") Optional<UUID> participantsOrderIdFilter) {
 
     getRequest()
         .ifPresent(

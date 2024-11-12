@@ -52,6 +52,11 @@ public class ParticipantService {
     return repository.findAll();
   }
 
+  public List<Participant> getFilteredParticipants(UUID participantsOrderIdFilter) {
+    System.out.println("Getting filtered participants");
+    return repository.findParticipantsByParticipantOrderID(participantsOrderIdFilter);
+  }
+
   /**
    * Retrieves a participant by their unique ID.
    *
