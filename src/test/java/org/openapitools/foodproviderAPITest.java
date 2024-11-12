@@ -215,7 +215,7 @@ public class foodproviderAPITest {
 
     @Test
     void testFoodprovidersGet_Success() {
-        List<FoodProvider> foodProviders = List.of(foodProvider,foodProvider);
+        List<FoodProvider> foodProviders = Arrays.asList(foodProvider,foodProvider);
 
         Mockito.when(service.getAllFoodProviders())
                 .thenReturn(foodProviders);

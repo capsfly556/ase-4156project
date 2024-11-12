@@ -57,7 +57,7 @@ class ParticipantsApiControllerTest {
     List<Participant> participants = Collections.singletonList(participant);
     when(participantService.getAllParticipants()).thenReturn(participants);
 
-    ResponseEntity<List<Participant>> response = participantsApiController.participantsGet();
+    ResponseEntity<List<Participant>> response = participantsApiController.participantsGet(Optional.empty());
 
     assertEquals(HttpStatus.OK, response.getStatusCode());
     assertEquals(1, response.getBody().size());
@@ -68,7 +68,7 @@ class ParticipantsApiControllerTest {
   void testGetAllParticipants_NotFound() {
     when(participantService.getAllParticipants()).thenReturn(Collections.emptyList());
 
-    ResponseEntity<List<Participant>> response = participantsApiController.participantsGet();
+    ResponseEntity<List<Participant>> response = participantsApiController.participantsGet(Optional.empty());
     assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
   }
 
