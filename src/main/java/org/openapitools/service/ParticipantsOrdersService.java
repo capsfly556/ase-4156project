@@ -108,7 +108,7 @@ public class ParticipantsOrdersService {
    * @param participantOrder the ParticipantOrder object to be created
    * @throws RuntimeException if the participant is not found or if an order with the same ID already exists
    */
-  public void createParticipantOrder(UUID participantID, ParticipantOrder participantOrder) {
+  public ParticipantOrder createParticipantOrder(UUID participantID, ParticipantOrder participantOrder) {
     Optional<Participant> participantOptional = participantRepository.findById(participantID);
 
     if (participantOptional.isPresent()) {
@@ -126,6 +126,6 @@ public class ParticipantsOrdersService {
       participantOrder.setParticipantOrderID(UUID.randomUUID());
     }
 
-    repository.save(participantOrder);
+    return repository.save(participantOrder);
   }
 }

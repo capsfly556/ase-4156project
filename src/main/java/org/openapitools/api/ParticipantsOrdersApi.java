@@ -237,7 +237,7 @@ public interface ParticipantsOrdersApi {
       method = RequestMethod.POST,
       value = "/participants/{participantID}/orders",
       consumes = {"application/json"})
-  default ResponseEntity<Void> participantsParticipantIDOrdersPost(
+  default ResponseEntity<ParticipantOrder> participantsParticipantIDOrdersPost(
       @Parameter(
               name = "participantID",
               description = "The unique identifier of the participant.",
