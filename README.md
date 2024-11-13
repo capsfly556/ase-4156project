@@ -32,7 +32,7 @@ From there, you can right-click any of the classes present in the src/test direc
 ## mvn checkstyle:check
 You can run the command mvn checkstyle:check > checkstyle-output.txt to verify if the repository adheres to Google's Java style guide. In this case, the check passed successfully with no violations or warnings.
 
-![](mvn checkstyle output.png)
+![](images/mvn%20checkstyle%20output.png)
 
 ## Endpoints
 This section describes the endpoints that the service provides, as well as their inputs and outputs.
@@ -248,7 +248,18 @@ We used the tool "checkstyle" to check the style of the code and generate style 
 ![Screenshot of a checkstyle terminal output with no errors](images/checkstyle_output_screenshot.png)
 ![Screenshot of a checkstyle report with no errors](images/checkstyle_report_screenshot.png)
 
+
+
+
+
+
+
+
+
+
+
 ## Branch Coverage Reporting
+
 We used JaCoCo to perform branch analysis in order to see the branch coverage of the relevant code within the code base. See below for screenshots demonstrating output.
 
 ![Screenshot of a code coverage report from the plugin](images/test_coverage_screenshot.png)
