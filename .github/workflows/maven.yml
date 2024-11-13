@@ -11,6 +11,11 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      GROUPGRUB_DB_URL: ${{ secrets.GROUPGRUB_DB_URL }}
+      GROUPGRUB_DB_USER: ${{ secrets.GROUPGRUB_DB_USER }}
+      GROUPGRUB_DB_PASSWORD: ${{ secrets.GROUPGRUB_DB_PASSWORD }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
