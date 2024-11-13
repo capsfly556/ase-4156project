@@ -264,7 +264,24 @@ We used JaCoCo to perform branch analysis in order to see the branch coverage of
 
 ![Screenshot of a code coverage report from the plugin](images/test_coverage_screenshot.png)
 
+# Static Analysis result
+
+We used PMD as our static analysis tool and fixed all detected issues. You can run the following command to view the results
+
+```
+mvn pmd:check > pmdresult.txt
+```
+
+A screenshot of the results is also attached.
+
+
+
+![img](file:///Users/capsfly/Desktop/ase-4156project/images/pmd%20output.png?lastModify=1731532458)
+
+
+
 ## Project management
+
 We used the tool Trello for the project management. Here is the screenshot of the board as of the day of ???:
 
 ![Screenshot Trello of the board](images/trello_screenshot.png)
@@ -287,3 +304,6 @@ This section includes notes on tools and technologies used in building this proj
   * We use openapi-generator for the initial project skeleton.
 * Trello
   * We use Trello for the project management.
+
+
+
