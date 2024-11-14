@@ -1,4 +1,4 @@
-package org.openapitools;
+package org.openapitools.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,6 @@ import org.mockito.MockitoAnnotations;
 import org.openapitools.model.FoodProvider;
 import org.openapitools.model.MenuItem;
 import org.openapitools.repository.FoodproviderRepository;
-import org.openapitools.service.FoodproviderService;
 
 import java.math.BigDecimal;
 import java.util.*;

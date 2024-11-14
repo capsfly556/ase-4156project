@@ -1,9 +1,7 @@
-package org.openapitools;
+package org.openapitools.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openapitools.model.FoodProvider;
-import org.openapitools.model.MenuItem;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

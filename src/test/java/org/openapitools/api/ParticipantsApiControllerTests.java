@@ -1,11 +1,10 @@
-package org.openapitools;
+package org.openapitools.api;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.openapitools.api.ParticipantsApiController;
 import org.openapitools.model.Participant;
 import org.openapitools.service.ParticipantService;
 import org.springframework.http.HttpStatus;
