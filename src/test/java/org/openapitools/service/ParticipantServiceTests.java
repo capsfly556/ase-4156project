@@ -1,4 +1,4 @@
-package org.openapitools;
+package org.openapitools.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,7 +7,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.openapitools.model.Participant;
 import org.openapitools.repository.ParticipantRepository;
-import org.openapitools.service.ParticipantService;
 
 import java.util.ArrayList;
 import java.util.List;

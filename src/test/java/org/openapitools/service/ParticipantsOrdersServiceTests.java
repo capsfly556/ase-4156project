@@ -1,4 +1,4 @@
-package org.openapitools;
+package org.openapitools.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,6 @@ import org.openapitools.model.Participant;
 import org.openapitools.model.ParticipantOrder;
 import org.openapitools.repository.ParticipantRepository;
 import org.openapitools.repository.ParticipantsOrdersRepository;
-import org.openapitools.service.ParticipantsOrdersService;
 
 import java.util.Collections;
 import java.util.List;

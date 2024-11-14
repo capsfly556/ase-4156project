@@ -276,13 +276,304 @@ A screenshot of the results is also attached.
 
 
 
-![img](file:///Users/capsfly/Desktop/ase-4156project/images/pmd%20output.png?lastModify=1731532458)
+![](images/pmd output.png)
+
+
+
+
+
+# End-to-End Testing Document
+
+This document outlines comprehensive end-to-end tests for validating the `FoodProvider`, `Group`, `Participant`, and `ParticipantOrder` APIs. Each section includes detailed test cases with sample input data, expected outputs, and manual testing instructions.
+
+## Test Environment
+
+- **Testing Tools**: Recommended tools include Postman, Curl, or other REST clients.
+- **Base URL**: Assuming the application is hosted at `http://localhost:8080/api`.
+- **Data Preparation**: In cases where IDs are not predefined, generate random UUIDs for testing.
+
+## Table of Contents
+
+- [FoodProvider CRUD Operations](#foodprovider-crud-operations)
+- [Group CRUD Operations](#group-crud-operations)
+- [Participant CRUD Operations](#participant-crud-operations)
+- [ParticipantOrder CRUD Operations](#participantorder-crud-operations)
+- [Manual Testing Checklist](#manual-testing-checklist)
+
+---
+
+### FoodProvider CRUD Operations
+
+This section covers creating, retrieving, updating, and deleting `FoodProvider` entities, simulating common scenarios and edge cases.
+
+#### Add a New FoodProvider (Success)
+
+- **Objective**: Ensure that a valid `FoodProvider` can be created successfully.
+- **Request**:
+  - **Method**: `POST`
+  - **URL**: `/foodproviders`
+  - **Body**:
+    ```json
+    {
+      "name": "TestFoodProvider",
+      "phoneNumber": "1234567890",
+      "hoursOfOperation": "8hours",
+      "location": "San Francisco",
+      "menu": [
+        {
+          "name": "Burger",
+          "image": "https://news.bk.com/media-assets/menu-item-and-campaign-images",
+          "description": "A delicious beef burger",
+          "cost": 11.00
+        },
+        {
+          "name": "Fried chicken",
+          "image": "https://www.allrecipes.com/recipe/8805/crispy-fried-chicken/",
+          "description": "Crispy golden fried chicken",
+          "cost": 11.00
+        }
+      ]
+    }
+    ```
+- **Expected Result**:
+  - **Status Code**: `201 Created`
+  - **Response**: No response body expected.
+  - **Behavior**: The `FoodProvider` is successfully created with the provided menu items.
+
+#### Add FoodProvider with Missing Menu (Failure)
+
+- **Objective**: Validate that creating a `FoodProvider` without required fields fails.
+- **Request**:
+  - **Method**: `POST`
+  - **URL**: `/foodproviders`
+  - **Body**:
+    ```json
+    {
+      "name": "Test Provider",
+      "phoneNumber": "1234567890"
+    }
+    ```
+- **Expected Result**:
+  - **Status Code**: `400 Bad Request`
+  - **Response Message**: Should specify the missing `menu` field.
+  - **Behavior**: The server rejects the request due to missing required fields.
+
+#### Delete FoodProvider (Success)
+
+- **Objective**: Verify that an existing `FoodProvider` can be deleted by its ID.
+- **Request**:
+  - **Method**: `DELETE`
+  - **URL**: `/foodproviders/{foodProviderId}`
+  - **Path Parameter**: `foodProviderId` with an existing ID, e.g., `123e4567-e89b-12d3-a456-426614174000`.
+- **Expected Result**:
+  - **Status Code**: `204 No Content`
+  - **Response**: No response body expected.
+  - **Behavior**: The `FoodProvider` is deleted from the system, and subsequent retrieval attempts should return `404 Not Found`.
+
+#### Retrieve FoodProvider by ID (Success)
+
+- **Objective**: Confirm that retrieving a `FoodProvider` by ID returns the correct data.
+- **Request**:
+  - **Method**: `GET`
+  - **URL**: `/foodproviders/{foodProviderId}`
+  - **Path Parameter**: `foodProviderId` with a valid ID.
+- **Expected Result**:
+  - **Status Code**: `200 OK`
+  - **Response**:
+    ```json
+    {
+      "name": "TestFoodProvider",
+      "phoneNumber": "1234567890",
+      "hoursOfOperation": "8hours",
+      "location": "San Francisco",
+      "menu": [
+        {
+          "name": "Burger",
+          "description": "A delicious beef burger",
+          "cost": 11.00
+        },
+        {
+          "name": "Fried chicken",
+          "description": "Crispy golden fried chicken",
+          "cost": 11.00
+        }
+      ]
+    }
+    ```
+  - **Behavior**: The server returns the `FoodProvider` details accurately, including the associated menu.
+
+---
+
+### Group CRUD Operations
+
+#### Retrieve All Groups (Success)
+
+- **Objective**: Verify that retrieving all groups returns a list of `Group` entries.
+- **Request**:
+  - **Method**: `GET`
+  - **URL**: `/groups`
+- **Expected Result**:
+  - **Status Code**: `200 OK`
+  - **Response**: A list of all existing groups.
+- **Behavior**: The server should return a list of all `Group` objects. If no groups are present, it should respond with an empty list.
+
+#### Retrieve Group by ID (Not Found)
+
+- **Objective**: Validate that attempting to retrieve a non-existent group returns a `404 Not Found`.
+- **Request**:
+  - **Method**: `GET`
+  - **URL**: `/groups/{groupId}`
+  - **Path Parameter**: `groupId` with a non-existent ID.
+- **Expected Result**:
+  - **Status Code**: `404 Not Found`
+  - **Response**: No response body expected.
+  - **Behavior**: The server should return `404 Not Found` when the specified group ID does not exist.
+
+---
+
+### Participant CRUD Operations
+
+#### Add Participant (Success)
+
+- **Objective**: Ensure that a new `Participant` can be added.
+- **Request**:
+  - **Method**: `POST`
+  - **URL**: `/participants`
+  - **Body**:
+    ```json
+    {
+      "name": "John Doe",
+      "participantID": "123e4567-e89b-12d3-a456-426614174001"
+    }
+    ```
+- **Expected Result**:
+  - **Status Code**: `201 Created`
+  - **Response**: The created `Participant` object.
+- **Behavior**: The `Participant` should be added to the database and returned in the response.
+
+#### Retrieve All Participants (Not Found)
+
+- **Objective**: Verify that retrieving participants when none exist returns `404 Not Found`.
+- **Request**:
+  - **Method**: `GET`
+  - **URL**: `/participants`
+- **Expected Result**:
+  - **Status Code**: `404 Not Found`
+  - **Response**: Empty response body.
+- **Behavior**: The server should return `404` if no `Participant` records are found.
+
+---
+
+### ParticipantOrder CRUD Operations
+
+#### Retrieve All Orders for a Participant (Success)
+
+- **Objective**: Ensure that all orders for a specific participant can be retrieved.
+- **Request**:
+  - **Method**: `GET`
+  - **URL**: `/participants/{participantId}/orders`
+  - **Path Parameter**: `participantId` with an existing ID.
+- **Expected Result**:
+  - **Status Code**: `200 OK`
+  - **Response**: List of `ParticipantOrder` entries.
+- **Behavior**: The server should return a list of all orders associated with the participant.
+
+#### Update Participant Order (Success)
+
+- **Objective**: Confirm that a participant’s order can be updated.
+- **Request**:
+  - **Method**: `PUT`
+  - **URL**: `/participants/{participantId}/orders/{orderId}`
+  - **Path Parameters**: `participantId` and `orderId` with valid IDs.
+  - **Body**:
+    ```json
+    {
+      "comments": "Updated comments",
+      "menuItemIDs": {}
+    }
+    ```
+- **Expected Result**:
+  - **Status Code**: `200 OK`
+  - **Response**: Updated order details.
+- **Behavior**: The server updates the specified order and returns the updated information.
+
+---
+
+
+
+Certainly! Here’s a combined document explaining how `Mock` and `Mockito` are used in the provided unit tests:
+
+---
+
+
+
+# Unit Testing with Mocking in `FoodProvider` API
+
+This document details how mocking is applied in the unit tests for the `FoodProvider` API, using `Mock` and `Mockito` to simulate the behavior of service layer components. Mocking helps isolate the logic being tested by creating controllable test environments without relying on external dependencies.
+
+
+
+## Mocking in the Tests
+
+In the provided unit tests, `@Mock` and `Mockito` are used to simulate the behavior of service classes such as `FoodproviderService`, `GroupService`, and `GroupOrderService`. This approach allows for focused testing on the controller logic without depending on actual implementations of these services.
+
+
+
+## Grouping of Testing Files
+
+Our source files are organized into groups based on their roles: API, service, model, and repository. Similarly, our test files are grouped according to these same categories: API, service, model, and repository. This structure helps maintain consistency and makes it easy to locate and manage related files.
+
+
+
+![](images/test files.png)
+
+
+
+### Use mocking in our test files
+
+1. **Creating Mocks with `@Mock` Annotation**:
+   ```java
+   @Mock
+   private FoodproviderService service;
+   ```
+   The `@Mock` annotation creates a mock instance of `FoodproviderService`, rather than using a real service instance. This allows for complete control over the behavior of `FoodproviderService` during the test, without relying on a database or any other external service.
+
+2. **Specifying Mock Behavior with `Mockito.when`**:
+   ```java
+   Mockito.when(service.addFoodProvider(Mockito.any(FoodProvider.class)))
+           .thenReturn(true);
+   ```
+   The `Mockito.when` method specifies that when `service.addFoodProvider()` is called with any `FoodProvider` object, it should return `true`. This approach enables the test to simulate the expected behavior of the `addFoodProvider` method, ensuring predictable test outcomes and avoiding side effects from real service interactions.
+
+3. **Verifying Method Calls with `Mockito.verify`**:
+   ```java
+   Mockito.verify(service, Mockito.times(1)).addFoodProvider(Mockito.any(FoodProvider.class));
+   ```
+   The `Mockito.verify` method is used to check whether `addFoodProvider` was called exactly once during the test. This verification ensures that the expected service method is called as part of the controller logic, allowing for further validation of the controller's behavior.
+
+
+
+
+
+
+
+### Manual Testing Checklist
+
+If automation is unavailable, follow these steps manually:
+
+1. **Set Up Initial Data**: Ensure all entities (`FoodProvider`, `Group`, `Participant`, and `ParticipantOrder`) are created or available as needed.
+
+2. **Verify API Response Codes and Content**: Use tools like Postman to send API requests for each endpoint. Compare the actual responses against the expected results documented above.
+
+3. **Log Each Result**: Record whether each test passed or failed, noting discrepancies.
+
+4. **Repeat Tests as Needed**: Re-run tests as the application evolves to ensure consistency.
 
 
 
 ## Project management
 
-We used the tool Trello for the project management. Here is the screenshot of the board as of the day of ???:
+We used the tool Trello for the project management. Here is the screenshot of the board:
 
 ![Screenshot Trello of the board](images/trello_screenshot.png)
 

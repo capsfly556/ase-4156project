@@ -1,4 +1,4 @@
-package org.openapitools;
+package org.openapitools.api;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.openapitools.api.FoodprovidersApiController;
 import org.openapitools.model.FoodProvider;
 import org.openapitools.model.MenuItem;
 import org.openapitools.service.FoodproviderService;
