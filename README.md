@@ -32,7 +32,7 @@ From there, you can right-click any of the classes present in the src/test direc
 ## mvn checkstyle:check
 You can run the command mvn checkstyle:check > checkstyle-output.txt to verify if the repository adheres to Google's Java style guide. In this case, the check passed successfully with no violations or warnings.
 
-![](mvn checkstyle output.png)
+![](images/mvn%20checkstyle%20output.png)
 
 ## Endpoints
 This section describes the endpoints that the service provides, as well as their inputs and outputs.
@@ -248,12 +248,40 @@ We used the tool "checkstyle" to check the style of the code and generate style 
 ![Screenshot of a checkstyle terminal output with no errors](images/checkstyle_output_screenshot.png)
 ![Screenshot of a checkstyle report with no errors](images/checkstyle_report_screenshot.png)
 
+
+
+
+
+
+
+
+
+
+
 ## Branch Coverage Reporting
+
 We used JaCoCo to perform branch analysis in order to see the branch coverage of the relevant code within the code base. See below for screenshots demonstrating output.
 
 ![Screenshot of a code coverage report from the plugin](images/test_coverage_screenshot.png)
 
+# Static Analysis result
+
+We used PMD as our static analysis tool and fixed all detected issues. You can run the following command to view the results
+
+```
+mvn pmd:check > pmdresult.txt
+```
+
+A screenshot of the results is also attached.
+
+
+
+![img](file:///Users/capsfly/Desktop/ase-4156project/images/pmd%20output.png?lastModify=1731532458)
+
+
+
 ## Project management
+
 We used the tool Trello for the project management. Here is the screenshot of the board as of the day of ???:
 
 ![Screenshot Trello of the board](images/trello_screenshot.png)
@@ -276,3 +304,6 @@ This section includes notes on tools and technologies used in building this proj
   * We use openapi-generator for the initial project skeleton.
 * Trello
   * We use Trello for the project management.
+
+
+
