@@ -127,12 +127,12 @@ public class ParticipantsOrdersApiController implements ParticipantsOrdersApi {
      */
     @Override
     @PostMapping("/participants/{participantID}/orders")
-    public ResponseEntity<Void> participantsParticipantIDOrdersPost(
+    public ResponseEntity<ParticipantOrder> participantsParticipantIDOrdersPost(
       @PathVariable("participantID") String participantID,
       @Valid @RequestBody ParticipantOrder participantOrder) {
       try {
-        participantsOrdersService.createParticipantOrder(UUID.fromString(participantID), participantOrder);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+          ParticipantOrder createdOrder = participantsOrdersService.createParticipantOrder(UUID.fromString(participantID), participantOrder);
+        return new ResponseEntity<>(createdOrder, HttpStatus.CREATED);
       } catch (RuntimeException e) {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
       }
