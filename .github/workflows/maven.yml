@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      GROUPGRUB_DB_URL: ${{ secrets.GROUPGRUB_DB_URL }}
-      GROUPGRUB_DB_USER: ${{ secrets.GROUPGRUB_DB_USER }}
-      GROUPGRUB_DB_PASSWORD: ${{ secrets.GROUPGRUB_DB_PASSWORD }}
+      GROUPGRUB_DB_URL: "jdbc:mysql://35.237.146.125:3306/groupgrubdb"
+      GROUPGRUB_DB_USER: "root"
+      GROUPGRUB_DB_PASSWORD: "dbuserdbuser"
 
     steps:
       - name: Checkout repository
