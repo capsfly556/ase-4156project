@@ -5,6 +5,10 @@ This is the GitHub repository for the service portion of the Project associated 
 ## Viewing the Service Repository
 Please use the following link to view the repository relevant to the service: https://github.com/capsfly556/ase-4156project
 
+## Viewing the Front End Repository
+Please use the following link to view the Front End repository : https://github.com/Foo2000/GroupGrubUI
+
+
 ## Building and Running a Local Instance
 In order to build and use this service you must install the following (This guide assumes Mac but the Maven README has instructions for both Windows and Mac):
 
